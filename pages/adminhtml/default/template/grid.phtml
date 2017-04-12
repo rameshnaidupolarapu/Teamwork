@@ -65,7 +65,8 @@ if ($controllerObj->_totalRecordsCount < 1) {
                                             samplefun('<?php echo $controllerObj->_nodeName; ?>');">
                                                 <?php
                                                 $in = "1";
-                                                while ($controllerObj->_wsrpp * ($in - 1) < $controllerObj->_totalRecordsCount) {
+                                                while ($controllerObj->_wsrpp >0 && $controllerObj->_totalRecordsCount >0 && $controllerObj->_wsrpp * ($in - 1) < $controllerObj->_totalRecordsCount) {
+                                                   
                                                     if ($controllerObj->_wsrpp * $in == $controllerObj->_rpp) {
                                                         $sel = " selected ";
                                                     } else {
@@ -84,7 +85,7 @@ if ($controllerObj->_totalRecordsCount < 1) {
                                             samplefun('<?php echo $controllerObj->_nodeName; ?>');">
                                                 <?php
                                                 $in = "1";
-                                                while ($controllerObj->_rpp * ($in - 1) <= $controllerObj->_totalRecordsCount) {
+                                                while ($controllerObj->_wsrpp >0 && $controllerObj->_totalRecordsCount >0 && $controllerObj->_rpp * ($in - 1) <= $controllerObj->_totalRecordsCount) {
                                                     if ($in == $controllerObj->_page) {
                                                         $sel = " selected ";
                                                     } else {

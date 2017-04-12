@@ -1,0 +1,96 @@
+<?php 
+    $wp = $this->_websiteSettings;
+    $session=new \Core\Session();
+    $sessionData = $session->getFrontendSession();
+    $customerId=$sessionData['profileId'];
+    
+?>
+<div class="row">
+    <section class="row" id="container-block">
+        <section class="row">       
+            <!-- Page navogation part -->
+            <div class="container">
+                <div class="page-navigation">
+                    <ul class="breadcrumbs">
+                        <li> <a href="javascript:void(0)">Home</a> </li>
+                        <li> <a href="javascript:void(0)">Account</a> </li>
+                        <li> <a href="javascript:void(0)">Add Address</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="row account-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <?php $this->loadChildBlock("usermenu");?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row innerWrapper">
+                            <h1 class="block-title">Add Address</h1>
+                            <div class="basic-form">
+                                <form id="FormCustomerAddress">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">               
+                                        <div class="form-group">
+                                            <label for="firstname">First Name</label>
+                                            <input type="text" class="form-control" id="add_fisrt_name" name="add_fisrt_name" placeholder="First Name">
+                                            <span class="errors" id="error_add_fisrt_name" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="lastname">Last Name</label>
+                                            <input type="text" class="form-control" id="add_last_name" name="add_last_name" placeholder="Last Name">
+                                            <span class="errors" id="error_add_last_name" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" id="add_address" name="add_address" placeholder="Address">
+                                            <span class="errors" id="error_add_address" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="address">Address (Line 2)</label>
+                                            <input type="text" class="form-control" id="add_address2" name="add_address2" placeholder="Address Line2">
+                                            <span class="errors" id="error_add_address2" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="city">Location</label>
+                                            <input type="text" class="form-control" id="add_location" name="add_location" placeholder="Location">
+                                            <span class="errors" id="error_add_location" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="city">City</label>
+                                            <input type="text" class="form-control" id="add_city" name="add_city" placeholder="City">
+                                            <span class="errors" id="error_add_city" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="state">State</label>
+                                            <input type="text" class="form-control" id="add_state" name="add_state" placeholder="State">
+                                            <span class="errors" id="error_add_state" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="country">Country</label>
+                                            <input type="text" class="form-control" id="add_country" name="add_country" placeholder="Country">
+                                            <span class="errors" id="error_add_country" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="zipcode">Zipcode</label>
+                                            <input type="text" class="form-control" id="add_zipcode" name="add_zipcode" placeholder="Zipcode">
+                                            <span class="errors" id="error_add_zipcode" style="display: none;"></span> </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12"> 
+                                        <div class="form-group">
+                                            <label for="mobile">Mobile</label>
+                                            <input type="text" class="form-control" id="add_mobile" name="add_mobile" placeholder="Mobile">
+                                            <span class="errors" id="error_add_mobile" style="display: none;"></span> </div>
+                                        <div class="form-group">
+                                            <label for="address">Please assign an address title for future reference.</label>
+                                            <input type="text" class="form-control" id="add_title" name="add_title" placeholder="Address1">
+                                            <span class="errors" id="error_add_title" style="display: none;"></span> </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-default " onclick="(function() {require('Customer/customer').cutomerAddaddresss() })()">Add Address</button>
+                                    </div>
+                                </form>
+                            </div>          
+                        </div>
+                    </div>
+                    <!--/row end--> 
+
+                </div>
+            </div>
+        </section>
+    </section>
+</div>

@@ -1,0 +1,241 @@
+<?php
+$wp = $this->_websiteSettings;
+$cp = new \Core\CodeProcess();
+$cod = $cp->convertEncryptDecrypt("encrypt", "CashOnDelivery");
+$paytm = $cp->convertEncryptDecrypt("encrypt", "Paytm");
+$paypal = $cp->convertEncryptDecrypt("encrypt", "Paypal");
+$payumoney = $cp->convertEncryptDecrypt("encrypt", "payUmoney");
+$freecharge = $cp->convertEncryptDecrypt("encrypt", "FreeCharge");
+?>
+<div class="row">
+    <section class="container" id="container-block"> 
+        <section class="row"> 
+            <!-- Page navogation part -->
+            <div class="page-navigation">
+                <ul class="breadcrumbs">
+                    <li> <a href="javascript:void(0)">Home</a> </li>
+                    <li> <a href="javascript:void(0)">Grocery Shop</a> </li>
+                    <li> <a href="javascript:void(0)">Vender List</a> </li>
+                </ul>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-12 chat_title">
+                <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</h4>
+            </div>
+        </section>  
+        <div class="col-md-9"> 
+            <div class="row userInfo">
+                <div class="w100 clearfix">
+                    <?php $this->loadChildBlock("cartnavigation"); ?>
+                    <div class="col-lg-12">
+                        <h2 class="block-title-2"> Payment method </h2>
+
+                        <p>Please select the preferred shipping method to use on this order.</p>
+                        <hr>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="paymentBox">
+                            <div class="panel-group paymentMethod" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-custom">
+                                        <h4 class="panel-title"><a class="cashOnDelivery" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                <span class="numberCircuil">Option 1</span> <strong> Cash on
+                                                    Delivery</strong> </a></h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <p>All transactions are secure and encrypted, and we neverstor To
+                                                learn more, please view our privacy policy.</p>
+                                            <br>
+                                            <label class="radio-inline" for="radios-4">
+                                                <div class="iradio_square-green iChk iCheck-margin" style="position: relative;">
+                                                    <input name="radios" id="radios-4" value="4" type="radio" style="position: absolute; opacity: 0;">
+                                                </div>  
+                                                <label class="radio_address"><input type="radio" name="paymentmethod" value="<?php echo $cod; ?>"></label>
+                                                Cash On Delivery </label>
+
+                                            <div class="form-group">
+                                                <label for="CommentsOrder" style="line-height: 30px;"> <label><input type="checkbox" value=""></label> Add Comments About Your Order</label>
+                                                <textarea id="msg_<?php echo $cod; ?>" class="form-control" name="CommentsOrder" cols="26" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="checkbox-inline" for="checkboxes-1">
+                                                    <div class="icheckbox_square-green iCheck-margin" style="position: relative;"><input name="checkboxes" id="checkboxes-1" value="1" type="checkbox" style="position: absolute; opacity: 0;"></div>
+                                                    I have read and agree to the <a href="">Terms &amp; Conditions</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-custom">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                <span class="numberCircuil">Option 2</span><strong> PayPal</strong>
+                                            </a></h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>All transactions are secure and encrypted, and we neverstor To
+                                                learn more, please view our privacy policy.</p>
+                                            <br>
+                                            <label class="radio-inline" for="radios-3">
+                                                <div class="iradio_square-green iChk iCheck-margin" style="position: relative;"><input name="radios" id="radios-3" value="4" type="radio" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                <label><input type="radio" name="paymentmethod"  value="<?php echo $paypal; ?>"></label>
+                                                <img src="images/paypal-small.png" height="18" alt="paypal">  Checkout with Paypal </label>
+
+                                            <div class="form-group">
+                                                <label for="CommentsOrder2" style="line-height: 30px">Add Comments About Your
+                                                    Order</label>
+                                                <textarea id="msg_<?php echo $paypal; ?>" class="form-control" name="CommentsOrder2" cols="26" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="checkbox-inline" for="checkboxes-0">
+                                                    <div class="icheckbox_square-green iCheck-margin" style="position: relative;"><input name="checkboxes" id="checkboxes-0" value="1" type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                    I have read and agree to the <a href="">Terms &amp; Conditions</a>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-custom">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                                <span class="numberCircuil">Option 3</span><strong> PayU Money</strong>
+                                            </a></h4>
+                                    </div>
+                                    <div id="collapse3" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>All transactions are secure and encrypted, and we neverstor To
+                                                learn more, please view our privacy policy.</p>
+                                            <br>
+                                            <label class="radio-inline" for="radios-3">
+                                                <div class="iradio_square-green iChk iCheck-margin" style="position: relative;"><input name="radios" id="radios-3" value="4" type="radio" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                <label><input type="radio" name="paymentmethod" value="<?php echo $payumoney; ?>"></label>
+                                                <img src="images/paypal-small.png" height="18" alt="paypal">  Checkout with Paypal </label>
+
+                                            <div class="form-group">
+                                                <label for="CommentsOrder2" style="line-height: 30px">Add Comments About Your
+                                                    Order</label>
+                                                <textarea id="msg_<?php echo $payumoney; ?>" class="form-control" name="CommentsOrder2" cols="26" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="checkbox-inline" for="checkboxes-0">
+                                                    <div class="icheckbox_square-green iCheck-margin" style="position: relative;"><input name="checkboxes" id="checkboxes-0" value="1" type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                    I have read and agree to the <a href="">Terms &amp; Conditions</a>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-custom">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                                <span class="numberCircuil">Option 4</span><strong> Paytm</strong>
+                                            </a></h4>
+                                    </div>
+                                    <div id="collapse4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>All transactions are secure and encrypted, and we neverstor To
+                                                learn more, please view our privacy policy.</p>
+                                            <br>
+                                            <label class="radio-inline" for="radios-3">
+                                                <div class="iradio_square-green iChk iCheck-margin" style="position: relative;"><input name="radios" id="radios-3" value="4" type="radio" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                <label><input type="radio" name="paymentmethod" value="<?php echo $paytm; ?>"></label>
+                                                <img src="images/paypal-small.png" height="18" alt="paypal">  Checkout with Paypal </label>
+
+                                            <div class="form-group">
+                                                <label for="CommentsOrder2" style="line-height: 30px">Add Comments About Your
+                                                    Order</label>
+                                                <textarea id="msg_<?php echo $paytm; ?>" class="form-control" name="CommentsOrder2" cols="26" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="checkbox-inline" for="checkboxes-0">
+                                                    <div class="icheckbox_square-green iCheck-margin" style="position: relative;"><input name="checkboxes" id="checkboxes-0" value="1" type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                    I have read and agree to the <a href="">Terms &amp; Conditions</a>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-custom">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                                <span class="numberCircuil">Option 5</span><strong> Free Charge</strong>
+                                            </a></h4>
+                                    </div>
+                                    <div id="collapse5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <p>All transactions are secure and encrypted, and we neverstor To
+                                                learn more, please view our privacy policy.</p>
+                                            <br>
+                                            <label class="radio-inline" for="radios-3">
+                                                <div class="iradio_square-green iChk iCheck-margin" style="position: relative;"><input name="radios" id="radios-3" value="4" type="radio" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                <label><input type="radio" name="paymentmethod" value="<?php echo $freecharge; ?>"></label>
+                                                <img src="images/paypal-small.png" height="18" alt="paypal">  Checkout with Paypal </label>
+
+                                            <div class="form-group">
+                                                <label for="CommentsOrder2" style="line-height: 30px">Add Comments About Your
+                                                    Order</label>
+                                                <textarea id="msg_<?php echo $freecharge; ?>" class="form-control" name="CommentsOrder2" cols="26" rows="3"></textarea>
+                                            </div>
+                                            <div class="form-group clearfix">
+                                                <label class="checkbox-inline" for="checkboxes-0">
+                                                    <div class="icheckbox_square-green iCheck-margin" style="position: relative;"><input name="checkboxes" id="checkboxes-0" value="1" type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div>
+                                                    I have read and agree to the <a href="">Terms &amp; Conditions</a>
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--/row-->
+
+                    </div>
+
+                </div>
+                <!--/.w100-->
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="<?php echo $wp->websiteUrl ?>checkout/address-select" class="btn btn-primary btn-small "> Back to Address List
+                            &nbsp; <i class="fa fa-arrow-circle-right"></i> </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="javascript:void(0)"  onclick="(function () {require('Checkoutmanagement/selectpaymentmethod').getPaymentMethod() })()" class="btn btn-primary btn-small pull-right "> Goto Order
+                            &nbsp; <i class="fa fa-arrow-circle-right"></i> </a>
+                    </div>
+                </div>
+                <div class="col-lg-12 clearfix">
+                    <ul class="pager">
+                        <li class="next pull-left"><a href="">← Back to My Account</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <?php $this->loadChildBlock("checkoutminicart"); ?>
+        </div>
+    </section>
+</div>
+<script>
+require(['config'], function () {
+    require(['jquery', 'selectpaymentmethod'], function ($) {
+    });
+});
+</script>

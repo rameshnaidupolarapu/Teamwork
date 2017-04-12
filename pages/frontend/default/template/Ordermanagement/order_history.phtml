@@ -1,0 +1,76 @@
+<?php
+$orderData = $this->getOrderList();
+?>
+
+<!-- Start contant part --> 
+<div class="row">
+    <section class="row" id="container-block">
+        <section class="row">       
+            <!-- Page navogation part -->
+            <div class="container">
+                <div class="page-navigation">
+                    <ul class="breadcrumbs">
+                        <li> <a href="javascript:void(0)">Home</a> </li>
+                        <li> <a href="javascript:void(0)">Account</a> </li>
+                        <li> <a href="javascript:void(0)">My Orders</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="row account-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <?php $this->loadChildBlock("usermenu"); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row innerWrapper account-order">
+                            <h1 class="block-title">My Orders</h1>
+                            <div class="table-responsive border">
+                                <table class="table table-bordered">
+                                    <thead><tr>
+                                            <th class="col-xs-2">Order ID</th>
+                                            <th class="col-xs-3">Date</th>
+                                            <th class="col-md-1 hidden-xs hidden-sm">Items</th>
+                                            <th class="col-xs-2">Total Price</th>
+                                            <th class="col-xs-3">Status</th>
+                                            <th class="col-xs-1">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        <?php
+                                        if(\Core::countArray($orderData)){
+                                            foreach ($orderData as $key => $value) {
+                                               ?>
+                                        <tr>
+                                            <td><a href="single-order.html"><?php echo \Core::getValueFromArray($value, "auto_increment_id") ?></a></td>
+                                            <td><?php echo \Core::getValueFromArray($value, "createdat") ?></td>
+                                            <td class="hidden-xs hidden-sm"><?php echo intval(\Core::getValueFromArray($value, "itemcount")) ?></td>
+                                            <td><?php echo \Core::getValueFromArray($value, "amount") ?></td>
+                                            <td><span class="label label-info"><?php echo \Core::getValueFromArray($value, "status") ?></span></td>
+                                            <td><a href="javascript:void(0)" class="btn btn-primary btn-sm btn-view">View</a></td>
+                                        </tr>
+                                        <?php
+                                            }
+                                        }else{
+                                            
+                                            echo '<tr><td colspan="6" style="text-align:center">No Orders</td></tr>';
+                                        }
+                                        ?>
+                                    
+                                    </tbody>
+                                </table>
+                            </div>           
+                        </div>
+                    </div>
+                    <!--/row end--> 
+
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+<!-- End contant part -->

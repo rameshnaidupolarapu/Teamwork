@@ -1,0 +1,17 @@
+<?php
+$partentObject = $this->_partentObject;
+$_requestedData = $partentObject->_controllerObj->_requestedData;
+$productId = \Core::getValueFromArray($_requestedData, "productId");
+$warehouseId = \Core::getValueFromArray($_requestedData, "warehouseId");
+$productRating = $this->getWarehouseProductRating($warehouseId,$productId);
+?>
+<p>
+    <span id="stars-existing" class="starrr" data-rating='<?php if(\Core::countArray($productRating)>0){    echo \Core::getValueFromArray($productRating, "rating");}else{ echo '2';} ?>'></span>
+    <span class="product-review"><?php if(\Core::countArray($productRating)>0){    echo \Core::getValueFromArray($productRating, "rating");}else{ echo '2';} ?> Rating</span>
+</p>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'starRating'], function ($) {
+    });
+});
+</script>

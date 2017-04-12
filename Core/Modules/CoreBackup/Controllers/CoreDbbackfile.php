@@ -25,7 +25,7 @@ class CoreDbbackfile extends NodeController
     }
     public function getTableNames() 
     {
-        $db=new Core_DataBase_ProcessQuery();
+        $db=new \Core\DataBase\ProcessQuery();
         $output=$db->getTablesFromDatabase();
         $this->_tableList=$output['tables'];       
     }
@@ -40,7 +40,7 @@ class CoreDbbackfile extends NodeController
         }
         else
         {
-            $db=new Core_DataBase_ProcessQuery();
+            $db=new \Core\DataBase\ProcessQuery();
             $output=$db->getTablesFromDatabase();
             $this->_tableList=$output['tables'];
         }
@@ -56,15 +56,15 @@ class CoreDbbackfile extends NodeController
         $folderName.=date('Y_m_d_H_i_s');
         foreach($this->_tableList as $tableName)
         {
-            $db=new Core_DataBase_ProcessQuery();
+            $db=new \Core\DataBase\ProcessQuery();
             $db->setTable($tableName);
             $createQuery=$db->getTableCreateQuery();
-            $folderPath=\Core::createFolder($datetime."/".$tableName, "B");
+            $folderPath=\Core::createFolder($datetime.DIRECTORY_SEPARATOR.$tableName, "B");
             $fp=  fopen($folderPath."create.sql", "w+");            
             fwrite($fp, $createQuery);
             fclose($fp);
             unlink($folderPath."data.sql");
-            $db=new Core_DataBase_ProcessQuery();
+            $db=new \Core\DataBase\ProcessQuery();
             $db->setTable($tableName);
             $db->getTableDataQuery($folderPath."data.sql");
             $content=file_get_contents($folderPath."data.sql");

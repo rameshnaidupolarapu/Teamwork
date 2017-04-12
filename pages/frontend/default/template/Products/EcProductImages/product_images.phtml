@@ -1,0 +1,31 @@
+<?php
+$wp = $this->_websiteSettings;
+$_currentSelecter = $this->_controllerObj->_currentSelector;
+$this->setProductId($_currentSelecter);
+$produtBaseImage = $this->getProductImages();
+$produtGridImages = $this->getProductGridImages();
+$ImagePath = $this->_websiteSettings->projectRootUploadUrl . "Crop/";
+?>
+
+<div id="gallery1" class="photo-gallery product_image">
+    <?php
+    if (\Core::countArray($produtGridImages) > 0) {
+        echo '<div class="current-photo"> <img src="' . $ImagePath . \Core::getValueFromArray($produtBaseImage, "image") . '"> </div>';
+    }
+    ?>
+    <div class="photo-list">
+        <ul>
+            <?php
+            if (\Core::countArray($produtGridImages) > 0) {
+                foreach ($produtGridImages as $key => $value) {
+
+                    echo ' <li data-src="' . $ImagePath . \Core::getValueFromArray($value, "image") . '">
+        <div class="thumbnail"> <img src="' . $ImagePath . \Core::getValueFromArray($value, "image") . '" title="" alt=""> </div>
+      </li>';
+                }
+            }
+            ?>    
+
+        </ul>
+    </div>
+</div>

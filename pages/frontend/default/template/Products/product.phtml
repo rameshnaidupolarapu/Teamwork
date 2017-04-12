@@ -1,0 +1,30 @@
+<?php
+$cp = new \Core\CodeProcess(); 
+$parentOjbect = $this->_partentObject;
+$productId = $parentOjbect->getCurrentProductId();
+$_productId = $cp->convertEncryptDecrypt("encrypt", $productId);
+$this->setProductId($productId);
+$productInfo = $this->getProductData();
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$warehouseId = \Core::getValueFromArray($_urlMetaInfor, "wherehouseId");
+?>
+<li id="<?php echo $_productId; ?>">
+    <div class="col-md-12 right-padding"> 
+        <?php $this->loadChildBlock("product_contant"); ?>
+        <div class="clear-fix"></div>
+        <div class="row product-info">
+            <?php $this->loadChildBlock("rating"); ?>
+            <div class="clear-fix"></div>
+            <?php $this->loadChildBlock("uomdetails"); ?>
+            <div class="clear-fix"></div>
+            <?php $this->loadChildBlock("price"); ?>
+        </div>
+        <?php $this->loadChildBlock("offer"); ?>
+        <a href="javascript:void(0)" title="Quick view" data-toggle="modal" data-target="#quickview" onclick="(function() { require('Products/productquickview').quickview(<?php echo $productId; ?>,<?php echo $warehouseId; ?>) })()"  class="quick-view-handler">Quick view</a>
+        <div class="clear-fix"></div>
+        <div class="row">
+        <?php $this->loadChildBlock("addtocart"); ?>
+            <?php $this->loadChildBlock("wishlist"); ?>
+        </div>
+    </div>
+</li>

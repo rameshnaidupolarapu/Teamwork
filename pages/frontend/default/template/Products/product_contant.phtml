@@ -1,0 +1,18 @@
+<?php
+$wp = $this->_websiteSettings;
+$parentOjbect = $this->_partentObject;
+$productData = $parentOjbect->_productData;
+$productName = \Core::convertStringToLower(\Core::getValueFromArray($productData, "name"));
+$productImageData = \Core::getValueFromArray($productData, "image");
+$productId=\Core::getValueFromArray($productData, "id");
+$metaInfo=$this->_controllerObj->_urlMetaInfor;
+$warehouseId=\Core::getValueFromArray($metaInfo, "wherehouseId");
+$Url=$this->getproductUrl($warehouseId,$productId);
+$urlPath=$wp->websiteUrl.$Url;
+?>
+<div class="row product-contant">
+    <a href="<?php echo $urlPath;  ?>"> 
+        <img src="<?php echo \Core::getValueFromArray($productImageData, "image") ?>" alt="<?php echo \Core::getValueFromArray($productImageData, "title") ?>" />
+    </a>
+    <p class="product-title"><?php echo ucwords($productName);  ?></p>
+</div>

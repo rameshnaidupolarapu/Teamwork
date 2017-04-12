@@ -1,0 +1,87 @@
+<?php
+$cp = new \Core\CodeProcess();
+$_requestedData = $this->_controllerObj->_requestedData;
+$addressId = $cp->convertEncryptDecrypt("decrypt", \Core::getValueFromArray($_requestedData, "addressId"));
+$addressData = $this->_controllerObj->_addressDate;
+if (\Core::countArray($addressData) > 0) {
+    $currentAddressData = $addressData;
+} else {
+    $currentAddressData = $this->currentAddress($addressId);
+}
+?>
+
+<div class="row">
+    <form id="form_customer_address">
+        <input type="hidden" name="addressId" id="addressId" value="<?php echo \Core::getValueFromArray($_requestedData, "addressId"); ?>" />
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="FirstName">First Name</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "first_name"); ?>" class="form-control" id="firstname" name="firstname" placeholder="First Name" />
+                <span class="errors" id="error_firstname"></span>
+            </div>
+            <div class="form-group">
+                <label for="MiddleName">Middle Name</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "middel_name"); ?>" class="form-control" id="middlename" name="middlename" placeholder="Middle Name" />
+                <span class="errors" id="error_middlename"></span>
+            </div>
+            <div class="form-group">
+                <label for="LastName">Last Name</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "last_name"); ?>" class="form-control" id="lastname" name="lastname" placeholder="Last Name" />
+                <span class="errors" id="error_lastname"></span>
+            </div>
+            <div class="form-group">
+                <label for="EmailAddress">Email address</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "email"); ?>" class="form-control" id="email" name="email" placeholder="Email address" />
+                <span class="errors" id="error_email"></span>
+            </div>
+            <div class="form-group">
+                <label for="Mobileno">Mobile No</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "phone_number"); ?>" class="form-control" id="mobileno" name="mobileno" placeholder="Mobile No" />
+                <span class="errors" id="error_mobileno"></span>
+            </div>
+            <div class="form-group">
+                <label for="Address">Street1</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "street"); ?>" class="form-control" id="address" name="address" placeholder="Address" />
+                <span class="errors" id="error_address"></span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="Address">Street2</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "street2"); ?>" class="form-control" id="secondstatename" name="secondstatename" placeholder="Address" />
+                <span class="errors" id="error_secondstatename"></span>
+            </div>
+            <div class="form-group">
+                <label for="Countryname">Country Name</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "country"); ?>" class="form-control" id="country" name="country" placeholder="Country Name" />
+                <span class="errors" id="error_country"></span>
+            </div>
+            <div class="form-group">
+                <label for="State">State</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "state"); ?>" class="form-control" id="statename" name="statename" placeholder="State" />
+                <span class="errors" id="error_statename"></span>
+            </div>
+            <div class="form-group">
+                <label for="City">City</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "city"); ?>" class="form-control" id="cityname" name="cityname" placeholder="City" />
+                <span class="errors" id="error_cityname"></span>
+            </div>
+            <div class="form-group">
+                <label for="Pincode">Pin Code</label>
+                <input type="text" value="<?php echo \Core::getValueFromArray($currentAddressData, "pin_code"); ?>" class="form-control" id="postalcode" name="postalcode" placeholder="Pin Code" />
+                <span class="errors" id="error_postalcode"></span>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <button type="button" class="btn btn-default" onclick="(function() { require('Customer/editCustomerAddress').saveAddress() })()">Save</button>
+        </div>
+    </form>
+</div>
+ <script>
+    require(['config'], function () {
+        require(['jquery', 'editCustomerAddress'], function ($) {
+        });
+    });
+</script>

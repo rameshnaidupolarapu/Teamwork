@@ -1,0 +1,95 @@
+<?php
+$wp = $this->_websiteSettings;
+$warehouseData = $this->getVendorWarehouseList();
+$cp = new \Core\CodeProcess();
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <h1 class="page-title">Add category</h1>
+            <div class="col-md-6 col-md-offset-1">
+                <div class="row ven_catg">
+                    <form class="form-horizontal form-model" id="formProduct">
+                        <div class="form-group">
+                            <label for="warehouse" class="col-sm-4 control-label">Warehouse Name</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="warehouse" id="warehouse" onchange="(function () {
+                                    require('Vendor/vendorportal/vendorproduct').Selectcategory()
+                                })()">
+                                    <option value="">Select Warehouse</option> 
+                                    <?php
+                                    if (\Core::countArray($warehouseData) > 0) {
+                                        foreach ($warehouseData as $key => $value) {
+                                            echo'<option value="' . $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "id")) . '">' . \Core::getValueFromArray($value, "name") . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-4 control-label">Categories</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="category" id="category" onchange="(function () {
+                                    require('Vendor/vendorportal/vendorproduct').selectSubcategory()
+                                })()">
+                                    
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label for="password" class="col-sm-4 control-label">Subcategories</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="subcategory" id="subcategory" onchange="(function () {
+                                    require('Vendor/vendorportal/vendorproduct').selectCategoryProducts()
+                                })()">
+                                    
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label for="password" class="col-sm-4 control-label">Products</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="products" id="products" onchange="(function () {
+                                    require('Vendor/vendorportal/vendorproduct').getProductPriceDetails()
+                                })()">
+                                </select>
+                            </div>
+                        </div>
+                        
+                        
+                        <h2>Uom Details</h2>
+                        
+                        
+                        <div class="row" id="product_uom"></div>
+                        <input type="hidden" id="uom_grid" name="uom_grid" value="1">
+                        <input type="hidden" id="quantity_grid" name="quantity_grid" value="1">
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="button" class="btn btn-default" onclick="(function () {
+                                    require('Vendor/vendorportal/vendorproduct').saveVenderProduct('saveNext')
+                                })()">Save & Next</button>
+                                <button type="button" class="btn btn-default" onclick="(function () {
+                                    require('Vendor/vendorportal/vendorproduct').saveVenderProduct('saveClose')
+                                })()">Save & Close</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'css!../css/Vendor/vendorportal/ven_product',
+    ], function () {
+    });
+</script>
+
+<script>
+    require(['config'], function () {
+        require(['jquery', 'vendorproduct'], function ($) {
+        });
+    });
+</script>

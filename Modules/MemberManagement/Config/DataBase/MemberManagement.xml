@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core_developmentsettings>
+    <status>active</status>
+    <filename>MemberManagement</filename>
+    <name>MemberManagement</name>
+    <displayname>MemberManagement</displayname>
+    <rootmodule>false</rootmodule>
+    <codemodule>false</codemodule>
+    <moduledisplay>false</moduledisplay>
+    <sort_value>1</sort_value>
+    <setuppath>\Modules\MemberManagement\Setup</setuppath>
+    <datapath>\Modules\MemberManagement\Data</datapath>    
+    <schemaversion>1.0.0</schemaversion>
+    <dataversion>1.0.0</dataversion>
+</core_developmentsettings>

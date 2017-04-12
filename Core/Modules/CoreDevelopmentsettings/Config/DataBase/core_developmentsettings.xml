@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core_developmentsettings>
+    <status>active</status>
+    <filename>core_developmentsettings</filename>
+    <name>core_developmentsettings</name>
+    <displayname>Development Settings</displayname>
+    <rootmodule>false</rootmodule>
+    <codemodule>false</codemodule>
+    <moduledisplay>false</moduledisplay>
+    <sort_value>1</sort_value>
+    <setuppath>\Core\Modules\CoreDevelopmentsettings\Setup</setuppath>
+    <datapath>\Core\Modules\CoreDevelopmentsettings\Data</datapath>    
+    <schemaversion>1.0.0</schemaversion>
+    <dataversion>1.0.0</dataversion>
+</core_developmentsettings>

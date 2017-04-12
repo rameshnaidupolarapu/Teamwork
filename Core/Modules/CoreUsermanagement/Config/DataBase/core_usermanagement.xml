@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core_developmentsettings>
+    <status>active</status>
+    <filename>core_usermanagement</filename>
+    <name>core_usermanagement</name>
+    <displayname>User Management</displayname>
+    <rootmodule>false</rootmodule>
+    <codemodule>false</codemodule>
+    <moduledisplay>false</moduledisplay>
+    <sort_value>1</sort_value>
+    <setuppath>\Core\Modules\CoreUsermanagement\Setup</setuppath>
+    <datapath>\Core\Modules\CoreUsermanagement\Data</datapath>    
+    <attributepath>\Core\Modules\CoreUsermanagement\Attribute</attributepath>
+    <schemaversion>1.0.0</schemaversion>
+    <dataversion>1.0.0</dataversion>
+    <attributeversion>1.0.0</attributeversion>
+</core_developmentsettings>

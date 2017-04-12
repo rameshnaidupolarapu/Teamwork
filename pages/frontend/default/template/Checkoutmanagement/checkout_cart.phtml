@@ -1,0 +1,35 @@
+<?php
+$quoteData = $this->getQuote();
+?>
+<div class="w100 cartMiniTable">
+    <table id="cart-summary" class="std table">
+        <tbody>
+            <tr>
+                <td>Total Items</td>
+                <td class="price" id="total-tax"><?php echo \Core::getValueFromArray($quoteData, "itemcount"); ?></td>
+            </tr>
+            <tr>
+                <td>Total products</td>
+                <td class="price"><?php echo \Core::getValueFromArray($quoteData, "sub_total"); ?></td>
+            </tr>
+            <tr style="">
+                <td>Shipping</td>
+                <td class="price"><span class="success">Free shipping!</span></td>
+            </tr>
+            <tr class="cart-total-price ">
+                <td>Discount</td>
+                <td class="price"><?php echo \Core::getValueFromArray($quoteData, "discount"); ?></td>
+            </tr>
+            <tr>
+                <td>Total tax</td>
+                <td class="price" id="total-tax"><?php echo \Core::getValueFromArray($quoteData, "tax"); ?></td>
+            </tr>
+            <tr>
+                <td> Total</td>
+                <td class=" site-color" id="total-price"><?php echo \Core::getValueFromArray($quoteData, "amount"); ?></td>
+            </tr>
+        </tbody>
+        <tbody>
+        </tbody>
+    </table>
+</div>

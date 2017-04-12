@@ -38,7 +38,7 @@ class Command {
             case "cache":
                 \Core::delTree($this->wp->documentRoot . "Var/" . $this->wp->identity);
                 \Core::checkCache();
-
+                
                 break;
             case "jsadmincache":
                 $cc = new \CoreClass();

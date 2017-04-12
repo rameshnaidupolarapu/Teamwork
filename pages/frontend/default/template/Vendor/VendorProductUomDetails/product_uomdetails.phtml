@@ -1,0 +1,21 @@
+<?php
+$cp = new \Core\CodeProcess();
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$warehouseId = \Core::getValueFromArray($_urlMetaInfor, "wherehouseId");
+$productId = $this->_partentObject->_productId;
+$_encProductId = $cp->convertEncryptDecrypt("encrypt", $productId);
+$_encWarehouseId = $cp->convertEncryptDecrypt("encrypt", $warehouseId);
+$productUomDetails = $this->getVenderProductUomDetails($productId,$warehouseId);
+?>
+<div class="row product-qnty">
+    <?php  if(\Core::countArray($productUomDetails)>0){ ?>
+        <select class="pr_uom_id" name="productUomDetails" id="qnty_<?php echo $_encProductId; ?>" onchange="(function() { require('Vendor/changeuomdetails').changeProductUomDetails('<?php echo $_encWarehouseId; ?>','<?php echo $_encProductId; ?>') })()">
+      <?php
+        foreach ($productUomDetails as $key => $value) {
+            \Core::getValueFromArray($value, "is_default") == 1 ? $select="selected" : $select="";
+            $_umoDetailsId = $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "uomId"));
+            echo '<option '.$select.' value="'.$_umoDetailsId.'">'.\Core::getValueFromArray($value, "uomName").'</option>';
+        } ?>
+        </select>
+        <?php   }     ?>   
+</div>

@@ -1,0 +1,118 @@
+<?php $wp = $this->_websiteSettings; ?>
+<script>
+  require([
+    'css!../css/Customer/customerAuth',
+  ], function () {  
+  });
+</script>
+<div id="btn_login" data-toggle="modal" data-target="#login-verify"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="user-reg">Login | Register</span></div>
+<!-- Login model popup check user name -->
+<div class="modal fade login-verify" id="login-verify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-5 no-padding offers-ads">
+                    <div class=""> <img src="<?php echo $wp->websiteUrl ?>img/images/login.jpg" class="img-responsive"> </div>
+                </div>
+                <div class="col-md-7 no-padding">
+                    <div class="popup_model">
+                        <h3>Login or Signup on ZETOE</h3>
+                        <p>Please provide Your Mobile Number or Email</p>
+                        <div id="login-check">
+                        <form class="form-section" id ="FormUserAuth">
+                            <div id="user_auth_details">
+                                <div class="form-group">
+                                    <input type="text" class="form-control stpost_req" id="check_email" name="check_email" placeholder="Please Enter Your Email/Mobile">
+                                    <span class="errors" id="error_check_email" style="display: none;"></span> 
+                                </div>
+                                <button type="button"  class="btn btn-default form-btn btn_user_password" onclick="(function() {require('Customer/customerAuthantation').cutomerEmailcheck() })()">Continue</button>
+                            </div>
+                            <button type="button"  class="btn btn-default form-btn btn_signup" onclick="(function() {require('Customer/customerAuthantation').signUpModel() })()">Sign Up</button>
+                        </form>
+                            </div>
+                        <div> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Signup Model Popup user registration -->
+<div class="modal fade reg-verify" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 no-padding">
+                    <div class="popup_model">
+                        <h3>Create an Account on ZETOE</h3>
+                        <p>Please provide your details to create an account</p>
+                        <form class="form-section" method="post" id="FormRegistration">
+                            <div class="">
+                            <div class="form-group">                                
+                                <input type="text" class="form-control" id="reg_fisrt_name" name="reg_fisrt_name" placeholder="First Name">
+                                <span class="errors" id="error_reg_fisrt_name" style="display: none;"></span> </div></div>
+                            <div class="">    
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="reg_last_name" name="reg_last_name" placeholder="Last Name">
+                                <span class="errors" id="error_reg_last_name" style="display: none;"></span> </div></div>
+                            <div class="">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="reg_mobile" name="reg_mobile" placeholder="Mobile No">
+                                <span class="errors" id="error_reg_mobile" style="display: none;"></span> </div></div>
+                            <div class="">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="reg_email" name="reg_email" placeholder="Email Id">
+                                <span class="errors" id="error_reg_email" style="display: none;"></span> </div></div>
+                            <div class="">
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="Password">
+                                <span class="errors" id="error_reg_password" style="display: none;"></span> </div></div>
+                            <div class="">
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="reg_conf_password" name="reg_conf_password" placeholder="Confirm Password">
+                                <span class="errors" id="error_reg_conf_password" style="display: none;"></span> </div></div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="reg_checked" name="reg_checked">
+                                    Keep Me Logged In </label>
+                            </div>
+                            <button type="button"  class="btn btn-default form-btn" onclick="(function() {require('Customer/customer').cutomerSignup() })()">Sign Up</button>
+                        </form>
+                        <div> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade otp-verify" id="otpverify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 no-padding">
+                    <div class="popup_model">    
+                        <p>Welcome to Zetoe Please Enter OTP Received to your Mobile Number, To Contine Registration</p>
+                        <form class="form-section" method="post" id="FormOtpVeirfy">
+                            <div class="form-group">                                
+                                <input type="text" class="form-control" id="otp_verify" name="otp_verify" placeholder="Enter Your OTP">
+                                <span class="errors" id="error_otp_verify" style="display: none;"></span> </div>  
+                            <button type="button"  class="btn btn-default form-btn" onclick="(function() {require('Customer/customer').OtpVerify() })()">Verify</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    require(['config'], function () {
+        require(['jquery', 'customerAuthantation'], function ($) {
+        });
+    });
+</script>

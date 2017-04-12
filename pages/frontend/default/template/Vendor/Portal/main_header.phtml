@@ -1,0 +1,48 @@
+<?php
+$wp = $this->_websiteSettings;
+$moduleName = \Core::convertStringToFileName($this->_controllerObj->_currentNodeModule);
+$csspath = $wp->websiteUrl . "Var/" . $wp->identity . "/design/frontend/".$wp->themeName."/css/";
+$jspath = $wp->websiteUrl . "Var/" . $wp->identity . "/design/frontend/".$wp->themeName."/js/";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script data-main="<?php echo $jspath; ?>requirejs/config" src="<?php echo $jspath; ?>requirejs/require.js" ></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+  require([
+    'css!../css/bootstrap',
+    'css!../css/bootstrap-theme'
+  ], function () {  
+  });
+</script>
+
+<script>
+  require([
+    'css!../css/Vendor/vendorportal/project',
+    'css!../css/Vendor/vendorportal/styles',
+    'css!../css/Vendor/vendorportal/header',
+    'css!../css/Vendor/vendorportal/menu',
+    'css!../css/Vendor/vendorportal/footer',
+    'css!../css/Vendor/vendorportal/form',
+    'css!../css/Vendor/vendorportal/dashboard',
+    'css!../css/Vendor/vendorportal/vendororder',
+    'css!../css/Vendor/vendorportal/ven_product',
+    'css!../css/Vendor/vendorportal/ven_catg',
+    'css!../css/Vendor/vendorportal/profile'
+    
+  ], function () {  
+  });
+</script>
+
+</head>
+<body class="skin-blue sidebar-mini" style="height:auto">
+<input type="hidden" name="sitehost" id="sitehost" value="<?php echo $wp->websiteUrl; ?>" />    
+<div class="warper" style="height:auto">     

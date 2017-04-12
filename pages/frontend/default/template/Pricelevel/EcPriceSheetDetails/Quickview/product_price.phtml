@@ -1,0 +1,14 @@
+<?php
+$partentObject = $this->_partentObject;
+$_requestedData = $partentObject->_controllerObj->_requestedData;
+$productId = \Core::getValueFromArray($_requestedData, "productId");
+$warehouseId = \Core::getValueFromArray($_requestedData, "warehouseId");
+$productPriceDetails = $this->getProductPrice($productId,$warehouseId);
+?>
+<div class="view-product-price"> 
+   <!-- <span class="pr-total-price"><i class="fa fa-inr" aria-hidden="true"></i>500.00</span> -->
+    <span class="pr-price">
+        <i class="fa fa-inr" aria-hidden="true"></i>
+        <span id="pr_price"><?php echo \Core::getValueFromArray($productPriceDetails, "price"); ?></span>
+    </span> 
+</div>

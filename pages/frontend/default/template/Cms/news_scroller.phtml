@@ -1,0 +1,21 @@
+<div class="row" id="news-ticker-warp">
+    <section class="news-ticker">Find : </section>
+    <section class="grid-keep-change">
+        <div id="ticker-roll" class="ticker">
+            <ul>
+                <li>This is Item 1</li>
+                <li>This is Item 2</li>
+                <li>This is Item 3</li>
+                <li>This is Item 4</li>
+                <li>This is Item 5</li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'simpleTicker'], function ($) {
+            jQuery.simpleTicker($("#ticker-roll"),{'effectType':'roll'});
+        });
+    });
+</script>

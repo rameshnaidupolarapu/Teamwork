@@ -1,0 +1,161 @@
+<?php
+$wp = $this->_websiteSettings;
+$ShopImagePath = $wp->projectRootUploadUrl . 'Warehouse/';
+$warehouseId = $this->_controllerObj->_currentSelector;
+$warehouseData = $this->geWarehouseDetails($warehouseId);
+$cp = new \Core\CodeProcess();
+$branchId=$cp->convertEncryptDecrypt("encrypt", $warehouseId);
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row ven_profile ">
+            <h1>Vendor Branch Details </h1>
+            <div class="row ven_pro_dts">
+                <div class="col-sm-3">
+                    <div class="form-right">
+                        <div class="row">
+                            <div id="vendorimg"> 
+                                <?php
+                                if (\Core::getValueFromArray($warehouseData, "image") == "" || \Core::getValueFromArray($value, "image") == "|||||") {
+                                    $image = $wp->websiteUrl . 'img/images/shop/shop1.jpg';
+                                } else {
+                                    $image = $ShopImagePath . \Core::getValueFromArray($warehouseData, "image");
+                                }
+                                ?>
+                                <img src="<?php echo $image; ?>" class="img-responsive" alt="image">  
+                                <section id="upload" class="vendor_pic" data-toggle="modal" data-target="#img_warehouse">                                    
+                                    <span id="fileselector">                                        
+                                        <i class="glyphicon glyphicon-camera margin-correction"></i>upload Image                                       
+                                    </span>  
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 no-padding">
+                    <div class="form-left forms_all">
+                        <div class="General_info">
+                            <div class="row">
+                                <div class="form_heading">
+                                    <h3 class="details_heading">General Information</h3>
+                                </div>
+                            </div>
+                            <div class="row  _t_color">
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Vendor Name : </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "vendorfirstname");
+                                echo"  ";
+                                echo \Core::getValueFromArray($warehouseData, "vendorlastname"); ?> </div>
+                                </section>
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Shop Name : </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "name"); ?> </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="General_info">
+                            <div class="row">
+                                <div class="form_heading">
+                                    <h3 class="details_heading">Contact Information</h3>
+                                </div>
+                            </div>
+                            <div class="row  _t_color">  
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Contact Name : </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "contact_first_name");
+                                echo"  ";
+                                echo \Core::getValueFromArray($warehouseData, "contact_last_name"); ?> </div>
+                                </section>
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Contact Email : </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "emailid"); ?></div>
+                                </section>
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Contact Phone: </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "phoneno"); ?></div>
+                                </section>
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Contact Location: </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "loaction"); ?></div>
+                                </section>                                
+                            </div>
+                        </div>
+                        <div class="General_info">
+                            <div class="row">
+                                <div class="form_heading">
+                                    <h3 class="details_heading">Other Information</h3>
+                                </div>
+                            </div>
+                            <div class="row  _t_color">
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Shop Id : </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($warehouseData, "shopid"); ?></div>
+                                </section>
+                                <section class="row profile_line_space">
+                                    <div class="col-xs-4 col-sm-3 left-padding">Address : </div>
+                                    <div class="col-xs-8 col-sm-9 no-padding">
+                                        <?php echo '<ul class="branch_add">
+                                        <li>' . \Core::getValueFromArray($warehouseData, "street1") . '</li>
+                                        <li>' . \Core::getValueFromArray($warehouseData, "street2") . '</li>
+                                        <li>' . \Core::getValueFromArray($warehouseData, "loaction") . '</li>
+                                        <li>' . \Core::getValueFromArray($warehouseData, "city") . '</li> 
+                                        <li>' . \Core::getValueFromArray($warehouseData, "state") . ' -' . \Core::getValueFromArray($warehouseData, "postalcode") . '</li>                                         
+                                        </ul>';
+                                        ?>
+                                    </div>
+                                </section>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="row border_cl">
+                        <div class="edit_info pull-left">
+                            <h4>Actions</h4>
+                            <a href="edit-branch-details.html"><i class="fa fa-pencil" aria-hidden="true"></i> Edit details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="img_warehouse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+        </div>
+        <div class="modal-body">
+            <form id="FormwarehouseImage">
+                <div class="form-group">   
+                    <input type="hidden" id="branchid" name="branchid" value="<?php echo $branchId; ?>">
+                    <input type="file" id="warehouseimage" name="warehouseimage">                                            
+                </div>
+            </form>
+        </div>  
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="(function() {require('Vendor/vendorportal/warehouse').warehouseImageUpload() })()">Submit</button>
+      </div>
+    </div>
+</div>
+</div>
+
+
+<script>
+    require([
+        'css!../css/Vendor/vendorportal/profile',
+    ], function () {
+    });
+</script>
+
+<script>
+    require(['config'], function () {
+        require(['jquery', 'warehouse'], function ($) {
+        });
+    });
+</script>

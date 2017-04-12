@@ -1,0 +1,48 @@
+<?php 
+$quoteData = $this->getQuote();
+?>
+<div class="row">
+    <div class="pro_check">
+        <a href="<?php echo $wp->websiteUrl ?>checkout/checkoutaddress">Proceed to checkout <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <table id="check-out_side" class="std table">
+        <tbody>
+            <tr>
+                <td>Total Amount</td>
+                <td class="price"><?php echo \Core::getValueFromArray($quoteData, "sub_total"); ?></td>
+            </tr>
+            <tr>
+                <td>Discount</td>
+                <td class="price"><?php echo \Core::getValueFromArray($quoteData, "discount"); ?></td>
+            </tr>
+            <tr>
+                <td>Delivery charges</td>
+                <td class="price">0.00</td>
+            </tr>
+            <tr>
+                <td>Total tax</td>
+                <td class="price"><?php echo \Core::getValueFromArray($quoteData, "tax"); ?></td>
+            </tr>
+            <tr>
+                <td> Total</td>
+                <td class="price"><?php echo \Core::getValueFromArray($quoteData, "amount"); ?></td>
+            </tr>
+            <tr>
+                <td colspan="2"><div class="input-append">
+                        <input class="col-lg-8" id="appendedInputButton" type="text" placeholder="Coupon code">
+                        <button class="col-lg-4 btn btn-success Coupon-code-btn" type="button">Apply!</button>
+                    </div></td>
+            </tr>
+        </tbody>
+        <tbody>
+        </tbody>
+    </table>
+    <!--<a href="<?php echo $wp->websiteUrl ?>checkout/checkoutaddress"  class="btn btn-success checkout">Check Out</a>-->
+    <button type="button" class="btn btn-success checkout" onclick="(function () { require('Checkoutmanagement/proceedtocheckout').proceedtocheckout()})()">Check Out</button>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'proceedtocheckout'], function ($) {
+        });
+    });
+</script>

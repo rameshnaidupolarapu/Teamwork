@@ -1,0 +1,52 @@
+<?php 
+$cp = new \Core\CodeProcess();
+$wp = $this->_websiteSettings; 
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$productId = $cp->convertEncryptDecrypt("encrypt", $this->_controllerObj->_currentSelector);
+$warehouseId = $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($_urlMetaInfor, "wherehouseId"));
+$increment = $cp->convertEncryptDecrypt("encrypt","increment");
+$decrement = $cp->convertEncryptDecrypt("encrypt","decrement");
+?>
+
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <?php $this->loadChildBlock("product_images");?>  
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <?php $this->loadChildBlock("productdetails_contant");?> 
+            <?php $this->loadChildBlock("productdetails_rating");?> 
+          <div class="view-product-info">
+            <div class="product-price-block">
+              <?php $this->loadChildBlock("product_uomdetails");?> 
+              <?php $this->loadChildBlock("productdetails_offer");?>   
+              <?php $this->loadChildBlock("product_price");?> 
+                </div>
+            <div class="product-stock-info">Availability: In stock</div>
+               <?php $this->loadChildBlock("productdetails_orderdate");?> 
+             <div class="product-add-to-cart">
+                <div class="product-qtr">
+                  <input type="text" name="product_quantity" onfocusout="(function() { require('Products/changeQuantity').changeQuantity('<?php echo $warehouseId ?>','<?php echo $productId; ?>') })()" id="product_quantity" value="1" maxlength="12">
+                  <div class="pr-qtr-handler"> 
+                      <a href="javascript:void(0)" class="pr_qty_inc"  onclick="(function() { require('Products/changeQuantity').quantityIncrementDecrement('<?php echo $warehouseId ?>','<?php echo $productId; ?>','<?php echo $increment; ?>') })()"><i class="fa fa-plus" aria-hidden="true"></i></a> 
+                      <a href="javascript:void(0)" class="pr_qty_dec"  onclick="(function() { require('Products/changeQuantity').quantityIncrementDecrement('<?php echo $warehouseId ?>','<?php echo $decrement; ?>','<?php echo $increment; ?>') })()"><i class="fa fa-window-minimize" aria-hidden="true"></i></a> 
+                  </div>
+                </div>
+                <?php $this->loadChildBlock("addtocart");?> 
+                <?php $this->loadChildBlock("wishlist");?> 
+            </div>   
+          </div>
+        </div>
+      </div>
+        
+<script>
+    require(['config'], function () {
+        require(['jquery', 'changeuomdetails'], function ($) {
+        });
+    });
+</script>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'changeQuantity'], function ($) {
+        });
+    });
+</script>

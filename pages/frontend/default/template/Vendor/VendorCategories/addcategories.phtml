@@ -1,0 +1,94 @@
+<?php
+$wp = $this->_websiteSettings;
+$warehouseData = $this->getVendorWarehouseList();
+$vendorCategories = $this->getVendorCategoryList();
+$cp = new \Core\CodeProcess();
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <?php $this->loadChildBlock("alerts");?>
+        </div>
+        <div class="row ven_cat">
+            <h1 class="page-title">Add category</h1>
+            <div class="col-md-6">
+                <div class="row ven_catg">
+                    <form class="form-horizontal form-model" id="FormVendorCategories">
+                        <div class="form-group">
+                            <label for="warehouse" class="col-sm-4 control-label">Warehouse Name</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="warehouse" id="warehouse" onchange="(function () {
+                                    require('Vendor/vendorportal/vendorcatrgory').selectWarehouse()
+                                })()">
+                                    <option value="">Select Warehouse</option> 
+                                    <?php
+                                    if (\Core::countArray($warehouseData) > 0) {
+                                        foreach ($warehouseData as $key => $value) {
+                                            echo'<option value="' . $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "id")) . '">' . \Core::getValueFromArray($value, "name") . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <span class="errors" id="error_warehouse" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-4 control-label">Category Name</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="category" id="category" onchange="(function () {
+                                    require('Vendor/vendorportal/vendorcatrgory').SelectSubcategory()
+                                })()">
+                                    <option value="">Select Category</option>    
+                                    <?php
+                                    if (\Core::countArray($vendorCategories) > 0) {
+                                        foreach ($vendorCategories as $key => $value) {
+                                            echo'<option value="' . $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "id")) . '">' . \Core::getValueFromArray($value, "name") . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <span class="errors" id="error_category" style="display: none;"></span>
+                            </div>
+                        </div>    
+                        <div class="form-group">
+                            <label for="subcategory" class="col-sm-4 control-label">Sub Category</label>
+                            <div class="col-sm-8">
+                                <div class="checkbox" id="subcategorylist">
+                                    <span class="error" id="error_subcategory" style="display: none;"></span>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <span class="errors" id="form_errors"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <button type="button" class="btn btn-success" onclick="(function () {
+                                    require('Vendor/vendorportal/vendorcatrgory').saveCategoryInfo()
+                                })()">Save & Next</button>
+                                <button type="button" class="btn btn-success" onclick="(function () {
+                                    require('Vendor/vendorportal/vendorcatrgory').saveCategories()
+                                })()">Save & Close</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'css!../css/Vendor/vendorportal/ven_catg',
+    ], function () {
+    });
+</script>
+
+<script>
+    require(['config'], function () {
+        require(['jquery', 'vendorcatrgory'], function ($) {
+        });
+    });
+</script>

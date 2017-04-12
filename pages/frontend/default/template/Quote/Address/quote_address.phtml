@@ -1,0 +1,124 @@
+<?php
+$wp = $this->_websiteSettings;
+$cp = new \Core\CodeProcess();
+?>
+<div class="row">
+    <section class="container" id="container-block"> 
+        <section class="row"> 
+            <!-- Page navogation part -->
+            <div class="page-navigation">
+                <ul class="breadcrumbs">
+                    <li> <a href="javascript:void(0)">Home</a> </li>
+                    <li> <a href="javascript:void(0)">Grocery Shop</a> </li>
+                    <li> <a href="javascript:void(0)">Vender List</a> </li>
+                </ul>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-12 chat_title">
+                <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</h4>
+            </div>
+        </section>  
+        <div class="col-md-9"> 
+            <div class="row userInfo">
+                <div class="w100 clearfix">
+                    <?php $this->loadChildBlock("cartnavigation"); ?>
+                </div>
+                <div class="clear-fix"></div>
+
+                <div class="row">
+
+                    <form name="address" id="form_customerAddress">
+                        <input type="hidden" name="addressId" id="addressId" value="" />
+                        <div class="row">
+                            <section class="col-md-6">
+                                <div class="form-group">
+                                    <label for="First Name">First Name</label>
+                                    <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name">
+                                    <span class="error" id="error_firstname"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Middle Name">Middle Name</label>
+                                    <input type="text" name="middlename" class="form-control" id="middlename" placeholder="Middle Name">
+                                    <span class="error" id="error_middlename"></span>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="Last Name">Last Name</label>
+                                    <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last Name">
+                                    <span class="error" id="error_lastname"></span>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="Email address">Email address</label>
+                                    <input type="text" name="email" class="form-control" id="email" placeholder="Email address">
+                                    <span class="error" id="error_email"></span>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="Mobile Number">Mobile Number</label>
+                                    <input type="text" name="mobileno" class="form-control" id="mobileno" placeholder="Mobile Number">
+                                    <span class="error" id="error_mobileno"></span>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="Address">Address</label>
+                                    <textarea name="address"  class="form-control" id="address" rows="2" placeholder="Address"></textarea>
+                                    <span class="error" id="error_address"></span>
+                                </div> 
+                            </section>
+                            <section class="col-md-6">
+
+
+                                <div class="form-group">
+                                    <label for="City">City</label>
+                                    <input type="text" class="form-control" name="cityname" id="cityname" placeholder="City">
+                                    <span class="error" id="error_cityname"></span>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="State">State</label>
+                                    <input type="text" class="form-control" name="statename" id="statename" placeholder="State">
+                                    <span class="error" id="error_statename"></span>
+                                </div> 
+
+                                <div class="form-group">
+                                    <label for="Zip Postal Code">Zip / Postal Code</label>
+                                    <input type="text" class="form-control" name="postalcode" id="postalcode" placeholder="Zip / Postal Code">
+                                    <span class="error" id="error_postalcode"></span>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="Country">Country</label>
+                                    <input type="text" class="form-control" name="country" id="country" placeholder="Country">
+                                    <span class="error" id="error_country"></span>
+                                </div> 
+
+                            </section>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="btn btn-default pull-left" onclick="(function() { require('Checkoutmanagement/checkoutaddress').checkoutModifyAddress() })()">Save address book & Continue</button>
+                            <button type="button" class="btn btn-default pull-right" id="">Delivery to this address</button>
+                        </div>
+                    </form>
+
+                </div>
+
+
+                <div class="clear-fix"></div>
+                <div class="col-lg-12 clearfix">
+                    <ul class="pager">
+                        <li class="next pull-left"><a href="<?php echo $wp->websiteUrl; ?>">← Back to My Account</a></li>
+                        <li class="next pull-right"><a href="<?php echo $wp->websiteUrl; ?>checkout/address-select">← Back to My Address Book</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <?php $this->loadChildBlock("checkoutminicart"); ?>
+        </div>
+    </section>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'checkoutaddress'], function ($) {
+        });
+    });
+</script>

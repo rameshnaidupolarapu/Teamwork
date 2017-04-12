@@ -1,0 +1,22 @@
+<?php
+$warehouseId = $this->_controllerObj->_currentSelector;
+$productId = $this->_partentObject->_productId;
+$customerSession= new \Modules\Session\CustomerSession();
+$customerId = $customerSession->getCustomerSession()->getCustomerSessionId();
+$cp = new \Core\CodeProcess();
+$encProductId = $cp->convertEncryptDecrypt("encrypt", $productId);
+$_warehouseId = $cp->convertEncryptDecrypt("encrypt", $warehouseId);
+?>
+<div class="product-btn-action">
+    <?php if ($customerId > 0) { ?>
+    <button type="button" class="link-btn" onclick="(function() { require('Wishlistmanagement/addWishlist').addWishlist('<?php echo $encProductId; ?>','<?php echo $_warehouseId; ?>') })()" title="Add to Wishlist" name="btn_wishlist" id="btn_wishlist"><i class="fa fa-heart" aria-hidden="true"></i></button>
+    <?php } else { ?>
+        <button type="button" class="link-btn" title="Add to Wishlist" name="btn_wishlist" id="btn_wishlist"><i class="fa fa-heart" aria-hidden="true"></i></button>
+    <?php } ?>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'wishlistmanagement'], function ($) {
+        });
+    });
+</script>

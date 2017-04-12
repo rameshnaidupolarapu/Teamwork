@@ -1,0 +1,99 @@
+<?php 
+     $wp = $this->_websiteSettings;
+    $session=new \Core\Session();
+    $sessionData = $session->getFrontendSession();
+    $customerId=$sessionData['customer_id'];
+    $customerData=$this->getcutomerAddressList($customerId);
+    $cp=new \Core\CodeProcess();
+?>
+<div class="row">
+    <section class="container" id="container-block"> 
+        <!-- main category bloak --> 
+        <!-- main contant block -->
+        <section class="row"> 
+            <!-- Page navogation part -->
+            <div class="page-navigation">
+                <ul class="breadcrumbs">
+                    <li> <a href="javascript:void(0)">Home</a> </li>
+                    <li> <a href="javascript:void(0)">Grocery Shop</a> </li>
+                    <li> <a href="javascript:void(0)">Vender List</a> </li>
+                </ul>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-12 chat_title">
+                <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</h4>
+            </div>
+        </section>  
+        <div class="col-md-9"> 
+            <div class="row userInfo">
+                <div class="w100 clearfix">
+                    <?php $this->loadChildBlock("cartnavigation");?>
+                </div>
+                
+                <div class="clear-fix"></div>
+                
+                <div id="warp_address">
+                <div class="w100 clearfix">
+                    <div id="address_block">
+                  <?php
+                  if(\Core::countArray($customerData)>0){
+                      foreach ($customerData as $key => $value) {                          
+                          $addressId=$cp->convertEncryptDecrypt(encrypt, \Core::getValueFromArray($value, "id"));
+                          echo '<div class="col-xs-12 col-sm-2 col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                <input type="radio" name="chkaddresses" value="'.$addressId.'" >  <strong>'.\Core::getValueFromArray($value, "address_title").'</strong>
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul id="my_address">
+                                    <li><span class="address-name"> <strong>'.\Core::getValueFromArray($value, "first_name").'  '.\Core::getValueFromArray($value, "last_name").'</strong></span></li>
+                                    <li><span class="address-company"> '.\Core::getValueFromArray($value, "street").', '.\Core::getValueFromArray($value, "street2").'</span></li>
+                                    <li><span class="address-line1"> '.\Core::getValueFromArray($value, "location").' </span></li>
+                                    <li><span class="address-line2"> '.\Core::getValueFromArray($value, "city").', '.\Core::getValueFromArray($value, "state").' </span></li>
+                                    <li><span class="address-line2"> '.\Core::getValueFromArray($value, "country").', '.\Core::getValueFromArray($value, "pin_code").' </span></li>
+                                    <li><span> <strong>Phone</strong> : '.\Core::getValueFromArray($value, "phone_number").' </span></li>
+                                </ul>
+                            </div>
+                            <div class="panel-footer panel-footer-address"><a href="javascript:void(0)" class="btn btn-sm btn-success"> <i class="fa fa-edit"> </i> Edit </a> <a class="btn btn-sm btn-danger"> <i class="fa fa-minus-circle"></i> Delete </a></div>
+                        </div>
+                    </div>';
+                      }
+                  }
+                  ?> 
+                    </div>
+                </div>
+                <!--/.w100-->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a class="btn btn-primary" href="<?php echo $wp->websiteUrl."checkout/addressselect/customer-address"; ?>"><i class="fa fa-plus-circle"></i> Add New Address </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="btn   btn-primary pull-right" href="javascript:void(0)" onclick="(function() {require('Checkoutmanagement/checkoutaddress').checkoutAddress() })()"><i class="fa fa-plus-circle"></i> Deliver this address </a>
+                    </div>
+                </div>
+                </div>
+
+                
+                <div class="col-lg-12 clearfix">
+                    <ul class="pager">
+                        <li class="next pull-left"><a href="">← Back to My Account</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+           <?php $this->loadChildBlock("checkoutminicart");?>
+        </div>
+    </section>
+</div>
+
+<script>
+    require(['config'], function () {
+        require(['jquery', 'checkoutaddress'], function ($) {
+        });
+    });
+</script>

@@ -1,0 +1,197 @@
+<?php
+$wp = $this->_websiteSettings;
+$ImagePath=$wp->projectRootUploadUrl.'venders/';
+$ShopImagePath=$wp->projectRootUploadUrl.'Warehouse/';
+$vendorProfile=$this->getVendorProfile();
+$vendorWarehouse=$this->getVendorWarehouseList();
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row ven_profile">            
+            <h1>Vendor Information</h1>
+            <div class="ven_pro_dts">
+                <div class="pro_header">  
+                    <div class="col-sm-1"> <img src="<?php echo $ImagePath.\Core::getValueFromArray($vendorProfile, "vendor_image");?>" alt=""></div>
+                    <div class="col-sm-8 no-padding">
+                        <p><?php echo ucfirst(\Core::getValueFromArray($vendorProfile, "first_name"))." ".  ucfirst(\Core::getValueFromArray($vendorProfile, "last_name")) ;?></p>    
+                    <div class="tabs-main-container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Profile</a></li>
+                            <li><a data-toggle="tab" href="#branch_list">Branch List</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <a class="btn btn-danger" href="<?php echo $wp->websiteUrl;?>vendor/add-branch">Add Branch</a>
+                    </div>
+                </div>
+            <div class="tab-content" id="tab-content-overall">
+                <div id="home" class="tab-pane fade in active">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-right">
+                                <div class="row">
+                                    <div id="vendorimg"> 
+                                        <img src="<?php echo $ImagePath.\Core::getValueFromArray($vendorProfile, "vendor_image");?>" class="img-responsive" alt="image"> 
+                                        <section id="upload" class="vendor_pic">
+                                            <span><i class="glyphicon glyphicon-camera"></i> Change image </span>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 no-padding">
+                            <div class="form-left forms_all">
+                                <div class="General_info">
+                                    <div class="row">
+                                        <div class="form_heading">
+                                            <h3 class="details_heading">General Information</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row  _t_color">
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">First Name : </div>
+                                            <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($vendorProfile, "first_name");?></div>
+                                        </section>
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">Last Name : </div>
+                                            <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($vendorProfile, "last_name");?> </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="General_info">
+                                    <div class="row">
+                                        <div class="form_heading">
+                                            <h3 class="details_heading">Contact Information</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row  _t_color">
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">Email : </div>
+                                            <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($vendorProfile, "email");?></div>
+                                        </section>
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">Phone : </div>
+                                            <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($vendorProfile, "phone");?></div>
+                                        </section>
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">Address : </div>
+                                            <div class="col-xs-8 col-sm-9 no-padding">
+                                                <ul class="pro_ven_add">                                                    <li><?php echo \Core::getValueFromArray($vendorProfile, "street1");?></li>
+                                                    <li><?php echo \Core::getValueFromArray($vendorProfile, "street2");?></li>
+                                                    <li><?php echo \Core::getValueFromArray($vendorProfile, "loaction");?></li>
+                                                    <li><?php echo \Core::getValueFromArray($vendorProfile, "city");?></li>
+                                                    <li><?php echo \Core::getValueFromArray($vendorProfile, "state");?></li>
+                                                    <li><?php echo \Core::getValueFromArray($vendorProfile, "country");?> - <?php echo \Core::getValueFromArray($vendorProfile, "postalcode");?></li>
+                                                </ul>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="General_info">
+
+                                    <div class="row">
+                                        <div class="form_heading">
+                                            <h3 class="details_heading">Other Information</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row  _t_color">                                       
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">Longitude :</div>
+                                            <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($vendorProfile, "longitude");?>  </div>
+                                        </section>
+                                        <section class="row profile_line_space">
+                                            <div class="col-xs-4 col-sm-3 left-padding">Latitude : </div>
+                                            <div class="col-xs-8 col-sm-9 no-padding"><?php echo \Core::getValueFromArray($vendorProfile, "latitude");?> </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-3">
+
+                            <div class="row border_cl">
+                                <div class="edit_info pull-left">
+                                    <h4>Actions</h4>
+                                    <a href="<?php echo $wp->websiteUrl; ?>vendor/update-profile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    </p>
+                </div>               
+                <div id="branch_list" class="tab-pane fade">                    
+                    <div class="row">
+                        <div class="col-sm-12 no-padding">
+                            <div id="order-tables-order">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="white" style="background: #396ca0">
+
+                                            <th class="obs-width text-center font-18" style="width:4%">Shop Image</th>
+                                            <th class="obs-width text-center font-18">Shop Name</th>
+                                            <th class="obs-width text-center font-18">Contact Name</th>
+                                            <th class="obs-width text-center font-18">Address</th>
+                                            <th class="obs-width text-center font-18">Email</th>
+                                            <th class="obs-width text-center font-18">Phone</th>
+                                            <th class="obs-width text-center font-18">Created Date</th>
+                                            <th class="obs-width text-center font-18">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                        
+                                        <?php
+                                        if(\Core::countArray($vendorWarehouse)>0){
+                                        foreach($vendorWarehouse as $key=>$value){
+                                            $date=\Core::getValueFromArray($value, "createdat");
+                                            if(\Core::getValueFromArray($value, "image")=="" || \Core::getValueFromArray($value, "image")=="|||||" ){
+                                                $image=$wp->websiteUrl.'img/images/shop/shop1.jpg';
+                                            }
+                                            else{
+                                                $image=$ShopImagePath.\Core::getValueFromArray($value, "image");
+                                            }
+                                            echo '<tr>
+                                            <td data-title="Shop Image" class="prd-image" style=""><img src="'.$image.'" class="img-responsive"></td>
+                                            <td data-title="Shop Name" class="text-center" style="width: 10%;">'.\Core::getValueFromArray($value, "name").' </td>
+                                            <td data-title="Contact Name" class="text-center" style="width: 10%;">'.ucfirst(\Core::getValueFromArray($value, "contact_first_name")).'  '.ucfirst(\Core::getValueFromArray($value, "contact_last_name")).' </td>
+                                            <td data-title="Address" class="text-center" style="width:10%;">'.\Core::getValueFromArray($value, "loaction").' , '.\Core::getValueFromArray($value, "city").'</td>
+                                            <td data-title="Email" class="text-center" style="width: 10%;">'.\Core::getValueFromArray($value, "emailid").' </td>
+                                            <td data-title="Phone" class="text-center" style="width: 10%;">'.\Core::getValueFromArray($value, "phoneno").' </td>    
+                                            <td data-title="Created Date" class="text-center" style="width:10%;">'.date("d-m-Y", strtotime("$date")).'</td>
+                                            <td data-title="Action" class="text-center" style="width:10%;">
+                                                <a href="'.$wp->websiteUrl.'" class="btn btn-primary button-overall" >Edit</a>
+                                                <a href="'.$wp->websiteUrl.'" class="btn btn-primary button-overall" >View</a>    
+                                            </td>                                           
+
+                                        </tr>';
+                                        }
+                                        }
+                                        ?>
+                                        
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        'css!../css/Vendor/vendorportal/profile',
+    ], function () {
+    });
+</script>
+<!--
+<script>
+    require(['config'], function () {
+        require(['jquery', 'vendorprofile'], function ($) {
+        });
+    });
+</script>  -->

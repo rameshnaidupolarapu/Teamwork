@@ -1,0 +1,17 @@
+<?php
+$_requestedData = $this->_controllerObj->_requestedData;
+$productId = \Core::getValueFromArray($_requestedData, "productId");
+$warehouseId = \Core::getValueFromArray($_requestedData, "warehouseId");
+?>
+<div class="row">
+    <div class="col-sm-5 left-padding">
+        <?php $this->loadChildBlock("productimages"); ?>
+    </div>
+    <div class="col-sm-7 right-padding">
+        <div class="row">
+            <?php $this->loadChildBlock("productinformation"); ?>
+        </div>
+    </div>
+</div>
+
+

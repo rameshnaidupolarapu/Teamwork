@@ -198,9 +198,7 @@
       }
       xscale = $obj.width() / nw;
       yscale = $obj.height() / nh;
-      console.log(xscale);
-      console.log(yscale);
-      //$obj.width(nw).height(nh);
+      $obj.width(nw).height(nh);
     }
     //}}}
     function unscale(c) //{{{

@@ -1,0 +1,12 @@
+<?php
+$wp = $this->_websiteSettings;
+$_currentSelecter = $this->_controllerObj->_currentSelector;
+$this->setProductId($_currentSelecter);
+$produtData = $this->getProductData();
+$productName=\Core::getValueFromArray($produtData, name);
+$productDescription=\Core::getValueFromArray($produtData, short_description);
+?>
+<div class="product-view">
+    <h2><?php echo ucwords($productName) ?></h2>
+    <p class="product-short-description "> <?php echo $productDescription ?> </p>
+</div>

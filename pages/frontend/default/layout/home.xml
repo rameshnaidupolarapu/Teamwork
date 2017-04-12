@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<body>
+    <block name="mainHeader" class="\Core\Block\Block" template="main_header" />
+    <block name="header" class="\Core\Block\Block" template="page_header" />
+    <block name="footer" class="\Core\Block\Block" template="Cms/landing_page" />	
+    <block name="footer" class="\Modules\Cms\Block\FooterPages" template="footer" />		
+</body>

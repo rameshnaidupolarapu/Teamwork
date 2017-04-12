@@ -1,0 +1,34 @@
+<?php
+$cp = new \Core\CodeProcess();
+$partentObject = $this->_partentObject;
+$_requestedData = $partentObject->_controllerObj->_requestedData;
+$productId = \Core::getValueFromArray($_requestedData, "productId");
+$warehouseId = \Core::getValueFromArray($_requestedData, "warehouseId");
+$uomDetails = $this->getVenderProductUomDetails($productId,$warehouseId);
+$_warehouseId = $cp->convertEncryptDecrypt("encrypt", $warehouseId);
+$_productId = $cp->convertEncryptDecrypt("encrypt", $productId);
+?>
+<div class="product-qnty-list">
+    <?php
+    if(\Core::countArray($uomDetails)>0){
+        ?>
+    <select class="" id="pr_uom_details" onchange="(function() { require('Vendor/changeuomdetails').changeUomDetails('<?php echo $_warehouseId ?>','<?php echo $_productId; ?>') })()">
+    <?php
+        foreach ($uomDetails as $key => $value) {
+            if(\Core::getValueFromArray($value, "is_default")==1){
+                $select = "selected";
+            }else{
+                $select = "";
+            }
+            echo '<option '.$select.'  value="'.$cp->convertEncryptDecrypt("encrypt",\Core::getValueFromArray($value, "uomId")).'">'.\Core::getValueFromArray($value, "uomName").'</option>';
+        }
+        ?>
+        </select>
+    <?php }   ?>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'changeuomdetails'], function ($) {
+        });
+    });
+</script>

@@ -1,0 +1,34 @@
+<?php
+$partentObject = $this->_partentObject;
+$_requestedData = $partentObject->_controllerObj->_requestedData;
+$productId = \Core::getValueFromArray($_requestedData, "productId");
+$productImages = $this->getProductImages($productId);
+?>
+<div id="gallery1" class="photo-gallery">
+    <div class="current-photo"> <img> </div>
+    <div class="photo-list">
+        <ul>
+            <?php
+            if(\Core::countArray($productImages)>0){
+                foreach ($productImages as $key => $value) {
+                    echo '<li data-src="'.\Core::getValueFromArray($value, "image").'">
+                <div class="thumbnail"> <img src="'.\Core::getValueFromArray($value, "image").'"  alt="'.\Core::getValueFromArray($value, "title").'" /> </div>
+            </li>';
+                }
+            }
+            ?>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.photo-gallery ul li').click(function () {
+        var src = $(this).data('src');
+        var $gallery = $(this).closest('.photo-gallery');
+        $gallery.find('.current-photo img').attr('src', src);
+    });
+    $('.photo-gallery').each(function () {
+        $(this).find('li')[0].click();
+    });
+});
+</script>

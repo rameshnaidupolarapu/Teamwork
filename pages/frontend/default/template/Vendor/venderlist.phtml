@@ -1,0 +1,99 @@
+<?php 
+$wp = $this->_websiteSettings;
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$_currentSelecter = $this->_controllerObj->_currentSelector;
+$customerSession = new \Modules\Session\CustomerSession();
+$_location = $customerSession->getCustomerSession()->getLocationId();
+$_venderData = $this->getVenderList($_currentSelecter,$_location);
+$_venderList = \Core::getValueFromArray($_venderData, "data");
+$_categoryData= $this->getCategoryName($_currentSelecter);
+$_categoryName = \Core::getValueFromArray($_categoryData, "name");
+?>
+<!-- main grid part -->
+<div class="row">
+  <section class="container" id="container-block"> 
+    <!-- main category bloak -->
+    <div class="col-sm-2 no-padding">
+      <?php $this->loadChildBlock("categorylist");?>
+    </div>
+    <!-- main contant block -->
+    <div class="col-sm-10 right-padding">
+      <section class="row">
+        <!-- Page navogation part -->
+        <div class="page-navigation">
+          <ul class="breadcrumbs">
+            <li> <a href="javascript:void(0)">Home</a> </li>
+            <li> <a href="javascript:void(0)">Grocery Shop</a> </li>
+            <li> <a href="javascript:void(0)">Vender List</a> </li>
+          </ul>
+        </div>
+        <div class="clearfix"></div>
+        <!-- Top pagenation part -->
+        <div class="row page-warper-title">
+            <div class="grid-mode"><i class="fa fa-th-large" aria-hidden="true"></i> Total Records <?php echo \Core::getValueFromArray($_venderData, "totalRecords"); ?></div>
+          <div class="toolbar-short"> <span>Sort By</span>
+            <select name="" id="">
+              <option value="">By name</option>
+              <option value="">Top Vender</option>
+              <option value="">Rating</option>
+            </select>
+          </div>
+          <div class="toolbar-limit pull-right"> <span>Show</span>
+            <select name="" id="">
+              <option value="">10</option>
+              <option value="">20</option>
+              <option value="">30</option>
+              <option value="">40</option>
+            </select>
+            <span>per page</span> </div>
+          
+        </div>
+        <div class="clearfix"></div>
+        
+        <!-- contant part -->
+        <div class="row vender-container">
+            
+        <?php
+            if(\Core::countArray($_venderList)>0){
+                foreach ($_venderList as $key => $value) {
+                    $wherehouseStatus = "";
+                     $name = \Core::convertStringToLower(\Core::getValueFromArray($value, "warehouseName"));
+                     $locationName = $this->getLocation(\Core::getValueFromArray($value, "core_list_location_id"));
+                     $wherehouseStatus = \Core::getValueFromArray($value, "status");
+                     $_whStatus = \Core::getValueFromArray($wherehouseStatus, "status");
+                     $venderImagePath = \Core::getValueFromArray($value, "image");
+                     $url = \Core::convertStringToUrlSlug($_categoryName)."/".\Core::convertStringToUrlSlug(\Core::getValueFromArray($value, "auto_increment_id"))."/".\Core::convertStringToUrlSlug($name).".html";
+                    ?>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-padding">
+            <div class="row verder-item"> <a href="<?php echo $wp->websiteUrl.$url; ?>">
+                    <div class="col-sm-5"> <img src="<?php echo \Core::getValueFromArray($venderImagePath, "image"); ?>" class="img-responsive" alt="<?php echo \Core::getValueFromArray($venderImagePath, "title"); ?>"> </div>
+              <div class="col-sm-7">
+              	<div class="row vend-title">
+                    <h1><?php echo ucwords($name); ?></h1>
+                    <p class="ven-location"><i class="fa fa-map-marker" aria-hidden="true"></i><?php echo \Core::getValueFromArray($locationName, "name") ?></p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                <div id="stars-existing" class="starrr" data-rating='<?php echo \Core::getValueFromArray($value, "rating") ?>'></div>
+                <div class="row">
+                    <span class="vender-status <?php echo \Core::convertStringToLower($_whStatus) ?>-status"><?php echo $_whStatus; ?><i class="fa fa-circle" aria-hidden="true"></i></span>
+                <span class="vender-timing"><span><?php echo \Core::getValueFromArray($value, "delivery_time") ?></span> min</span>
+                </div>
+                </div>
+              </div>
+              </a> </div>
+          </div>
+            <?php
+                }
+            }else{
+                echo '<h1>No records found</h1>';
+            }
+        ?>
+            
+        
+        </div>
+        <div class="clearfix"></div>        
+      </section>
+    </div>
+  </section>
+</div>

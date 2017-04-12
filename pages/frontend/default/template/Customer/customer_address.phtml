@@ -1,0 +1,85 @@
+<?php 
+    $wp = $this->_websiteSettings;
+    $cp = new \Core\CodeProcess();
+    $customerData=$this->getcutomerAddressList();
+?>
+<div class="row">
+    <section class="row" id="container-block">
+        <section class="row">       
+            <!-- Page navogation part -->
+            <div class="container">
+                <div class="page-navigation">
+                    <ul class="breadcrumbs">
+                        <li> <a href="javascript:void(0)">Home</a> </li>
+                        <li> <a href="javascript:void(0)">Account</a> </li>
+                        <li> <a href="javascript:void(0)">My Address</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="row account-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <?php $this->loadChildBlock("usermenu"); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row innerWrapper" id="warp_address">
+                            <h1 class="block-title">My Addresses</h1>
+                            <div class="address_list">                                
+                                <?php
+                                if(Core::countArray($customerData)>0){
+                                    foreach ($customerData as $key => $value) {
+                                        $addressId = $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "id"));
+                                        ?>
+                                    <div class="col-xs-12 col-sm-6 col-md-4" id="address_<?php echo $addressId; ?>">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title"><strong><?php echo \Core::getValueFromArray($value, 'address_title') ?></strong></h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul>
+                                                <li><span class="address-name"> <strong><?php echo \Core::getValueFromArray($value, 'first_name').' '.\Core::getValueFromArray($value, 'last_name') ?></strong></span></li>
+                                                <li><span class="address-line1"> <?php echo \Core::getValueFromArray($value, 'street').' , '.\Core::getValueFromArray($value, 'street2') ?></span></li>
+                                                <li><span class="address-line2"> <?php echo \Core::getValueFromArray($value, 'location').' , '.\Core::getValueFromArray($value, 'city') ?></span></li>
+                                                <li><span class="address-line2"> <?php echo \Core::getValueFromArray($value, 'state') ?></span></li>
+                                                <li><span class="address-line2"> <?php echo \Core::getValueFromArray($value, 'country').' - '.\Core::getValueFromArray($value, 'pin_code') ?></span></li>
+                                                <li><span> <strong>Mobile</strong> : <?php echo \Core::getValueFromArray($value, 'phone_number') ?> </span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="panel-footer panel-footer-address">
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-blue"  onclick="(function() { require('Customer/editCustomerAddress').editaddress('<?php echo $addressId; ?>') })()"> <i class="fa fa-edit"> </i> Edit </a> 
+                                            <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="(function() { require('Customer/deleteCustomerAddress').deleteAddress('<?php echo $addressId; ?>') })()"> <i class="fa fa-minus-circle"></i> Delete </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                            <?php
+                                }
+                                }
+                                
+                                ?>    
+                            </div>            
+                        </div>
+                    </div>
+                    <!--/row end--> 
+
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+<!-- End contant part --> 
+ <script>
+    require(['config'], function () {
+        require(['jquery', 'deleteCustomerAddress'], function ($) {
+        });
+    });
+</script>
+ <script>
+    require(['config'], function () {
+        require(['jquery', 'editCustomerAddress'], function ($) {
+        });
+    });
+</script>

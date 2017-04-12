@@ -1,0 +1,171 @@
+<?php
+$wp = $this->_websiteSettings;
+$ShopImagePath = $wp->projectRootUploadUrl . 'Warehouse/';
+$countryList=$this->getCountryList();
+$cp = new \Core\CodeProcess();
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row ven_profile ">
+            <h1>Add Branch Details </h1>
+            <div class="row ven_pro_dts">
+                <div class="col-sm-6 no-padding">
+                    <form class="form-horizontal" id="FormAddWarehouse">
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-4 control-label">Shop Name : </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="branch_name" placeholder="" name="branch_name" value="<?php echo \Core::getValueFromArray($warehouseData, "name"); ?>"/>
+                                <span class="errors" id="error_branch_name" style="display: none;"></span>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="image" class="col-sm-4 control-label">Image : </label>
+                            <div class="col-sm-8">
+                                <input type="file" id="branch_image" name="branch_image" class="file_upoload" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude" class="col-sm-4 control-label">Longitude : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="branch_longitude" placeholder="" name="branch_longitude" value="<?php echo \Core::getValueFromArray($warehouseData, "longitude") ;?>" >
+                                <span class="errors" id="error_branch_longitude" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="latitude" class="col-sm-4 control-label">Latitude : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="branch_latitude" placeholder="" name="branch_latitude" value="<?php echo \Core::getValueFromArray($warehouseData, "latitude"); ?>" >
+                                <span class="errors" id="error_branch_latitude" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactName" class="col-sm-4 control-label"><span class="required">*</span> Contact First Name : </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="branch_con_fname" placeholder="" name="branch_con_fname" value="<?php echo \Core::getValueFromArray($warehouseData, "contact_first_name"); ?>" />
+                                <span class="errors" id="error_branch_con_fname" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactName" class="col-sm-4 control-label"><span class="required">*</span>Contact Last Name : </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="branch_con_lname" placeholder="" name="branch_con_lname" value="<?php echo \Core::getValueFromArray($warehouseData, "contact_last_name"); ?>" />
+                                <span class="errors" id="error_branch_con_lname" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="street" class="col-sm-4 control-label">Street 1 : </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" id="branch_street1" placeholder="" name="branch_street1"><?php echo \Core::getValueFromArray($warehouseData, "street1");?></textarea>
+                                <span class="errors" id="error_branch_street1" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="street" class="col-sm-4 control-label">Street 2 : </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" id="branch_street2" placeholder="" name="branch_street2"><?php echo \Core::getValueFromArray($warehouseData, "street2");?></textarea>
+                                <span class="errors" id="error_branch_street2" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="col-sm-4 control-label">Country :</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="branch_country" name="branch_country" onchange="(function() {require('Vendor/vendorportal/warehouse').SelectState() })()">
+                                    <option value="">  Select Country   </option>
+                                    <?php
+                                    if(\Core::countArray($countryList)>0){
+                                        foreach ($countryList as $key => $value) {
+                                            echo '<option value="'.\Core::getValueFromArray($value, "short_code").'">'.\Core::getValueFromArray($value, "name").'</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <span class="errors" id="error_branch_country" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="col-sm-4 control-label">State :</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="branch_state" name="branch_state" onchange="(function() {require('Vendor/vendorportal/warehouse').SelectCity() })()">
+                                   <option value="">  Select State   </option>                                  
+                                </select>
+                                <span class="errors" id="error_branch_state" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="City" class="col-sm-4 control-label"> City : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="branch_city" name="branch_city" onchange="(function() {require('Vendor/vendorportal/warehouse').SelectLocation() })()">
+                                    <option value="">  Select City   </option>
+                                </select>
+                                <span class="errors" id="error_branch_city" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location" class="col-sm-4 control-label">Location : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="branch_location" name="branch_location">
+                                    <option value="">  Select Location   </option>
+                                </select>
+                                <span class="errors" id="error_branch_location" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalcode" class="col-sm-4 control-label"><span class="required"></span> Postal Code : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="branch_postcode" placeholder="" name="branch_postcode" value="<?php echo \Core::getValueFromArray($warehouseData, "postalcode"); ?>" />
+                                <span class="errors" id="error_branch_postcode" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-4 control-label"><span class="required">*</span>Contact Email : </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="branch_con_email" placeholder="" name="branch_con_email" value="<?php echo \Core::getValueFromArray($warehouseData, "emailid"); ?>" />
+                                <span class="errors" id="error_branch_con_email" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Name" class="col-sm-4 control-label"><span class="required">*</span>Contact Phone : </label>
+                            <div class="col-sm-8">
+                                <input type="email" class="form-control" id="branch_con_phone" placeholder="" name="branch_con_phone" value="<?php echo \Core::getValueFromArray($warehouseData, "phoneno");?>" />
+                                <span class="errors" id="error_branch_con_phone" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label">Delivery Time : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="branch_del_time" placeholder="" name="branch_del_time" value="<?php echo \Core::getValueFromArray($warehouseData, "delivery_time");?>">
+                                <span class="errors" id="error_branch_del_time" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-4 control-label">Is Active : </label>
+                            <div class="col-sm-8">
+                                <div class="checkbox">
+                                      <input type="checkbox" id="branch_active" name="branch_active" value="1" >
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <button type="button" class="btn btn-primary button-overall" onclick="(function() {require('Vendor/vendorportal/warehouse').addVendorBranch() })()">Add Branch</button>
+                        </div>                        
+                    </form> 
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>
+
+
+<script>
+    require([
+        'css!../css/Vendor/vendorportal/profile',
+    ], function () {
+    });
+</script>
+
+<script>
+    require(['config'], function () {
+        require(['jquery', 'warehouse'], function ($) {
+        });
+    });
+</script>

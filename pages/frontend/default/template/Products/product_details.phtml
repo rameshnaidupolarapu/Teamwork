@@ -1,0 +1,21 @@
+<?php $wp = $this->_websiteSettings; ?>
+<!-- main grid part -->
+<div class="row">
+  <section class="container" id="container-block"> 
+    <!-- main category bloak --> 
+    <!-- main contant block -->    
+    <section class="row box-product">
+      <?php $this->loadChildBlock("product_info");?>  
+     <?php $this->loadChildBlock("product_additonal_details");?>          
+    </section>
+    <div class="row">
+        <?php $this->loadChildBlock("frequently_products");?>
+        <div class="clear-fix"></div>
+        <?php $this->loadChildBlock("more_products");?>
+    </div>
+    
+    
+      
+        
+  </section>
+</div>

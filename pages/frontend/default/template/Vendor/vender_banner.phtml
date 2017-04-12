@@ -1,0 +1,86 @@
+<?php
+$wp = $this->_websiteSettings;
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$warehouseId = \Core::getValueFromArray($_urlMetaInfor, "wherehouseId");
+$_warehouseData = $this->getwarehouseData($warehouseId);
+$vendorId = \Core::getValueFromArray($_warehouseData, "ec_vendor_id");
+$vendorData=$this->getvendorData($vendorId);
+$warehouseBanners = $this->getwarehouseBannerImages($warehouseId,$vendorId);
+$imagePath = $wp->projectRootUploadUrl . "Vendorbanners/";
+$shopimagePath = $wp->projectRootUploadUrl . "Warehouse/";
+$vendorimagePath = $wp->projectRootUploadUrl . "venders/";
+?>  
+<div class="row">
+    <div class="container">
+        <section class="row store-container">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 no-padding">
+                <div class="store_img">
+                    <?php
+                    if(\Core::getValueFromArray($_warehouseData, "image")!= "")
+                    {
+                      echo '<img src="'.$shopimagePath.\Core::getValueFromArray($_warehouseData, "image").'" alt="" class="img-responsive">';                        
+                   }
+                    else{
+                        echo '<img src="'.$wp->websiteUrl.'img/images/shop/shop1.jpg" class="img-responsive">';
+                    }
+                    ?>                    
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-sm-push-6 col-xs-6 no-padding">
+                <div class="shopkeeper_img">
+                    <?php
+                    
+                    foreach ($vendorData as $key => $value) {
+                            if(\Core::getValueFromArray($value, "vendor_image")!= "")
+                                {
+                                echo '<img src="'.$vendorimagePath. \Core::getValueFromArray($value, "vendor_image").'" alt="" class="img-responsive">';
+                             }
+                            else{
+                                echo '<img src="'.$wp->websiteUrl.'img/images/shop/shpk.jpg" alt="" class="img-responsive">';
+                            }
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-sm-pull-3  no-padding">
+                <div class="gocery-slider">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <?php
+                            If (\Core::countArray($warehouseBanners) > 0) {
+                                $i = 1;
+                                foreach ($warehouseBanners as $key => $value) {
+                                    if (\Core::getValueFromArray($value, "product_url") != "") {
+                                        $url = \Core::getValueFromArray($value, "product_url");
+                                    } else {
+                                        $url = "javascript:void(0)";
+                                    }
+                                    if ($i == 1) {
+                                        $active = "active";
+                                    } else {
+                                        $active = "";
+                                    }
+                                    echo '<div class="item ' . $active . '"> <a href="' . $url . '"><img src="' . $imagePath . \Core::getValueFromArray($value, "image") . '" alt="' . \Core::getValueFromArray($value, "title") . '" style="height: 220px;width: 100%;">
+                                    <div class="carousel-caption"> ' . \Core::getValueFromArray($value, "description") . '</div></a>
+                                </div>';
+                                    $i++;
+                                }
+                            } 
+                            ?>
+                        </div>
+                        <!-- Left and right controls --> 
+                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> 
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

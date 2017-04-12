@@ -1,0 +1,14 @@
+<?php
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$productId = $this->_controllerObj->_currentSelector;
+$warehouseId = \Core::getValueFromArray($_urlMetaInfor, "wherehouseId");
+$productPriceDetails = $this->getProductPrice($productId,$warehouseId);
+?>
+<div class="view-product-price"> 
+    <!--<span class="pr-total-price"><i class="fa fa-inr" aria-hidden="true"></i>500.00</span> -->
+    <div class="pr-price">
+        <i class="fa fa-inr" aria-hidden="true"></i>
+        <span id="product_price_view"><?php echo \Core::getValueFromArray($productPriceDetails, "price"); ?></span>
+    </div> 
+</div>
+          

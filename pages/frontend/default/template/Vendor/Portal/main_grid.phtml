@@ -1,0 +1,19 @@
+<!-- Main grid part -->
+<div class="main-grid">
+    <!-- start from main container part -->
+    <div class="main-container" style="min-height: 700px;">
+            <?php $this->loadChildBlock("main_container");?>
+    </div>
+    <!-- start from footer part -->
+    <div class="footer-grid">
+             <?php $this->loadChildBlock("footer_grid");?>
+    </div>
+</div>
+<!-- End Main grid part -->
+
+<script>
+  require([
+     'css!../css/Vendor/vendorportal/dashboard',
+  ], function () {  
+  });
+</script>

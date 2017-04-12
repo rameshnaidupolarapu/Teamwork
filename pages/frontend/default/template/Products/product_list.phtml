@@ -1,0 +1,87 @@
+<?php
+$wp = $this->_websiteSettings;
+$_controllerObj = $this->_controllerObj;
+$wherehouseId = $_controllerObj->_currentSelector;
+$_urlMetaInfor = $_controllerObj->_urlMetaInfor;
+$category = \Core::getValueFromArray($_urlMetaInfor, "category");
+//wherehouse category list details
+$_whereHouseCategoryData = $this->getWherehouseCategoryList($wherehouseId, $category);
+?>
+<div class="clear-fix"></div>
+<div class="row">
+    <section class="container" id="container-block"> 
+        <section class="row">
+            <?php
+            if (\Core::countArray($_whereHouseCategoryData) > 0) {
+               $_whereHouseCategoryList = \Core::convertStringToArray(\Core::getValueFromArray($_whereHouseCategoryData, "sub_category"), "|"); 
+                foreach ($_whereHouseCategoryList as $subCategoryList => $subCategoryId) {
+                    $categoryData = $this->getCurrentSubcategoryDetails($subCategoryId);
+                    if (\Core::countArray($categoryData) > 0) {
+                        $subcategoryName = \Core::convertStringToLower(\Core::getValueFromArray($categoryData, "name"));
+                        $subcategoryAliasName = \Core::convertStringToUrlSlug($subcategoryName);
+                        $subCategoryImagePath = $wp->websiteUrl . "uploads/" . $wp->identity . "/categories/";
+                        $productList = $this->getProductList($wherehouseId,$subCategoryId);
+                        ?>
+                        <div class="row box-warper box-warper-mobile"> 
+                            <h1><span><?php echo ucwords($subcategoryName); ?></span></h1>
+                            <div class="col-sm-2 no-padding category-img">
+                                <img src="<?php echo $subCategoryImagePath . \Core::getValueFromArray($categoryData, "main_image"); ?>" style="height: 336px;" alt="<?php echo ucwords($subcategoryName); ?>" class="img-responsive">
+                            </div>
+                            <div class="col-sm-10 no-padding">
+                                <?php if (\Core::countArray($productList) > 0) { ?>
+                                    <ul id="<?php echo $subcategoryAliasName; ?>">
+                                        <?php
+                                        //get list of category products in wherehouse
+                                        foreach ($productList as $productKey => $productValue) {
+                                            $this->setVenderProductId(\Core::getValueFromArray($productValue, "id"));
+                                            $this->setCurrentProductId(\Core::getValueFromArray($productValue, "product_id"));
+                                            $this->loadChildBlock("product");
+                                        }
+                                        ?>
+                                    </ul>
+                                    <script>
+                                        require(['config'], function () {
+                                            require(['jquery', 'scrollproducts'], function ($) {
+                                                $("#<?php echo $subcategoryAliasName; ?>").flexisel({
+                                                    visibleItems: 4,
+                                                    itemsToScroll: 4,
+                                                    autoPlay: {
+                                                        enable: false,
+                                                        interval: 5000,
+                                                        pauseOnHover: true
+                                                    }
+                                                });
+                                            });
+                                        });
+                                    </script>
+                                <?php } else { ?>
+                                    <h2>No Products</h2>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+            }
+            ?>
+        </section>
+    </section>
+</div>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'productquickview'], function ($) {
+    });
+});
+</script>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'productQuantity'], function ($) {
+    });
+});
+</script>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'changeuomdetails'], function ($) {
+    });
+});
+</script>

@@ -1,0 +1,124 @@
+/* CSS Document */
+/*Landing page styles*/
+.warp-contant {
+    z-index: 999;
+    position: relative;
+    padding: 120px 0px;
+}
+.warp-contant h2 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 31px;
+    font-weight: bold;
+}
+#location-block{
+    margin-top: 60px;
+}
+#news-ticker-warp {
+    height: 45px;
+}
+.news-ticker {
+    float: left;
+    width: 70px;
+    line-height: 27px;
+    font-size: 16px;
+    color: #fff;
+}
+.grid-keep-change {
+    width: 86%;
+    float: left;
+}
+.tp-dottedoverlay.twoxtwo {
+    background: rgba(0,0,0,0.5);
+}
+.tp-dottedoverlay {
+    background-repeat: repeat;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+}
+.form-input.search-location input[type=text]:focus{
+    border:none;
+    box-shadow:none;
+}
+.input-group-addon{
+    border-radius:0px;
+    border:none;
+    background:#fff;
+}
+.form-input.search-location .btn{	
+    line-height:45px;
+    padding:0px;
+}
+.form-input.search-location input[type=text],.form-input.search-location .btn,.form-input.search-location .input-group-addon{
+    height:45px;
+    border:none;
+    border-radius:0px;
+}
+
+/* News Scroll */
+.ticker {
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border-bottom: #ccc 5px solid;
+    position: relative;
+    overflow: hidden;
+    color:#fff;
+    height:40px;
+}
+
+.ticker ul {
+    width: 100%;
+    position: relative;
+}
+
+.ticker ul li {
+    width: 100%;
+    display: none;
+    font-size:16px;
+    height:40px;
+}
+.serach_location_block{
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.serach_location_block ul{}
+.serach_location_block ul li{
+    cursor: pointer;
+    padding: 10px 15px;
+        border-top: 1px solid rgba(0,0,0,0.08);
+        
+}
+.serach_location_block ul li:hover{
+        background: rgba(0,0,0,0.025);
+}
+.serach_location_block ul li span.suggest{
+    color: #333;
+    font-size: 13px;
+}
+.serach_location_block ul li span.suggest_tag{
+    color: #8C8C8C;
+    font-size: 12px;
+}
+.serach_location_block ul li:last-child,.serach_location_block{
+    border-radius: 0px 0px 2px 2px;
+}
+.serach_location_block ul li i.fa{
+    margin-right: 10px;
+    font-size: 15px;
+    color: #aaa;
+}
+.form-input.search-location .btn#btn_proceed{
+    width: 100%;
+    background: #0db8d0;
+    color: #fff;
+    text-shadow: none;
+}

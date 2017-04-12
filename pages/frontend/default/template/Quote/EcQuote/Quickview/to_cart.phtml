@@ -1,0 +1,16 @@
+<?php
+$cp = new \Core\CodeProcess();
+$partentObject = $this->_partentObject;
+$_requestedData = $partentObject->_controllerObj->_requestedData;
+$warehouseId = $cp->convertEncryptDecrypt("encrypt",\Core::getValueFromArray($_requestedData, "warehouseId"));
+$productId = $cp->convertEncryptDecrypt("encrypt",\Core::getValueFromArray($_requestedData, "productId"));
+?>
+<div class="add-to-product">
+    <button type="button"  onclick="(function() { require('Quote/tocart').addCartToProduct('<?php echo $productId; ?>','<?php echo $warehouseId; ?>') })()" id="" name=""><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add To Cart</button>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'tocart'], function ($) {
+        });
+    });
+</script>

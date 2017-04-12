@@ -1,0 +1,48 @@
+<?php
+$cp = new \Core\CodeProcess();
+$wp = new \Core\WebsiteSettings();
+$_partentObject = $this->_partentObject;
+$_quoteItemId = $_partentObject->_quoteItemId;
+$_quoteItemData = $_partentObject->_quoteItemData;
+if ($_quoteItemId == "") {
+    $_requestedData = $this->_controllerObj->_requestedData;
+    $_quoteItemId = $cp->convertEncryptDecrypt("decrypt", \Core::getValueFromArray($_requestedData, "quoteItemId"));
+}
+if (\Core::countArray($_quoteItemData) > 0) {
+    $quoteIiemData = $_quoteItemData;
+} else {
+    $quoteIiemData = $this->currentQuoteItemData($_quoteItemId);
+}
+$productData = $this->getProductData(\Core::getValueFromArray($quoteIiemData, "product_id"), \Core::getValueFromArray($quoteIiemData, "quantity"));
+$quoteItemId = $cp->convertEncryptDecrypt("encrypt", $_quoteItemId);
+$productImage = \Core::getValueFromArray($productData, "image");
+$uomDetails = $this->getCurrentUmoDetails(\Core::getValueFromArray($quoteIiemData, "ec_uom_details_id"));
+$increse = $cp->convertEncryptDecrypt("encrypt", "increase");
+$decrese = $cp->convertEncryptDecrypt("encrypt", "decrease");
+?>
+<tr class="width_prdct" id="pr_<?php echo $quoteItemId; ?>">
+    <td data-title="Product image" class="img_width" style="width: 25%;">
+        <img src="<?php echo \Core::getValueFromArray($productImage, "image") ?>" alt="<?php echo \Core::getValueFromArray($productImage, "title") ?>" class="img-responsive">
+    </td>
+    <td data-title="Product Name">
+        <h4><?php echo ucwords(\Core::getValueFromArray($productData, "name")); ?></h4>
+        <p><?php echo ucwords(\Core::getValueFromArray($uomDetails, "name")); ?></p>
+    </td>
+    <td data-title="Unit price"><?php echo ucwords(\Core::getValueFromArray($quoteIiemData, "sale_price")); ?></td>
+    <td data-title="Quantity" class="numeric">
+        <span onclick="(function () {
+                    require('Quote/tocart').updateCartItemQuantity('<?php echo $quoteItemId; ?>', '<?php echo $decrese; ?>')
+                })()"><i class="fa fa-minus" aria-hidden="true"></i></span>
+        <span id="itemQnty_<?php echo $quoteItemId; ?>">
+            <input type='text' name='quantity' value='<?php echo ucwords(\Core::getValueFromArray($quoteIiemData, "quantity")); ?>' class='qty'  onfocusout="(function() { require('Quote/tocart').cartItemUpdateQuantity('<?php echo $quoteItemId; ?>') })()" />
+        </span>
+        <span onclick="(function () {
+                    require('Quote/tocart').updateCartItemQuantity('<?php echo $quoteItemId; ?>', '<?php echo $increse; ?>')
+                })()"><i class="fa fa-plus" aria-hidden="true"></i></span>
+    </td>
+    <td data-title="Subtotal" class="numeric"><?php echo ucwords(\Core::getValueFromArray($quoteIiemData, "sub_total")); ?></td>
+    <td data-title="remove" class="remove"  onclick="(function () {
+                require('Quote/tocart').removeCartItem('<?php echo $quoteItemId; ?>')
+            })()"><i class="fa fa-trash" aria-hidden="true"></i></td>
+</tr>
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core_developmentsettings>
+    <status>active</status>
+    <filename>TaskManagement</filename>
+    <name>TaskManagement</name>
+    <displayname>TaskManagement</displayname>
+    <rootmodule>false</rootmodule>
+    <codemodule>false</codemodule>
+    <moduledisplay>false</moduledisplay>
+    <sort_value>1</sort_value>
+    <setuppath>\Modules\TaskManagement\Setup</setuppath>
+    <datapath>\Modules\TaskManagement\Data</datapath>    
+    <schemaversion>1.0.0</schemaversion>
+    <dataversion>1.0.0</dataversion>
+</core_developmentsettings>

@@ -1,0 +1,66 @@
+<?php
+$wp = new \Core\WebsiteSettings();
+$quoteData = $this->getQuoteData();
+$_quoteItemList = \Core::getValueFromArray($quoteData, "items");
+?>  
+<div class="cart-warper-model">
+    <div class="care-waper-header">
+        <div class="cart-header-title">My Cart (<span><?php echo intval(\Core::getValueFromArray($quoteData, "itemcount")); ?> items</span>)</div>
+      <button type="button" class="close-cart cart-toggle">X</button>
+    </div>
+    <div class="care-waper-body">
+      <div class="row" id="cart-amount">
+        <div class="row cart-body-title"><span>Super Store</span><span class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i><?php echo \Core::getValueFromArray($quoteData, "amount") ?></span></div>
+        <div class="row cart-body-de-charge"><span>Delivery Charges</span><span class="pull-right">+29</span></div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="row" id="del-charges"><i class="fa fa-inr" aria-hidden="true"></i>600 away from free delivery</div>
+      <div class="clearfix"></div>
+      <div class="cart-pr-list">
+        <ul>
+         <?php if(\Core::countArray($_quoteItemList)>0){ 
+            foreach ($_quoteItemList as $key => $value) {
+             $productData = $this->getProductData(\Core::getValueFromArray($value, "product_id"),\Core::getValueFromArray($value, "quantity"));
+             $cp = new \Core\CodeProcess();
+             $quoteItemId = $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "id")); 
+             $productImage = \Core::getValueFromArray($productData, "image");
+             $uomDetails = $this->getCurrentUmoDetails(\Core::getValueFromArray($value, "ec_uom_details_id"));
+             $increse = $cp->convertEncryptDecrypt("encrypt", "increase");
+             $decrese = $cp->convertEncryptDecrypt("encrypt", "decrease");
+             ?>
+          <li>
+              <div class="cart-product-img">
+                  <img src="<?php echo \Core::getValueFromArray($productImage, "image") ?>" class="img-responsive" alt="<?php echo \Core::getValueFromArray($productImage, "title") ?>">
+              </div>
+            <div class="cart-product-details">
+                <h4><?php echo \Core::getValueFromArray($productData, "name") ?></h4>
+                <p><?php echo \Core::getValueFromArray($uomDetails, "name") ?></p>
+              <div class="row cart-btn-action">
+                  <div class="multi-pr-action"> 
+                      <span class="cart-pr-decrement pr_decrement"  onclick="(function() { require('Quote/tocart').cartItemQuantity('<?php echo $quoteItemId; ?>','<?php echo $decrese; ?>') })()">-</span> 
+                      <span class="cart-pr-count" id="prquantaty_<?php echo $quoteItemId; ?>">
+                          <input type="text"  onfocusout="(function() { require('Quote/tocart').cartItemUpdateOnfocus('<?php echo $quoteItemId; ?>') })()" name="pr_quantaty" id="<?php echo $quoteItemId; ?>" value="<?php echo \Core::getValueFromArray($value, "quantity") ?>" />
+                      </span> 
+                      <span class="cart-pr-increment pr_decrement"  onclick="(function() { require('Quote/tocart').cartItemQuantity('<?php echo $quoteItemId; ?>','<?php echo $increse; ?>') })()">+</span> 
+                  </div>
+                  <div class="cart-pr-delete"><span onclick="(function() { require('Quote/tocart').removeCartListItem('<?php echo $quoteItemId; ?>') })()"><i class="fa fa-trash-o" aria-hidden="true"></i></span></div>
+                <div class="cart-pr-price"><span class="pr-cart-price"><i class="fa fa-inr" aria-hidden="true"></i><?php echo \Core::getValueFromArray($value, "sub_total") ?></span></div>
+              </div>
+            </div>
+          </li>
+            <?php } }else{
+             echo '<h4>No items in cart list</h4>';
+            } ?>
+        </ul>
+      </div>
+    </div>
+    <div class="care-waper-footer">
+        <a href="<?php echo $wp->websiteUrl ?>ec_order/cartview" name="" id=""><span class="pull-left">Proceed to Checkout</span> <span class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i> <?php echo \Core::getValueFromArray($quoteData, "amount") ?></span></a>
+    </div>
+  </div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'tocart'], function ($) {
+        });
+    });
+</script>

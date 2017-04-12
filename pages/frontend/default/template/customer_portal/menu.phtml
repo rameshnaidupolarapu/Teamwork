@@ -1,0 +1,15 @@
+<?php 
+$wp = $this->_websiteSettings;
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+?>
+<div class="account-menu">
+    <ul>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="dashboard"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/dashboard"><span><i class="fa fa-th" aria-hidden="true"></i></span>Dashboard</a></li>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="order"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/order-history"><span><i class="fa fa-calendar"></i></span>Order History</a></li>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="addresslist"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/address-list"><span><i class="fa fa-map-marker"></i></span>My Addresses</a></li>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="addaddress"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/add-address"><span><i class="fa fa-edit"></i></span>Add Addresses</a></li>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="profile"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/profile-information"><span><i class="fa fa-cog"></i></span>Profile Information</a></li>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="password"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/change-password"><span><i class="fa fa-key"></i></span>Change Password</a></li>
+        <li><a class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "nav")=="wishlist"){ echo 'active'; } ?>" href="<?php echo $wp->websiteUrl;  ?>account/wishlist"><span><i class="fa fa-heart"></i></span>My Wishlists</a></li>
+    </ul>
+</div>

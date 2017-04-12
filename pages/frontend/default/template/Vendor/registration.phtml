@@ -1,0 +1,132 @@
+<?php 
+    $wp = $this->_websiteSettings;
+    $countryList=$this->getCountryList();
+    //$vendorProfile=$this->getVendorProfile();
+?>
+<!-- main grid part -->
+<div class="row contact">
+    <section class="container" id="container-block"> 
+        <div class="col-md-6 col-md-offset-3">
+            <div class="row contact ">
+                <h1> Registration </h1>
+                <div class="basic-form">
+                    <form class="form-horizontal" id="FormvendorRegistration"> 
+                        <div class="form-group">
+                            <label for="email" class="control-label col-sm-4">First Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ven_first_name" name="ven_first_name" placeholder="First Name">
+                                <span class="errors" id="error_ven_first_name" style="display: none;"></span> </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="control-label col-sm-4">Last Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ven_last_name" name="ven_last_name" placeholder="Last Name">
+                                <span class="errors" id="error_ven_last_name" style="display: none;"></span> </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="control-label col-sm-4">Email</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ven_email" name="ven_email" placeholder="Email">
+                                <span class="errors" id="error_ven_email" style="display: none;"></span> </div> 
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="control-label col-sm-4">phone</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ven_phone" name="ven_phone" placeholder="Phone">
+                                <span class="errors" id="error_ven_phone" style="display: none;"></span> </div>  
+                        </div>
+                        <div class="form-group">   
+                            <label for="phone" class="control-label col-sm-4">Password</label> 
+                            <div class="col-sm-8">
+                                <input type="password" class="form-control" id="ven_password" name="ven_password" placeholder="Password">
+                                <span class="errors" id="error_ven_password" style="display: none;"></span> </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="street" class="col-sm-4 control-label">Street 1 : </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" id="ven_street1" placeholder="" name="ven_street1"></textarea>
+                                <span class="errors" id="error_ven_street1" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="street" class="col-sm-4 control-label">Street 2 : </label>
+                            <div class="col-sm-8">
+                                <textarea class="form-control" rows="3" id="ven_street2" placeholder="" name="ven_street2"></textarea>
+                                <span class="errors" id="error_ven_street2" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="col-sm-4 control-label">Country :</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="ven_country" name="ven_country" onchange="(function () {
+                                            require('Vendor/vendorAuthantication').SelectState()
+                                        })()">
+                                    <option value="">  Select Core Country   </option>
+                                    <?php
+                                    if (\Core::countArray($countryList) > 0) {
+                                        foreach ($countryList as $key => $value) {                                           
+                                            echo '<option value="' . \Core::getValueFromArray($value, "short_code") . '" >' . \Core::getValueFromArray($value, "name") . '</option>';                                           
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <span class="errors" id="error_ven_country" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="col-sm-4 control-label">State :</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="ven_state" name="ven_state" onchange="(function () {
+                                            require('Vendor/vendorAuthantication').SelectCity()
+                                        })()">
+                                    <option value="">Select State</option>                                  
+                                </select>
+                                <span class="errors" id="error_ven_state" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="City" class="col-sm-4 control-label"> City : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="ven_city" name="ven_city" onchange="(function () {
+                                            require('Vendor/vendorAuthantication').SelectLocation()
+                                        })()">
+                                    <option value="">  Select City   </option>
+                                </select>
+                                <span class="errors" id="error_ven_city" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location" class="col-sm-4 control-label">Location : </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="ven_location" name="ven_location">
+                                    <option value="">  Select Location   </option>
+                                </select>
+                                <span class="errors" id="error_ven_location" style="display: none;"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalcode" class="col-sm-4 control-label"><span class="required"></span> Postal Code : </label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ven_postcode" placeholder="" name="ven_postcode" value="" />
+                                <span class="errors" id="error_ven_postcode" style="display: none;"></span>
+                            </div>
+                        </div>     
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="button" class="btn btn-default pull-right" onclick="(function () {
+                                            require('Vendor/vendorAuthantication').vendorRegistration()
+                                        })()">Submit</button>
+                            </div>
+                        </div>               
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'vendorAuthantication'], function ($) {
+        });
+    });
+</script>

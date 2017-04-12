@@ -1,0 +1,39 @@
+<?php 
+$wp = $this->_websiteSettings; 
+$session = new \Modules\Session\CustomerSession();
+$sessionData = $session->getCustomerSession();
+$customerId = $sessionData->getCustomerSessionId();
+?>
+<section class="theme-header theme-main-header">
+  <div class="container"> 
+    <!-- logo -->
+    <div id="logo"> <a href="index.html"> <span class="logo-sm"> ZETOE</span> <span class="logo-lg"> ZETOE </span> </a> </div>
+    <!-- navigation -->
+    <nav class="navbar navbar-static-top">
+      <div class="custom-menu">
+        <ul>
+          <!-- user info block -->
+          <li><a href="javascript:void(0)">Delivery Hero</a></li>
+          <li><div class=" account header-item header-user-info" id="user_info"> </div></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+<?php
+if($customerId > 0){
+    echo "<script>
+    require(['config'], function () {
+        require(['jquery', 'cusromerInfo'], function ($) {
+        });
+    });
+</script>";
+}  else {
+    echo "<script>
+    require(['config'], function () {
+        require(['jquery', 'checkCusromerAuth'], function ($) {
+        });
+    });
+</script>";
+}
+?>

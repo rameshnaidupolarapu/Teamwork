@@ -1,0 +1,56 @@
+/* CSS Document */
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+.news-ticker {
+	width: 20%;
+}
+.grid-keep-change {
+	width: 80%;
+}
+.theme-main-header ul li a, .theme-main-header p, .theme-main-header p a {
+    color: #adb2b6;
+    font-size: 12px;
+}
+.theme-main-header ul li a {
+    padding: 0px 6px;
+}
+	
+	
+.header-location {
+    margin-left: 10px;
+}
+.header-location {
+    width: 190px;
+}
+	.header-item-search {
+    width: calc(100% - 624px);
+}
+	
+	
+#categories-block {
+	width: calc(100% - 30px);
+	margin-left: 15px;
+}
+#categories-block ul {
+	display: block;
+}
+#categories-block ul li{
+	display:inline-block;
+}
+#categories-block ul li .ca-image-b{
+	display:none;
+}
+
+#categories-block select {
+	display: none;
+}	
+#categories-block ul li a h4 {    
+    padding: 8px 10px;
+}
+	
+/* Category Page */
+.photo-gallery ul li img {
+width: 98%;
+height: 60px;
+}
+	
+}

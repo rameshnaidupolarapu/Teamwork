@@ -1,0 +1,30 @@
+<?php
+$wp = $this->_websiteSettings; 
+$session = new \Modules\Session\CustomerSession();
+$customerId = $session->getCustomerSession()->getCustomerSessionId();
+$customerData = $this->getcutomerData($customerId);
+$customerImageData = \Core::getValueFromArray($customerData, "image");
+$customerLocation = $session->getCustomerSession()->getCustomerLocation();
+?>
+<script>
+  require([
+    'css!../css/Customer/userInfo',
+  ], function () {  
+  });
+</script>
+<div class="user_title dropdown">
+    <a href="javascript:void(0)" id="user_menu" data-toggle="dropdown" role="button" aria-haspopup="true"  data-target="#">
+        <span class="userImage"><img src="<?php echo \Core::getValueFromArray($customerImageData, "image"); ?>" alt="<?php echo \Core::getValueFromArray($customerImageData, "title"); ?>" /></span>
+        <span class="user_title"><?php echo \Core::getValueFromArray($customerData, "first_name");?></span>
+    </a>
+    <?php if($customerLocation!=""){ ?>
+    <ul class="dropdown-menu" aria-labelledby="user_menu">
+        <li><a href="<?php echo $wp->websiteUrl; ?>account/dashboard"><i class="fa fa-info" aria-hidden="true"></i><span>Dashboard</span></a></li>
+        <li><a href="<?php echo $wp->websiteUrl; ?>account/profile-information"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span>Profile</span></a></li>
+        <li><a href="<?php echo $wp->websiteUrl; ?>account/change-password"><i class="fa fa-unlock-alt" aria-hidden="true"></i><span>Change Password</span></a></li>
+        <li><a href="javascript:void(0)"><i class="fa fa-envelope-o" aria-hidden="true"></i><span>Contact Us</span></a></li>
+        <li><a href="<?php echo $wp->websiteUrl; ?>account/wishlist"><i class="fa fa-cog" aria-hidden="true"></i><span>Wishlist</span></a></li>
+        <li><a href="<?php echo $wp->websiteUrl; ?>account/logout"><i class="fa fa-power-off" aria-hidden="true"></i><span>Logout</span></a></li>
+    </ul>
+    <?php } ?>
+</div>

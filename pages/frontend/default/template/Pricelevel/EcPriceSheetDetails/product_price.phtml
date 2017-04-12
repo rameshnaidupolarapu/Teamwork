@@ -1,0 +1,25 @@
+<?php
+$cp = new \Core\CodeProcess(); 
+$productId = $this->_partentObject->_productId;
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+$warehouseId = \Core::getValueFromArray($_urlMetaInfor, "wherehouseId");
+$productPriceDetails = $this->getProductPrice($productId,$warehouseId);
+$_encProductId = $cp->convertEncryptDecrypt("encrypt",$productId);
+$_encWarehouseId = $cp->convertEncryptDecrypt("encrypt",$warehouseId);
+$increment = $cp->convertEncryptDecrypt("encrypt","increment");
+$decrement = $cp->convertEncryptDecrypt("encrypt","decrement"); 
+?>
+<div class="product-price"> 
+    <!--<span class="pt-price"><i class="fa fa-inr" aria-hidden="true"></i>500.00</span> -->
+    <div class="offer-price price">
+        <i class="fa fa-inr" aria-hidden="true"></i>
+        <span id="product_price"><?php echo \Core::getValueFromArray($productPriceDetails, "price"); ?></span>
+    </div> 
+    <div class="product-qtr" id="product-qtr">
+        <input type="text" name="pr_qty" class="prQty_<?php echo $_encProductId; ?>" id="product_qty" onfocusout="(function() { require('Products/productQuantity').changeProductQuantity('<?php echo $_encWarehouseId ?>','<?php echo $_encProductId; ?>') })()" value="1" maxlength="12">
+        <div class="pr-qtr-handler"> 
+            <a href="javascript:void(0)" onclick="(function() { require('Products/productQuantity').productQuantityIncrementDecrement('<?php echo $_encWarehouseId ?>','<?php echo $_encProductId; ?>','<?php echo $increment; ?>') })()" class="pr_qty_inc"><i class="fa fa-plus" aria-hidden="true"></i></a> 
+            <a href="javascript:void(0)" onclick="(function() { require('Products/productQuantity').productQuantityIncrementDecrement('<?php echo $_encWarehouseId ?>','<?php echo $_encProductId; ?>','<?php echo $decrement; ?>') })()" class="pr_qty_dec"><i class="fa fa-window-minimize" aria-hidden="true"></i></a> 
+        </div>
+    </div>
+</div>

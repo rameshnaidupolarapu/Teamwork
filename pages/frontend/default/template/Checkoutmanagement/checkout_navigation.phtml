@@ -1,0 +1,14 @@
+<?php
+$_urlMetaInfor = $this->_controllerObj->_urlMetaInfor;
+?>
+<ul class="orderStep orderStepLook2">
+    <li class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "menu")=="address"){ echo "active"; } ?>">
+        <a href="javascript:void(0)"> <i class="fa fa-map-marker "></i> <span> address</span> </a>
+    </li>
+    <li class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "menu")=="payment"){ echo "active"; } ?>">
+        <a href="javascript:void(0)"><i class="fa fa-money  "> </i><span>Payment</span> </a>
+    </li>
+    <li class="<?php if(\Core::getValueFromArray($_urlMetaInfor, "menu")=="order"){ echo "active"; } ?>">
+        <a href="javascript:void(0)"><i class="fa fa-check-square "> </i><span>Order</span></a>
+    </li>
+</ul>

@@ -1,0 +1,314 @@
+/* CSS Document */
+#go-to-top{
+	width:40px;
+	height:40px;
+	background:#0db8d0;
+	text-align:center;
+	position:fixed;
+	bottom:80px;
+	right:10px;
+	display:none;
+	cursor:pointer;
+	z-index: 99999;
+}
+#go-to-top i.fa{
+	line-height:40px;
+	color:#fff;
+	font-size:18px;
+}
+#banner {
+	margin: 15px 0px;
+}
+
+.modal-content {
+	border-radius: 0px;
+}
+.modal-header {
+	border: none;
+	padding: 5px 15px;
+}
+
+#pr_qty {
+	vertical-align: middle;
+	height: 38px;
+	width: 44px!important;
+	font-size: 14px;
+	font-weight: 400;
+	text-align: center;
+	color: #21293c;
+	margin: 0;
+	border: 1px solid #dae2e6;
+}
+.pr-qtr-handler a {
+	position: absolute;
+	top: 0;
+	width: 30px;
+	height: 38px;
+	border: solid 1px #dae2e6;
+	line-height: 41px;
+	font-size: 11px;
+	color: #8798a2;
+}
+.pr-qtr-handler a.pr_qty_inc {
+	right: 1px;
+}
+.pr-qtr-handler a.pr_qty_dec {
+	left: 1px;
+}
+.pr-qtr-handler a.pr_qty_inc i.fa, .pr-qtr-handler a.pr_qty_dec i.fa {
+	line-height: 38px;
+}
+.add-to-product {
+	height: 38px;
+	width: 160px;
+	min-width: 110px;
+	vertical-align: middle;
+	float: left;
+	margin-right: 8px;
+}
+.add-to-product button {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	box-shadow: none;
+	background: #0db8d0;
+	color: #fff;
+	font-size: 15px;
+}
+.add-to-product button i.fa {
+	margin-right: 10px;
+}
+.add-to-wish {
+	width: 38px;
+	height: 38px;
+	float: left;
+	border: solid 1px #dae2e6;
+	vertical-align: middle;
+}
+.add-to-wish button {
+	background: none;
+	box-shadow: none;
+	border: none;
+	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+	font-size: 18px;
+}
+.add-to-wish:hover, .pr-qtr-handler a.pr_qty_inc:hover, .pr-qtr-handler a.pr_qty_dec:hover {
+	border: 1px solid #0db8d0;
+	color: #0db8d0;
+}
+.add-to-product:hover {
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+}
+/* view cart */
+#page-header-right {
+	float: right;
+	margin-bottom: 13px;
+}
+#viewcart {
+	float: right;
+	width: 150px;
+}
+#viewcart a {
+	position: relative;
+}
+#viewcart a span {
+	display: block;
+	padding-left: 45px;
+	color: #000;
+}
+#viewcart a span.pr-mini-cart {
+	font-size: 13px;
+	margin-bottom: 6px;
+	text-transform: uppercase;
+}
+#viewcart a:before {
+	color: #fff;
+	content: '\f291';
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	font-synthesis: weight style;
+	font-stretch: normal;
+	font-size-adjust: none;
+	font-language-override: normal;
+	font-kerning: auto;
+	font-feature-settings: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	font-size: 16px;
+	line-height: 34px;
+	position: absolute;
+	left: 0;
+	display: inline-block;
+	width: 36px;
+	height: 34px;
+	background: #0db8d0;
+}
+#search_product {
+	width: 380px;
+	float: left;
+}
+#search_product input {
+	border: solid rgb(185, 185, 185);
+	background: #fff;
+	font-size: 12px;
+	color: #333;
+	border-width: 1px 0px 1px 1px;
+}
+#search_product button, #search_product input {
+	border-radius: 0px;
+	box-shadow: none;
+}
+#search_product button {
+	border: 1px solid #0db8d0;
+	color: #fff;
+	background: #0db8d0;
+}
+
+
+
+/*===================> page navogation <============================*/
+.breadcrumbs{
+}
+.breadcrumbs li{
+	display:inline-block;
+}
+.breadcrumbs li:after{
+	color: #696969;
+    content: '\f105';
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	font-synthesis: weight style;
+	font-stretch: normal;
+	font-size-adjust: none;
+	font-language-override: normal;
+	font-kerning: auto;
+	font-feature-settings: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 21px;
+    display: inline-block;
+}
+.breadcrumbs li a{
+	    font-size: 14px;
+    display: inline-block;
+    color: #696969;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 4px 11px;
+}
+.breadcrumbs li:first-child{
+	padding-left:0px;
+}
+.breadcrumbs li:last-child:after{
+	content: '';
+}
+
+
+/*========================> Top Pagenation <=========================*/
+.page-warper-title{
+	margin:15px 0px;
+	padding:10px 0px;
+	border:solid #c7c7c7;
+	border-width:1px 0px;
+}
+.grid-mode,.toolbar-short,.toolbar-limit,.toolbar-pagenation,.toolbar-short select,.toolbar-limit select{
+	height:28px;
+}
+.grid-mode,.toolbar-short,.toolbar-limit,.toolbar-pagenation,.grid-mode span,.toolbar-short span,.toolbar-limit span,.toolbar-pagenation span{
+	line-height: 28px;
+    font-size: 14px;
+}
+.grid-mode{
+	width:200px;
+}
+.toolbar-short{
+	width:180px;
+	margin-right:15px;
+}
+.toolbar-limit{
+	width:150px;
+}
+.grid-mode,.toolbar-short,.toolbar-limit{
+	float:left;
+}
+.toolbar-pagenation{
+	float:right;
+}
+.grid-mode{
+}
+.grid-mode i.fa{
+	    width: 28px;
+    height: 28px;
+    background: #0db8d0;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.toolbar-short select,.toolbar-limit select{
+	    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    padding: 0px;
+    margin: 0px;
+    margin: 0px 5px;
+}
+
+/* Store  Slider Image */
+
+.store_img img, .shopkeeper_img img{
+	width:100%;
+	height:220px;
+}
+.gocery-slider .carousel-inner > .item > img{
+	width:100%;
+	height:220px;
+}
+
+
+/* Contact Us */
+.row.contact {
+    background-color: #fff;
+    padding: 20px 60px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);    
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+.contact h1{
+    text-align: center;
+    margin-bottom: 24px;
+    color: rgba(51, 27, 27, 0.64);
+}
+.form-contact label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: 'Ubuntu',"Trebuchet MS",Trebuchet,Verdana,Helvetica,Arial,sans-serif;
+}
+.form-contact .form-control {
+    box-shadow: none;
+    border-radius: 0px;
+}
+
+
+/* Footer Pages */
+.terms_use {
+    background: #fff;
+    padding: 24px 60px;
+}
+.terms_use p {
+    font-size: 14px;
+    line-height: 24px;
+}
+.terms_use li {
+    font-size: 14px;
+    line-height: 24px;
+}

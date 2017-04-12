@@ -1,0 +1,26 @@
+<?php $wp = $this->_websiteSettings; ?>
+<!-- main grid part -->
+<div class="container">
+<div class="row pro_specifications">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#pro_description" aria-controls="pro_description" role="tab" data-toggle="tab">Description</a></li>
+            <li role="presentation"><a href="#pro_specifications" aria-controls="pro_specifications" role="tab" data-toggle="tab">Additional Information</a></li>
+            <li role="presentation"><a href="#pro_reviews" aria-controls="pro_reviews" role="tab" data-toggle="tab">Reviews</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content" id="pro_tabcontent">
+            <div role="tabpanel" class="tab-pane active" id="pro_description">
+                <?php $this->loadChildBlock("product_additonal_contant"); ?>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="pro_specifications">
+                <?php $this->loadChildBlock("product_additonal_information"); ?>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="pro_reviews">
+                <?php $this->loadChildBlock("review"); ?>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

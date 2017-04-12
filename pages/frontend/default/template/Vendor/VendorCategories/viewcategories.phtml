@@ -1,0 +1,60 @@
+<?php
+$wp = $this->_websiteSettings;
+$imagePath = $wp->projectRootUploadUrl . 'categories/';
+$vendorCategoryList = $this->getVendorAddedCategories();
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row ven_cat">
+            <h1 class="page-title">Manage categories</h1>
+            <div class="new_btn">
+                <a href="<?php echo $wp->websiteUrl; ?>ec_vendor_categories/addcategory">New Category</a>
+            </div>
+            <div class="ven_cat_list">
+                <table class="table  table-responsive">
+                    <thead>
+                        <tr>                            
+                            <th></th> 
+                            <th>Product Store</th>
+                            <th>Product Category</th> 
+                            <th>Products</th>
+                            <th>Warehouse Name</th> 
+                            <th></th>
+                        </tr>
+                    </thead>     
+                    <tbody>
+                        <?php
+                        foreach ($vendorCategoryList as $categorykey => $categoryvalue) {
+                            $subcategoryData = \Core::getValueFromArray($categoryvalue, "subcategoryData");
+                            $vendorStore = \Core::getValueFromArray($categoryvalue, "categoryName");
+                            foreach ($subcategoryData as $subcategorykey => $subcategoryvalue) {
+                                ?>
+                                <tr>                                                
+                                    <td><img src="<?php echo $imagePath . \Core::getValueFromArray($subcategoryvalue, "main_image"); ?>"</td> 
+                                    <td><?php echo $vendorStore; ?></td>    
+                                    <td><?php echo \Core::getValueFromArray($subcategoryvalue, "name"); ?></td> 
+                                    <td>0</td> 
+                                    <td><?php echo \Core::getValueFromArray($categoryvalue, "warehouseName"); ?></td>
+                                    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                        ?>                       
+
+                    </tbody> 
+
+                </table>
+            </div>    
+        </div>
+    </div>
+</div>
+
+
+<script>
+    require([
+        'css!../css/Vendor/vendorportal/ven_catg',
+    ], function () {
+    });
+</script>
+

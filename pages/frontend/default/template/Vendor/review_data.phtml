@@ -1,0 +1,29 @@
+<?php $wp = $this->_websiteSettings; 
+$_reviewListData=$this->_partentObject->_reviewData;
+$_reviewListId=$this->_partentObject->_reviewId;
+$ImagePath = $this->_websiteSettings->projectRootUploadUrl . "Customer/";
+if(\Core::countArray($_reviewListData)>0){
+    $reviewDetails=$_reviewListData; 
+    $customerData=$this->getcustomerInfo(\Core::getValueFromArray($reviewDetails, "ec_customer_id"));         
+}else{
+    $reviewDetails=$this->getReviewDetails($_reviewListId);
+}
+?>
+<div class="col-md-4">
+        <div class="review-list">
+            <?php
+            if(\Core::getValueFromArray($customerData, "image")=="") {
+               echo '<img src="'.$wp->websiteUrl.'img/user.jpg" class="img-circle">';
+            }else{
+                 echo '<img src="'.$ImagePath.\Core::getValueFromArray($customerData, "image").'" class="img-circle">';
+            }
+           ?>
+            <h4><?php echo \Core::getValueFromArray($customerData, "first_name").' '.\Core::getValueFromArray($customerData, "last_name")  ?></h4>
+            <div class="review-block">
+                <p><?php echo \Core::getValueFromArray($reviewDetails, "review") ?></p>
+            </div> 
+        </div>
+    </div>
+
+    
+   

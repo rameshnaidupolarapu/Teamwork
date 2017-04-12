@@ -1,0 +1,9 @@
+<?php
+$quoteData = $this->getQuote();
+if(\Core::countArray($quoteData)>0){
+    echo '<span class="cart-items">'.intval(\Core::getValueFromArray($quoteData, "itemcount")).'</span>'
+            . '<span class="cart-t-price"><i class="fa fa-inr" aria-hidden="true"></i>'.\Core::getValueFromArray($quoteData, "amount").'</span> ';
+}else{
+    echo '<span class="cart-items">0</span><span class="cart-t-price"><i class="fa fa-inr" aria-hidden="true"></i>0.00</span> ';
+}
+?>

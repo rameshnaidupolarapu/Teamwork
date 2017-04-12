@@ -1,0 +1,8 @@
+<?php
+$wp = $this->_websiteSettings;
+$_currentSelecter = $this->_controllerObj->_currentSelector;
+$this->setProductId($_currentSelecter);
+$produtData = $this->getProductData();
+$productDescription=\Core::getValueFromArray($produtData, "long_description");
+?>
+<p><?php echo $productDescription ?> </p>   

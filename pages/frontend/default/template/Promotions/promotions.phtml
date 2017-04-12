@@ -1,0 +1,50 @@
+<?php
+$offerDetails = $this->getPromotionsDetails();
+?>
+<div class="row">
+    <?php
+    if (\Core::countArray($offerDetails) > 0) {
+        foreach ($offerDetails as $key => $value) {
+            $_specialOfferImage = \Core::getValueFromArray($value, "image");
+            $_specialOfferId = \Core::getValueFromArray($value, "id");
+            $offerProductList = $this->getSpecialOfferProductList($_specialOfferId);
+            $_specialOfferName = \Core::convertStringToUrlSlug(\Core::getValueFromArray($value, "title"));
+            ?>
+            <div class="row box-warper">
+                <h1><span><?php echo \Core::getValueFromArray($value, "title") ?></span></h1>
+                <div class="col-sm-3 no-padding title-image-block"><img src="<?php echo \Core::getValueFromArray($_specialOfferImage, "image")?>" alt="<?php echo \Core::getValueFromArray($_specialOfferImage, "title")?>" class="img-responsive block-title-img" /></div>
+                <div class="col-sm-9 no-padding">
+                    <ul id="<?php echo $_specialOfferName; ?>">
+                        <?php
+                        if(\Core::countArray($offerProductList)>0){
+                            foreach ($offerProductList as $productKey => $productValue) {
+                                $this->setProductOfferData($productValue);
+                                $this->setCurrentProductId(\Core::getValueFromArray($productValue, "ec_product_id"));
+                                $this->loadChildBlock("product");
+                            }
+                        }
+                        ?>
+                    </ul>
+                    <script>
+                       require(['config'], function () {
+                            require(['jquery', 'scrollproducts'], function ($) {
+                                $("#<?php echo $_specialOfferName; ?>").flexisel({
+                                    visibleItems: 3,
+                                    itemsToScroll: 3,
+                                    autoPlay: {
+                                        enable: false,
+                                        interval: 5000,
+                                        pauseOnHover: true
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <?php
+        }
+    }
+    ?>
+</div>
+

@@ -1,0 +1,149 @@
+/* CSS Document */
+.account-info {
+    background: #fff;
+}
+.account-warper {   
+    padding: 15px 15px;
+    margin-bottom: 20px;    
+}
+.account-menu {
+    margin-bottom: 20px;
+    overflow: hidden;
+	margin-top: 50px;
+}
+.account-menu ul {
+    font-size: 14px;
+}
+.account-menu ul li {
+    float: left;
+    position: relative;
+	display: block;
+    margin-right: 13px;
+}
+.account-menu ul li:last-child {
+    margin-right: 0px;
+}
+.account-menu ul li a{
+	padding: 15px 20px;
+    background: #f0f0f0;
+	display: block;
+	color: #000;
+}
+.account-menu ul li span .fa {
+    margin-right: 6px;
+}
+
+.account-menu ul li a.active, .account-menu ul li a:hover  {
+	background: #0db8d0;
+	color: #fff;
+}
+h2.block-title {
+	font-size: 16px;
+	margin: 15px 0px;
+}
+.myAccountList .thumbnail {
+    padding: 14px 0 0;
+}
+.myAccountList li a i.fa {
+    display: block;
+    clear: both;
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+.myAccountList .thumbnail:hover{
+	background: #0db8d0;
+	color: #fff;
+	display: block;
+}
+.myAccountList li a:hover {
+	color: #fff;
+	background: #0db8d0;
+}
+
+/*  Add Address */
+.basic-form label{
+	font-size: 13px;
+	margin-bottom: 5px;
+}
+.basic-form .form-control{
+	border-radius: 0px;
+}
+
+
+.innerWrapper {
+    width: 100%;
+    display: block;
+    border: 5px solid #f0f0f0;
+    padding: 30px 30px;
+	margin-bottom: 30px;
+}
+h1.block-title {
+    margin: 20px 14px;
+    color: #6b6b6b;
+}
+#container-block {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.chng-pswd{
+        padding: 15px 20px;
+    display: block;
+    background: #0db8d0;
+    color: #fff;
+}
+
+
+
+
+.chng-pswd{
+    padding: 15px 20px;
+           display: block;
+           background: #0db8d0;
+           color: #fff;
+           text-align: center;
+}
+.location_head tr th{
+    padding: 15px 13px!important;
+                    font-size: 13px;
+}
+.location_head thead tr th{
+    border-bottom-width:0px;
+}
+.account-order .table >thead {
+    background: #0db8d0;
+    color: #fff;
+}
+/*---------------------------delivery-view------------------*/
+.view-header{
+    background: #0DB8D0;
+    padding: 7px;
+   
+}
+.view-header p{
+     color:#fff;
+     padding:10px 0px;
+}
+.heading-view-page{
+        font-size: 17px;
+    line-height: 40px;
+    font-weight: 700;
+}
+.payment_mode a{
+        border: 1px solid #0DB8D0;
+    padding: 3px 10px;
+    color: #000;
+}
+.view-page{
+    border: 1px solid #ddd;
+    padding: 0px 10px;
+}
+.vendor-list
+{
+    background: #ddd;
+    padding:10px;
+     margin-bottom: 10px;
+}
+#vendors{
+    border:none!important;
+    padding: 0px
+}

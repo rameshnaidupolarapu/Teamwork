@@ -1,0 +1,48 @@
+<?php
+$wp = $this->_websiteSettings;
+$currentSelector = $this->_controllerObj->_currentSelector;
+$currentProduct = $this->getVanderCurrentProductData($currentSelector);
+$productId = \Core::getValueFromArray($currentProduct, "ec_product_id");
+$warehouseId = \Core::getValueFromArray($currentProduct, "ec_warehouse_id");
+echo '<pre>';
+print_r($currentProduct);
+echo '</pre>';
+$productData = $this->getCurrentProductData($productId,$warehouseId);
+$productImageData = \Core::getValueFromArray($productData, "image");
+echo '<pre>';
+print_r($productData);
+echo '</pre>';
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active"><a href="#productinfo" aria-controls="productinfo" role="tab" data-toggle="tab">Product Imfo</a></li>
+                  <li role="presentation"><a href="#warehouse" aria-controls="warehouse" role="tab" data-toggle="tab">Warehouse Info</a></li>
+                  <li role="presentation"><a href="#productuom" aria-controls="productuom" role="tab" data-toggle="tab">Uom Details</a></li>
+                  <li role="presentation"><a href="#productpricesheet" aria-controls="productpricesheet" role="tab" data-toggle="tab">Price Sheet</a></li>
+                  <li role="presentation"><a href="#productreviews" aria-controls="productreviews" role="tab" data-toggle="tab">Reviews</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="productinfo">
+                        <div class="grid-row">
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-4">
+                                <div class="product-img">
+                                    <img src="<?php echo \Core::getValueFromArray($productImageData, "image") ?>" alt="<?php echo \Core::getValueFromArray($productImageData, "title") ?>" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  <div role="tabpanel" class="tab-pane active" id="warehouse">...</div>
+                  <div role="tabpanel" class="tab-pane" id="productuom">...</div>
+                  <div role="tabpanel" class="tab-pane" id="productpricesheet">...</div>
+                  <div role="tabpanel" class="tab-pane" id="productreviews">...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

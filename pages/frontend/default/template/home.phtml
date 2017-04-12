@@ -1,0 +1,66 @@
+<?php $wp = $this->_websiteSettings; 
+$mainBanner=$this->getMainbannerPosition();
+$bannerAds=$this->getbannerAdsPosition();
+$imagePath=$wp->projectRootUploadUrl."Banner/";
+?>
+
+
+
+<!-- main grid part -->
+<div class="row">
+  <section class="container" id="container-block"> 
+    <!-- main category bloak -->
+    <div class="col-sm-2 no-padding">
+      <?php $this->loadChildBlock("categorylist");?>
+    </div>
+    <!-- main contant block -->
+    <div class="col-sm-10 right-padding">
+      <section class="row"> 
+        
+        <!-- shop for me block -->
+        <div class="row"> 
+            <?php
+            if(\Core::countArray($mainBanner)>0){
+                foreach ($mainBanner as $key => $value) {
+                    if (\Core::getValueFromArray($value, "url") != "") {
+                            $url = \Core::getValueFromArray($value, "url");
+                        } else {
+                            $url = "javascript:void(0)";
+                        }
+        echo'<a href="'.$url.'"><img src="'.$imagePath.\Core::getValueFromArray($value, 'image').'" alt="'.\Core::getValueFromArray($value, 'title').'" class="img-responsive" width="960"> </a>';
+            }
+            }
+            
+            ?>
+            
+        </div>
+        <!-- slider block -->
+        <div class="row">
+          <div class="col-sm-9 no-padding">
+            <div class="row" id="banner">
+              <?php $this->loadChildBlock("banners");?>
+            </div>
+          </div>
+          <div class="col-sm-3 right-padding main-ads-block" style="margin: 15px 0px;">
+              <?php
+            if(\Core::countArray($bannerAds)>0){
+                foreach ($bannerAds as $key => $value) {
+                    if (\Core::getValueFromArray($value, "url") != "") {
+                            $url = \Core::getValueFromArray($value, "url");
+                        } else {
+                            $url = "javascript:void(0)";
+                        }
+                echo'<a href="'.$url.'"><img src="'.$imagePath.\Core::getValueFromArray($value, 'image').'" class="img-responsive" alt="'.\Core::getValueFromArray($value, 'title').'" /> <br /></a>';
+            }
+            }
+            
+            ?>              
+        </div> 
+       <?php
+        $this->loadChildBlock("promotions");
+       ?>
+       
+      </section>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,12 @@
+<?php
+$_partentObject = $this->_partentObject->_partentObject;
+$productOfferData = $_partentObject->getProductOfferData();
+if(\Core::getValueFromArray($productOfferData, "ec_offer_type_id")=="AMT"){
+    $symbol = "Rs.";
+}else{
+    $symbol = "%";
+}
+?>
+<div class="product-label"> 
+    <span class="sale-product-icon"><?php echo \Core::getValueFromArray($productOfferData, "offer").$symbol; ?></span> 
+</div>

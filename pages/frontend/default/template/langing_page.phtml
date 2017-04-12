@@ -1,0 +1,50 @@
+<!-- contant part -->
+<div class="row main-grid-body">
+<div class="container">
+<div class="col-sm-6 col-sm-offset-3">
+  <section class="warp-contant">
+    <h2>new way to shop</h2>
+    <div class="row">
+        <?php $this->loadChildBlock("findnow");?>
+    </div>
+    <div class="row" id="location-block">
+    <h2>Select Your Near by Location </h2>
+    <div class="row">
+      <form class="form-input search-location" id="form-location">
+      <div class="col-sm-9 no-padding">
+        <div class="form-group">
+          <div class="input-group">
+          	<div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+            <input type="text" class="form-control" id="search_location" placeholder="Delivery Location" onkeyup="(function() { require('Cms/customerLocation').getLocationInfo() })()">
+            
+          </div>
+        </div>
+          <div class="serach_location_block" style="display: none; top: 45px; position: absolute; left: 0px;">
+        <div class="location_info">
+            <ul class="" role="search">
+                
+            </ul>
+        </div>
+    </div>
+        </div>
+        <div class="col-sm-3 no-padding">
+        <div class="form-group">
+            <button type="button" class="btn btn-default" name="btn_proceed" id="btn_proceed" onclick="(function() { require('Cms/customerLocation').customerLocation() })()">Proceed</button>
+          </div>
+        </div>
+          <span class="errors" id="error_search_location"></span>
+      </form>
+    </div>
+    
+    </div>
+  </section>
+</div>
+</div>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'customerLocation'], function ($) {
+            
+        });
+    });
+</script>

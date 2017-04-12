@@ -1,0 +1,24 @@
+/* CSS Document */
+.theme-footer{
+	background:#333e48;
+	padding:15px 0px;
+    position: relative;
+    z-index: 999;
+}
+.theme-footer ul{}
+.theme-footer ul li{
+	display: inline-block;
+}
+.theme-footer ul li a{
+	padding:0px 15px;
+}
+.theme-footer ul li a:hover,.theme-footer p:hover,.theme-footer p:hover a{
+	color:#fff;
+}
+.theme-footer ul li a,.theme-footer p,.theme-footer p a{
+	color:#adb2b6;
+	font-size:14px;
+}
+.theme-footer p{
+	float:right;
+}

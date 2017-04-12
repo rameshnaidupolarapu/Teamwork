@@ -1,0 +1,53 @@
+<?php
+$cp = new \Core\CodeProcess();
+$wp = new \Core\WebsiteSettings();
+$quoteData = $this->getQuoteData();
+$_quoteItemList = \Core::getValueFromArray($quoteData, "items");
+?>
+<div class="row">
+    <div class="chat_title">
+        <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</h4>
+    </div>
+    <table class=" table-bordered  table-condensed table_checkout">
+        <thead class="checkout_head">
+            <tr class="tble_product">
+                <th>Product image</th>
+                <th>Product Name</th>
+                <th>Unit price</th>
+                <th>Quality</th>
+                <th>Sub Total</th>
+                <th style="width:10%" class="delete">&nbsp;</th>
+            </tr>
+        </thead>
+     
+            <?php
+            if (\Core::countArray($_quoteItemList) > 0) {
+                foreach ($_quoteItemList as $key => $value) {
+                    $this->setQuoteItemId(\Core::getValueFromArray($value, "id"));
+                    $this->setQuoteItemData($value);
+                    $quoteId = $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($value, "id"));
+                    ?>
+            <tbody  class="row" id="cartItem_<?php echo $quoteId; ?>">
+                    <?php $this->loadChildBlock("cartItemdata"); ?>
+             </tbody>
+        <?php
+    }
+}
+?>
+        
+    </table>
+
+    <div class="cart_footer">
+        <a href="<?php echo $wp->websiteUrl; ?>" class="pull-left"><i class="fa fa-arrow-left" aria-hidden="true"></i> continue shopping</a>
+        <a href="javascript:void(0)" class="pull-right" onclick="(function () { require('Quote/tocart').updateCartList() })()">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+            Update Cart 
+        </a>
+    </div>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'tocart'], function ($) {
+        });
+    });
+</script>

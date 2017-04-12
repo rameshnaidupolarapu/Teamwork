@@ -1,0 +1,25 @@
+<?php
+$wp = $this->_websiteSettings;
+$moduleName = \Core::convertStringToFileName($this->_controllerObj->_currentNodeModule);
+$csspath = $wp->websiteUrl . "Var/" . $wp->identity . "/design/frontend/".$wp->themeName."/css/";
+$jspath = $wp->websiteUrl . "Var/" . $wp->identity . "/design/frontend/".$wp->themeName."/js/";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Zetoe</title>
+<!-- Bootstrap -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script data-main="<?php echo $jspath; ?>requirejs/config" src="<?php echo $jspath; ?>requirejs/require.js" ></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo $csspath; ?>minify.css">
+</head>
+<body>
+<input type="hidden" name="sitehost" id="sitehost" value="<?php echo $wp->websiteUrl; ?>" />

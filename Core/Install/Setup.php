@@ -107,13 +107,12 @@ class Setup {
                             $configFileContentSettings = \Core::convertXmlToArray($configFileContent);
                             if ($configFileContentSettings) {
                                 $dp = $cc->getObject("\Core\DataBase\ProcessQuery");
-                                $dp->setTable("core_setupschema");
-                                $dp->addField("id");
+                                $dp->setTable("core_setupschema");                               
                                 $dp->addWhere("core_setupschema.modulename='" . $configFileContentSettings['name'] . "'");
                                 $dp->buildSelect();
                                 $existingRow = $dp->getRow();
                                 $processFlag = 0;
-                                $recordid = $existingRow['id'];
+                                $recordid = \Core::getValueFromArray($existingRow,"id");
                                 $schemaprocess = 0;
                                 $dataprocess = 0;
                                 $attributeprocess = 0;

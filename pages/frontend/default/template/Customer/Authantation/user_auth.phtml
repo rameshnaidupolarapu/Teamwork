@@ -1,0 +1,33 @@
+<?php
+$cp = new \Core\CodeProcess();
+$_userData = $this->_controllerObj->_userData;
+if (\Core::getValueFromArray($_userData, "image") != "") {
+    $customerImagePath = $wp->websiteUrl . "uploads/" . $wp->identity . "/customer/" . \Core::getValueFromArray($_userData, "image");
+    $customerImg = "<img src='" . $customerImagePath . "' alt='" . \Core::getValueFromArray($_userData, "first_name") . "'";
+} else {
+    $customerImg = '<i class="fa fa-user-circle-o" aria-hidden="true"></i>';
+}
+$_customerId = $cp->convertEncryptDecrypt("encrypt", \Core::getValueFromArray($_userData, "id"));
+?>
+
+<div class="row" id="user_image">
+    <?php echo $customerImg ?>
+</div>
+<div class="form-group" id="user_auth_name">
+    <?php echo \Core::getValueFromArray($_userData, "email"); ?>
+    <input type="hidden" name="customerId" id="customerId" value="<?php echo $_customerId; ?>" />
+</div>
+<div class="form-group">
+    <input type="text" class="form-control" id="login_password" name="login_password" placeholder="Password">
+    <span class="errors" id="error_login_password" style="display: none;"></span> 
+</div>
+<div class="checkbox">
+    <label>
+        <input type="checkbox">
+        Keep Me Logged In </label>
+</div>
+<div class="form-group">
+    <button type="button"  class="btn btn-default form-btn btn_user_auth" onclick="(function () {
+                require('Customer/customerAuthantation').cutomerLogin()
+            })()">Login</button>
+</div>

@@ -1,0 +1,66 @@
+<?php $wp = $this->_websiteSettings; ?>
+<!-- Customer Profile -->
+<div class="row">
+    <section class="row" id="container-block">
+        <section class="row">       
+            <!-- Page navogation part -->
+            <div class="container">
+                <div class="page-navigation">
+                    <ul class="breadcrumbs">
+                        <li> <a href="javascript:void(0)">Home</a> </li>
+                        <li> <a href="javascript:void(0)">Account</a> </li>
+                        <li> <a href="javascript:void(0)">User Profile</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="row account-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <?php $this->loadChildBlock("usermenu"); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="row innerWrapper">
+                            <h1 class="block-title">Dashboard</h1>
+                            <div class="row __web-inspector-hide-shortcut__">
+                                <div class="col-xs-12 col-sm-12">
+                                    <h2 class="block-title"><span>Welcome to your account. Here you can manage all of your personal information and orders.</span>
+                                    </h2>
+                                    <ul class="row myAccountList">
+                                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                            <div class="thumbnail equalheight" style="height: 104px;"><a title="Orders" href="<?php echo $wp->websiteUrl;  ?>account/order-history"><i class="fa fa-calendar"></i> Order history </a></div>
+                                        </li>
+                                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                            <div class="thumbnail equalheight" style="height: 104px;"><a title="My addresses" href="<?php echo $wp->websiteUrl;  ?>account/address-list"><i class="fa fa-map-marker"></i> My addresses</a></div>
+                                        </li>
+                                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                            <div class="thumbnail equalheight" style="height: 104px;"><a title="Add  address" href="<?php echo $wp->websiteUrl;  ?>account/add-address"> <i class="fa fa-edit"> </i> Add address</a></div>
+                                        </li>
+                                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                            <div class="thumbnail equalheight" style="height: 104px;"><a title="Personal information" href="<?php echo $wp->websiteUrl;  ?>account/profile-information"><i class="fa fa-cog"></i>
+                                                    Personal information</a></div>
+                                        </li>
+                                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                            <div class="thumbnail equalheight" style="height: 104px;"><a title="Personal information" href="<?php echo $wp->websiteUrl;  ?>account/change-password"><i class="fa fa-key"></i>
+                                                    Change Password</a></div>
+                                        </li>
+                                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center ">
+                                            <div class="thumbnail equalheight" style="height: 104px;"><a title="My wishlists" href="<?php echo $wp->websiteUrl;  ?>account/wishlist"><i class="fa fa-heart"></i> My wishlists </a></div>
+                                        </li>
+                                    </ul>
+                                    <div class="clear clearfix"></div>
+                                </div>
+                            </div>    
+
+                        </div>
+                        <!--/row end--> 
+
+                    </div>
+                </div>
+        </section>
+    </section>
+</div>
+<!-- End contant part --> 

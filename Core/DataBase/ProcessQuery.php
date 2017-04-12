@@ -116,7 +116,7 @@ class ProcessQuery extends BuildQuery {
 
     public function getTablesFromDatabase() {
         try {
-            $db = new Core_DataBase_DbConnect();
+            $db = new \Core\DataBase\DbConnect();
             $output = $db->executeQuery("SHOW TABLES");
             $tables = array();
             while ($rs = mysqli_fetch_assoc($output['result'])) {

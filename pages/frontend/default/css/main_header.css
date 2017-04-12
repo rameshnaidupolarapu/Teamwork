@@ -1,0 +1,82 @@
+/* main header styles*/
+body{
+	background: url(../images/img_5658.jpg) no-repeat center center;
+	background-size:cover;
+}
+.theme-header {
+	position: fixed;
+	max-height: 100px;
+	z-index: 999;
+	background: #0db8d0;
+	width:100%;
+	margin-bottom:50px;
+	clear:both;
+	z-index:9999;
+}
+#logo {
+	width: 230px;
+	float: left;
+}
+#logo a {
+	display: block;
+	color: #fff;
+	height: 50px;
+	font-family: 'Roboto Condensed', sans-serif;
+	text-align: center;
+}
+#logo a .logo-sm {
+	font-size: 18px;
+	display: none;
+}
+#logo a .logo-lg {
+	font-size: 24px;
+}
+#logo a .logo-sm, #logo a .logo-lg, #logo a strong {
+	line-height: 50px;
+}
+.theme-header .navbar {
+	position: relative;
+	transition: margin-left 0.3s ease-in-out;
+	border-radius: 0px;
+	margin-bottom: 0px;
+	margin-left: 230px;
+	border: 0px;
+	box-shadow: none;
+}
+.theme-header .navbar .custom-menu ul {
+	float: right;
+}
+.theme-header .navbar .custom-menu ul li {
+	position: relative;
+	display: inline-block;
+}
+.theme-header .navbar .custom-menu ul li a {
+	padding: 0px 18px;
+	position: relative;
+	display: block;
+	color: #fff;
+	font-size: 13px;
+}
+.theme-header .navbar .custom-menu ul li a.user-register {
+	border: 1px solid #fff;
+	border-radius: 3px;
+}
+.theme-header .navbar .custom-menu ul li a, .theme-header .navbar .custom-menu ul li a i.fa, .theme-header .navbar .custom-menu ul li a .user-title {
+	line-height: 50px;
+}
+.theme-header .navbar .custom-menu ul li a i.fa {
+	font-size: 18px;
+	margin-right:8px;
+}
+.header-user-info #btn_login{
+    cursor: pointer;
+}
+.header-user-info #btn_login,.header-user-info i.fa,.header-user-info span.user-reg{
+        line-height: 50px;
+    color: #fff;
+    font-size: 13px;
+}
+.header-user-info i.fa{
+    margin-right: 5px;
+}
+

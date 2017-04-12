@@ -1,0 +1,137 @@
+<?php
+$wp = $this->_websiteSettings;
+$vendorProfile=$this->getVendorProfile();
+?>
+<section class="tehme-header"> 
+    <!-- logo -->
+    <div id="logo"> <a href="index.html"> <span class="logo-sm"> <strong>Sc</strong>h</span> <span class="logo-lg"> <strong>Sc</strong>hool Ltd </span> </a> </div>
+    <!-- navigation -->
+    <nav class="navbar navbar-static-top">
+    <div class="sidebar-toggle">
+    <a href="javascript:void(0)" class="toggle-sidebar" data-toggle="offconverse" role="button" onclick="(function() {require('Vendor/vendorportal/menu').menuToggle() })()"><i class="fa fa-align-justify"></i></a>
+    </div>
+    <div class="custom-menu">
+    <ul>
+        <!-- message block -->
+    	<li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+        	<ul class="dropdown-menu messages-block">
+                <li class="box-header">You have 4 messages</li>
+                <li>
+                	<div class="box-body">
+                    <ul class="list-of-messages">
+                    	<li><a href="javascript:void">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="box-footer">See all messages</li>
+            </ul>
+        </li>
+        <!-- notification block -->
+        <li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu notification-block">
+                <li>
+                	<div class="box-body">
+                    <ul class="list-of-messages">
+                    	<li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                        <li><a href="javascript:void(0)">
+                        <div class="image-icon pull-left">
+                        <img src="images/998861163558673.jpg" alt="user-icon">
+                        </div>
+                        <h4>Support Team<small><i class="fa fa-clock-o" aria-hidden="true"></i> 5mins</small></h4>
+                        <p>Why not buy a new awesome theme?</p>
+                        </a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="box-footer">See all notification</li>
+            </ul>
+        </li>
+        
+        <?php
+        ucfirst($str)
+        ?>
+        <!-- user info block -->
+        <li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle-o" aria-hidden="true"></i><span class="user-title"><?php echo ucfirst(\Core::getValueFromArray($vendorProfile, "first_name"))." ".  ucfirst(\Core::getValueFromArray($vendorProfile, "last_name")) ?></span></a>
+        <ul class="dropdown-menu user-menu">
+        	<li><a href="<?php echo $wp->websiteUrl; ?>vendor/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Profile</a></li>
+            <li><a href="javascript:void(0)"><i class="fa fa-unlock-alt" aria-hidden="true"></i>Change Password</a></li>
+            <li><a href="javascript:void(0)"><i class="fa fa-info" aria-hidden="true"></i>Help</a></li>
+            <li><a href="javascript:void(0)"><i class="fa fa-envelope-o" aria-hidden="true"></i>Contact Us</a></li>
+            <li><a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a></li>
+            <li><a href="<?php echo $wp->websiteUrl; ?>vendor/logout"><i class="fa fa-power-off" aria-hidden="true"></i>Logout</a></li>
+        </ul>
+        </li>
+        <!-- settings block -->
+        <li><a href="javascript:void(0)" id="setting-toggle"><i class="fa fa-cogs" aria-hidden="true"></i></a></li>
+    </ul>
+    </div>
+    </nav>
+  </section>
+<div class="settings-sidebar "></div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'menu'], function ($) {
+        });
+    });
+</script>

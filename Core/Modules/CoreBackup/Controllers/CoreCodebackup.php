@@ -24,7 +24,7 @@ class CoreCodebackup extends NodeController
             
             $folderName="uploadData".strtotime(date('Y-m-d H:i:s'));
             $targetfilepath=\Core::createFolder("uploads",'B').$folderName;
-            $codeProcess=new Core_CodeProcess();
+            $codeProcess=new \Core\CodeProcess();
             $codeProcess->createZipFile(\Core::createFolder(""), $targetfilepath);            
             
             $data=array("core_backup_type_id"=>"UP","filepath"=>$folderName,"dateandtime"=>date('Y-m-d H:i:s'));

@@ -1,0 +1,53 @@
+<?php 
+$wp = $this->_websiteSettings; 
+$similarProductsData = $this->similarProducts();
+?>
+<div class="container">
+<div class="row box-warper">
+    <h1><span>More products from this store</span></h1>          
+    <div class="col-sm-12 no-padding">
+        <ul id="moreproducts">
+            <?php
+            foreach ($similarProductsData as $productKey => $productValue) {
+                $this->setVenderProductId(\Core::getValueFromArray($productValue, "venderproductId"));
+                $this->setCurrentProductId(\Core::getValueFromArray($productValue, "releatedproduct"));
+                $this->loadChildBlock("product");
+            }
+            ?>
+        </ul>
+    </div>
+</div> 
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'scrollproducts'], function ($) {
+            $("#moreproducts").flexisel({
+                visibleItems: 5,
+                itemsToScroll: 5,
+                autoPlay: {
+                    enable: false,
+                    interval: 5000,
+                    pauseOnHover: true
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'productquickview'], function ($) {
+    });
+});
+</script>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'productQuantity'], function ($) {
+    });
+});
+</script>
+<script type="text/javascript">
+require(['config'], function () {
+    require(['jquery', 'changeuomdetails'], function ($) {
+    });
+});
+</script>

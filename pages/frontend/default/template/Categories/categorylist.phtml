@@ -1,0 +1,20 @@
+<?php 
+$wp = $this->_websiteSettings; 
+$categories = $this->getMenuDetails();
+$categoriesImagePath = $wp->websiteUrl."uploads/".$wp->identity."/categories/";
+?>
+<section class="row" id="categories-block">
+    <ul>
+        <?php
+        if(\Core::countArray($categories)>0){
+            foreach ($categories as $key => $value) {
+                $url = \Core::convertStringToUrlSlug(\Core::getValueFromArray($value, "name"));
+                        echo '<li><a href="'.$wp->websiteUrl.$url.'.html">
+                                <div class="row ca-image-b"> <img src="'.$categoriesImagePath.\Core::getValueFromArray($value, "main_image").'" alt="'.\Core::getValueFromArray($value, "main_image").'" title="'.\Core::getValueFromArray($value, "main_image").'"> </div>
+                                <h4>'.\Core::getValueFromArray($value, "name").'</h4>
+                            </a></li>';
+            }
+        }
+        ?>
+    </ul>
+</section>

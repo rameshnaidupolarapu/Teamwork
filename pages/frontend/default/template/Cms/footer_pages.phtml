@@ -1,0 +1,20 @@
+<?php
+$wp = $this->_websiteSettings;
+$_currentSelecter = $this->_controllerObj->_currentSelector;
+$pageData=$this->getPageData($_currentSelecter);
+?>
+
+<!-- contant part -->
+<div class="row">
+    <div class="container">
+        <div class="terms_use">
+        <?php
+        if(\Core::countArray($pageData)>0){
+            foreach ($pageData as $key => $value) {
+                echo '<p>'.\Core::getValueFromArray($value, "description").'</p>';
+            }
+        }
+        ?>
+        </div>
+    </div>
+</div>

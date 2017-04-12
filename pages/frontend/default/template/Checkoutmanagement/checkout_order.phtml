@@ -1,0 +1,170 @@
+<?php 
+$wp = $this->_websiteSettings;
+$quoteData = $this->getQuoteData();
+$quoteItem = \Core::getValueFromArray($quoteData, "items");
+?>
+<div class="row">
+    <section class="container" id="container-block"> 
+        <!-- main category bloak --> 
+        <!-- main contant block -->
+        <section class="row"> 
+            <!-- Page navogation part -->
+            <div class="page-navigation">
+                <ul class="breadcrumbs">
+                    <li> <a href="javascript:void(0)">Home</a> </li>
+                    <li> <a href="javascript:void(0)">Grocery Shop</a> </li>
+                    <li> <a href="javascript:void(0)">Vender List</a> </li>
+                </ul>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-12 chat_title">
+                <h4><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shopping Cart</h4>
+            </div>
+        </section>  
+        <div class="col-md-9"> 
+            <div class="row userInfo">
+                <div class="w100 clearfix">
+                    <?php $this->loadChildBlock("cartnavigation"); ?>
+                    <div class="clear-fix"></div>
+
+                    <div class="col-lg-12">
+                        <h2 class="block-title-2"> Review Order </h2>
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="cartContent w100 checkoutReview ">
+                            <table class="cartTable table-responsive" style="width:100%">
+                                <tbody>
+                                    <tr class="CartProduct cartTableHeader">
+                                        <th style="width:15%"> Product</th>
+                                        <th class="checkoutReviewTdDetails">Details</th>
+                                        <th style="width:10%">Unit Price</th>
+                                        <th class="hidden-xs" style="width:5%">QNT</th>
+                                        <th class="hidden-xs" style="width:10%">Discount</th>
+                                        <th style="width:15%">Total</th>
+                                    </tr>
+                                    
+                                    <?php
+                                    if(\Core::countArray($quoteItem)>0){
+                                        foreach ($quoteItem as $key => $value) {
+                                            $productData = $this->getProductData(\Core::getValueFromArray($value, "product_id"), \Core::getValueFromArray($value, "quantity"));
+                                            $productImage = \Core::getValueFromArray($productData, "image");
+                                            $uomDetails = $this->getCurrentUmoDetails(\Core::getValueFromArray($value, "ec_uom_details_id"));
+                                            ?>
+                                    <tr class="CartProduct">
+                                        <td class="CartProductThumb">
+                                            <div><a href=""><img src="<?php echo \Core::getValueFromArray($productImage, "image") ?>" alt="<?php echo \Core::getValueFromArray($productImage, "title") ?>"></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="CartDescription">
+                                                <h4><a href=""><?php echo \Core::getValueFromArray($productData, "name") ?> </a></h4>
+                                                <span class="size"><?php echo \Core::getValueFromArray($uomDetails, "name") ?></span>
+
+                                            </div>
+                                        </td>
+                                        <td class="delete">
+                                            <div class="price_review "><?php echo \Core::getValueFromArray($value, "price") ?></div>
+                                        </td>
+                                        <td class="hidden-xs" style="line-height: 49px;"><?php echo \Core::getValueFromArray($value, "quantity") ?></td>
+                                        <td class="hidden-xs" style="line-height: 49px;"><?php 
+                                        if(\Core::getValueFromArray($value, "discount")>0){
+                                            echo \Core::getValueFromArray($value, "discount");
+                                        }else{
+                                            echo '0.00';
+                                        }
+                                        ?></td>
+                                        <td class="price_review"><?php echo \Core::getValueFromArray($value, "sub_total") ?></td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                    
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--cartContent-->
+
+                        <div class="w100 costDetails">
+                            <div class="table-block" id="order-detail-content">
+                                <table class="std table" id="cart-summary">
+                                    <tbody>
+                                        <tr>
+                                            <td>Total products</td>
+                                            <td class="price_review"><?php echo intval(\Core::getValueFromArray($quoteData, "itemcount")); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sub Total</td>
+                                            <td class="price_review"><?php echo \Core::getValueFromArray($quoteData, "sub_total"); ?></td>
+                                        </tr>
+                                        <tr style="">
+                                            <td>Shipping</td>
+                                            <td class="price_review"><span class="success">Free shipping!</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount</td>
+                                            <td id="total-tax" class="price_review"><?php echo \Core::getValueFromArray($quoteData, "discount"); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total tax</td>
+                                            <td id="total-tax" class="price_review"><?php echo \Core::getValueFromArray($quoteData, "tax"); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> Total</td>
+                                            <td id="total-price" class="price_review"><?php echo \Core::getValueFromArray($quoteData, "amount"); ?></td>
+                                        </tr>
+                                    </tbody><tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--/costDetails-->
+
+
+                        <!--/row-->
+
+
+                    </div>
+
+
+
+                </div>
+                <!--/.w100-->
+
+                <div class="clear-fix"></div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a class="btn   btn-primary" href="<?php echo $wp->websiteUrl ?>checkout/payment"><i class="fa fa-plus-circle"></i> Back to Payment Method</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--<a class="btn btn-primary pull-right" href="<?php echo $wp->websiteUrl ?>checkout/success"><i class="fa fa-plus-circle"></i> Conform Order </a> -->
+                        <a class="btn btn-primary pull-right" onclick="(function() { require('Checkoutmanagement/confirmorder').confirmorder() })()" href="javascript:void(0);"><i class="fa fa-plus-circle"></i> Confirm Order </a>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-12 clearfix">
+                    <ul class="pager">
+                        <li class="next pull-left"><a href="<?php echo $wp->websiteUrl ?>">← Back to My Account</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <?php $this->loadChildBlock("checkoutminicart"); ?>
+        </div>
+    </section>
+</div>
+<script>
+    require(['config'], function () {
+        require(['jquery', 'confirmorder'], function ($) {
+        });
+    });
+</script>

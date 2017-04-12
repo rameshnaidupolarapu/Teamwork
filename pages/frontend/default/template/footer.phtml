@@ -1,49 +1,79 @@
+<?php $wp = $this->_websiteSettings; 
+$generalPages=$this->getGeneralPages();
+$policyPages=$this->getPolicyPages();
+?>
+<!-- footer part -->
+<div class="theme-footer theme-footer-warp">
+    <section class="container">
+        <div class="col-sm-5 left-padding block-warp">
+            <ul>
+                <?php 
+                if(\Core::countArray($generalPages)>0){
+                    foreach ($generalPages as $key => $value) {
+                        $urlslug=\Core::convertStringToUrlSlug(\Core::getValueFromArray($value, 'title'));
+                        echo '<li><a href="'.$wp->websiteUrl.$urlslug.'.html" target="_blank">'.\Core::getValueFromArray($value, 'title').'</a></li>';
+                    }
+                }
+                ?>
+                <li><a href="<?php echo $wp->websiteUrl;?>contact-us.html" target="_blank">Contact Us</a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+        <div class="col-sm-4 block-warp">
+            <ul>
+                <?php 
+                if(\Core::countArray($policyPages)>0){
+                    foreach ($policyPages as $key => $value) {
+                        $urlslug=\Core::convertStringToUrlSlug(\Core::getValueFromArray($value, 'title'));
+                        echo '<li><a href="'.$wp->websiteUrl.$urlslug.'.html" target="_blank">'.\Core::getValueFromArray($value, 'title').'</a></li>';
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+        <div class="col-sm-3 right-padding block-warp">
+            <p class="w-design">Designed by <a href="http://weblozix.com">weblozix</a></p>
+        </div>
+    </section>
+</div>
 
+<!-- Modal popup for product quick view -->
+<div class="modal fade" id="quickview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body" id="quickviewContant">
 
-	
-		<!-- JavaScript files placed at the end of the document so the pages load faster
-		================================================== -->
-		<!-- Jquery and Bootstap core js files -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/jquery.min.js"></script>
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/bootstrap/js/bootstrap.min.js"></script>
+            </div>
+        </div>
+    </div>
+</div>
 
-		<!-- Modernizr javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/modernizr.js"></script>
-
-		<!-- jQuery REVOLUTION Slider  -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-
-		<!-- Isotope javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/isotope/isotope.pkgd.min.js"></script>
-
-		<!-- Owl carousel javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/owl-carousel/owl.carousel.js"></script>
-
-		<!-- Magnific Popup javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-		<!-- Appear javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/jquery.appear.js"></script>
-
-		<!-- Count To javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/jquery.countTo.js"></script>
-
-		<!-- Parallax javascript -->
-		<script src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/jquery.parallax-1.1.3.js"></script>
-
-		<!-- Contact form -->
-		<script src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/jquery.validate.js"></script>
-
-		<!-- SmoothScroll javascript -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/jquery.browser.js"></script>
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/plugins/SmoothScroll.js"></script>
-
-		<!-- Initialization of Plugins -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/js/js/template.js"></script>
-
-		<!-- Custom Scripts -->
-		<script type="text/javascript" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/js/js/custom.js"></script>
-
-	</body>
+<!-- Get location information popup model -->
+<div class="modal fade location-popup" id="getlocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="col-md-12 no-padding">
+                    <div class="popup_model">
+                        <h1>While we do deliver in Hyderabad</h1>
+                        <p>Try searching for popular landmarks near your address, like hospitals, schools, buildings, etc.</p>
+                        <button name="" type="button" id="btn_change_location">Change Location</button>
+                        <div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page go to top -->
+<div id="go-to-top"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
+</body>
+<!-- END BODY -->
 </html>

@@ -1,0 +1,64 @@
+<?php
+$wp = $this->_websiteSettings;
+$_currentSelecter = $this->_controllerObj->_currentSelector;
+$metaInfo=$this->_controllerObj->_urlMetaInfor;
+$cp=new \Core\CodeProcess();
+$_vendorId=\Core::getValueFromArray($metaInfo, "vendorId");
+$_warehouseId=\Core::getValueFromArray($metaInfo, "wherehouseId");
+$productId=$cp->convertEncryptDecrypt('encrypt', $_currentSelecter);
+$vendorId=$cp->convertEncryptDecrypt('encrypt', $_vendorId);
+$wherehouseId=$cp->convertEncryptDecrypt('encrypt',$_warehouseId);
+
+?>
+            <h3>Reviews</h3>
+    <p>No reviews yet</p>
+    <div class="review_form">
+    <h5>Be the first to review “Carrot”</h5>
+    <form class="" id="formReview">
+    <h6>Your rating: <span id="stars-existing" class="starrr" data-rating='0'></span></h6>
+      <input type="hidden" id="rev_product_id" name="rev_product_id" value="<?php echo $productId ?>">
+      <input type="hidden" id="rev_wharehouse_id" name="rev_wharehouse_id" value="<?php echo $vendorId ?>">
+      <input type="hidden" id="rev_vendor_id" name="rev_vendor_id" value="<?php echo $wherehouseId ?>">
+      <div class="form-group">
+          <textarea  rows="3" class="form-control" id="product_review" name="product_review" placeholder="Your Review"></textarea>
+          <span class="errors" id="error_product_review" style="display: none;"></span> 
+      </div>
+      <div class="form-group">
+          <button type="button" class="btn btn-default" onclick="(function() {require('Vendor/review').cutomerReview() })()">Submit</button>
+      </div>
+    </form>
+    </div>
+    <script>
+    require(['config'], function () {
+        require(['jquery', 'review'], function ($) {
+        });
+    });
+</script>
+<script>
+  require([
+     'css!../css/Vendor/review',
+  ], function () {  
+  });
+</script>
+
+
+
+<div class="row">  
+    
+      <?php 
+      
+      $reviewList=$this->getproductReview($_vendorId,$_warehouseId,$_currentSelecter);
+      if(\Core::countArray($reviewList)>0){
+          foreach ($reviewList as $key => $value) {
+              $this->setProductReviewData($value);
+              $this->setProductReviewId(\Core::getValueFromArray($value, "id"));
+              $this->loadChildBlock("review_data");
+          }
+      }
+     
+      
+      ?>
+    
+    
+     
+</div> 
