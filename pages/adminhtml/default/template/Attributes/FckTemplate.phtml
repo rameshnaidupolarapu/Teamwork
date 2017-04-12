@@ -1,0 +1,24 @@
+<?php 
+if($this->_action=='admin')
+{
+    echo $this->_Value;
+}
+else
+{
+    ?>
+<textarea class="ckeditor" id="<?php echo $this->_idName;?>" name="<?php echo $this->_idName;?>" rows="6" ><?php echo $this->_Value; ?></textarea>
+<?php
+}
+?>
+<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+<script>
+      $(function () {
+        var <?php echo $this->_idName;?>editor = CKEDITOR.replace( '<?php echo $this->_idName;?>' );
+
+        // The "change" event is fired whenever a change is made in the editor.
+        <?php echo $this->_idName;?>editor.on( 'change', function( evt ) {
+            $("#<?php echo $this->_idName;?>").html(evt.editor.getData());
+
+        });
+      });
+    </script>

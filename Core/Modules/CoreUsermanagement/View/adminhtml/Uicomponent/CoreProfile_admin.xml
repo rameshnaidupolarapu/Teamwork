@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<columns name="core_profile_columns">        
+        <column name="id" >  
+            <label>ID</label>          
+        </column>    
+	<column name="name" >  
+            <label>Name</label>            
+        </column> 
+        <column name="short_code">   
+            <label>Code</label>             
+        </column>         
+        <column name="core_profile_level_id" >  
+            <label>Level</label>            
+        </column>
+        <column name="attribute_user_count" >  
+            <label>User Count</label>  
+        </column>    
+    </columns>
+</config>

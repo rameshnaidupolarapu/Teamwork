@@ -1,0 +1,32 @@
+<?php
+    if($this->_action=='admin')
+    {
+        echo $this->_Value;
+    }
+    else
+    {
+        if($this->_readonly)
+        {
+            $type="hidden";
+        }
+        else
+        {
+            $type="type";
+        }
+    ?>
+    
+    <?php
+        if($this->_readonly)
+        {
+            ?>
+            <input class="input-large" type="<?php echo $type; ?>" id="<?php echo $this->_idName; ?>" name="<?php echo $this->_idName; ?>" value="<?php echo $this->_Value;?>" placeholder="<?php echo $this->getLabel($this->_idName); ?>" onchange="<?php echo $this->_onchange; ?>" <?php echo $this->_required; ?> />
+            <?php
+            echo '<span class="text_display">'.$this->_Value."</span>";
+        }
+        else
+        {
+            echo '<div class="input-prepend input-append"><input class="input-large" '.$this->_required.' type="text" id="'.$this->_idName.'" name="'.$this->_idName.'" placeholder="'.$this->getLabel($this->_idName).'" value="'.$this->_Value.'"  onchange="return formvalidations(this.value,'."'".$this->_idName."','EMD'".')"><span class="add-on"><i class="icon-envelope"></i><span id="status_'.$this->_idName.'"></span></span></div>';
+
+        }
+    }
+?>

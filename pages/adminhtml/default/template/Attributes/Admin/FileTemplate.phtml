@@ -1,0 +1,21 @@
+<?php
+
+if ($this->_Value) {
+    $fileName = \Core::getUploadPath();
+    if ($this->_filePath) {
+        $fileName.=$this->_filePath . "/";
+    }
+    $fileName.= $this->_Value;
+    if (Core::is_image($fileName)) {
+
+        $output = "<div class='image_display'><img src='" . $fileName . "' /></div>";
+        $output.= "<a href='" . $fileName . "' target='_blank' >";
+        $output.="<img class='thumb_admin' src='" . $fileName . "'/>";
+        echo $output.="</a>";
+    } else {
+        $output = "<a href='" . $fileName . "' target='_blank' >";
+        $output.="image";
+        echo $output.="</a>";
+    }
+}
+?>

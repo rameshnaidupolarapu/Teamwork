@@ -1,0 +1,357 @@
+<?php
+$controllerObj=$this->_controllerObj;
+$mandotoryAttributes = $controllerObj->mandotatoryAttributes();
+$np = new \Core\Controllers\AccessController();
+$nodeOTMRelations = $np->NodeCheckForProfile($controllerObj->_nodeOTMRelations);
+
+?>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="widget">
+                <div class="widget-body">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title"><?php echo $controllerObj->getLabel($controllerObj->_currentAction); ?></h3>
+                            
+                            <div class="box-tools pull-right">
+                                <?php $this->loadChildBlock("form_external_buttons");?>
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="icon-chevron-down"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body chart-responsive">
+                            <?php
+                            $this->getFromTabs();
+                           
+                            $backUrl = $controllerObj->_websiteHostUrl;
+                            if ($controllerObj->_parentNode) {
+                                $backUrl = $controllerObj->_websiteAdminUrl . $controllerObj->_parentNode . "/" . $controllerObj->_parentAction . "/" . $controllerObj->_parentSelector . "/MTO/" . $controllerObj->_nodeName;
+                            }
+                            if (count($nodeOTMRelations) > 0 && $controllerObj->_currentAction != 'add') {
+                                ?>
+                                <div class="col-sm-12 col-xs-12 col-md-2 no-padding">
+                                    <ul class="nav nav-tabs form-tabs">
+
+                                        <?php
+                                        $active = "";
+                                        if ($controllerObj->_childNode == "") {
+                                            $active = 'class="active"';
+                                        }
+                                        ?>
+                                        <li <?php echo $active; ?>>
+                                            <a href="#tab_<?php echo $controllerObj->_nodeName; ?>" data-toggle="tab">General</a>
+                                        </li>
+                                        <?php
+                                        foreach ($nodeOTMRelations as $childNode => $linkColName) {
+                                            $active = "";
+                                            if ($controllerObj->_childNode == $childNode) {
+                                                $active = 'class="active"';
+                                            }
+                                            ?>
+
+                                            <li <?php echo $active; ?>>
+                                                <a href="#tab_<?php echo $childNode; ?>" data-toggle="tab" onclick="return samplefun('<?php echo $childNode; ?>');" ><?php echo $controllerObj->getLabel($childNode); ?></a>
+                                            </li>
+                                            <?php
+                                        }
+                                        ?>				
+                                    </ul>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                            <div class="col-sm-12 col-xs-12 col-md-10 no-padding">
+                            <div class="tab-content">
+                                <?php
+                                $active = "";
+                                if ($controllerObj->_childNode == "") {
+                                    $active = ' active ';
+                                }
+                                ?>
+                                <div class="tab-pane <?php echo $active; ?>" id="tab_<?php echo $controllerObj->_nodeName; ?>">
+
+                                    <form name="<?php echo $controllerObj->_nodeName; ?>" id="<?php echo $controllerObj->_nodeName; ?>" class="form-horizontal <?php echo "form_" . $controllerObj->_nodeName; ?>" action="" method="POST" enctype="multipart/form-data">
+                                        
+                                        <input type="hidden" id="node" name="node" value="<?php echo $controllerObj->_nodeName; ?>">
+                                        <input type="hidden" id="action" name="action" value="<?php echo $controllerObj->_currentAction; ?>">
+                                        <input type="hidden" id="action_id" name="action_id" value="<?php echo $controllerObj->_currentAction; ?>">                                          
+                                        <input type="hidden" id="id" name="id" value="<?php echo \Core::getValueFromArray($controllerObj->_record, "id"); ?>">
+                                        <div id="error_div" name="error_div" style="color: red;font-weight: bold;"></div> 
+                                        <?php
+                                            if(count($this->_tabList)>0)
+                                            {
+                                                ?>
+                                                <ul class="nav nav-tabs">
+                                                <li class="active"><a data-toggle="tab" href="#<?php echo $controllerObj->_nodeName; ?>home">Home</a></li>
+                                                <?php
+                                                foreach($this->_tabList as $tabData)
+                                                {
+
+                                                    $tabname=$tabData['@attributes']['name'];
+                                                    $tabtitle=$tabData['@attributes']['title'];
+                                                    $tabdefaultfields=isset($tabData['@attributes']['defaultfields'])?$tabData['@attributes']['defaultfields']:0;
+                                                    ?>
+                                                    <li><a data-toggle="tab" href="#<?php echo $tabname; ?>"> <?php echo $tabtitle; ?></a></li>                                                        
+                                                    <?php
+                                                    
+                                                }
+                                                ?>
+                                                </ul>
+                                            <?php
+                                            }
+                                        ?>	
+                                        <div class="tab-content">
+                                            <div id="<?php echo $controllerObj->_nodeName; ?>home" class="tab-pane fade in active">
+                                                
+                                            <?php
+                                        
+                                            if (count($this->_defaultAcdAttributes) > 0) {
+                                                foreach ($this->_defaultAcdAttributes as $FieldName) {
+                                                    ?>
+                                                    <div class="control-group" id="row_<?php echo $FieldName; ?>">
+                                                        <lable class="control-label">
+                                                            <span id="label_<?php echo $FieldName; ?>"><?php echo $controllerObj->getLabel($FieldName); ?></span>
+                                                            <?php
+                                                            $display = "none";
+                                                            if (in_array($FieldName, $mandotoryAttributes)) {
+                                                                $display = "display";
+                                                            }
+                                                            ?>
+                                                            <span id="req_<?php echo $FieldName; ?>" style="display:<?php echo $display; ?>" class="">
+                                                                <img src="<?php echo $controllerObj->_websiteRootHostUrl; ?>img/required_field.gif">
+                                                            </span>
+                                                        </lable>
+                                                        <div class="control">
+                                                            <div class="controls" id="value_<?php echo $FieldName; ?>">    
+                                                                <?php
+                                                                try {
+                                                                    $controllerObj->loadAttribute($FieldName);
+                                                                } catch (Exception $ex) {
+
+                                                                }
+                                                                ?>											
+                                                            </div>
+                                                            <span class="error_message" id="error_<?php echo $FieldName; ?>"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                            }
+
+                                            if(count($this->_accordionList)>0)
+                                            {
+                                                ?>
+                                                <div class="panel-group <?php echo $controllerObj->_nodeName; ?> form" id="<?php echo $controllerObj->_nodeName; ?>accordion">
+                                                <?php
+                                                    foreach($this->_accordionList as $accordionData)
+                                                    {
+
+                                                        $acdname=$accordionData['@attributes']['name'];
+                                                        $acdtitle=$accordionData['@attributes']['title'];
+                                                        $acddefaultfields=isset($accordionData['@attributes']['defaultfields'])?$accordionData['@attributes']['defaultfields']:0;
+                                                        if($acddefaultfields==1)
+                                                        {
+                                                        ?>
+                                                         <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                              <h4 class="panel-title">
+                                                                <a data-toggle="collapse" data-parent="#<?php echo $controllerObj->_nodeName; ?>accordion" href="#<?php echo $acdname; ?>"><?php echo $acdtitle; ?></a>
+                                                              </h4>
+                                                            </div>
+                                                            <div id="<?php echo $acdname; ?>" class="panel-collapse <?php echo $acdname; ?> collapse">
+                                                                <div class="panel-body">
+                                                                    <?php
+
+                                                                        $acdFields=$this->_accordionFields[$acdname];
+                                                                        if (count($acdFields) > 0) {
+                                                                            foreach ($acdFields as $FieldName) {
+                                                                                ?>
+                                                                                <div class="control-group" id="row_<?php echo $FieldName; ?>">
+                                                                                    <lable class="control-label">
+                                                                                        <span id="label_<?php echo $FieldName; ?>"><?php echo $controllerObj->getLabel($FieldName); ?></span>
+                                                                                        <?php
+                                                                                        $display = "none";
+                                                                                        if (in_array($FieldName, $mandotoryAttributes)) {
+                                                                                            $display = "display";
+                                                                                        }
+                                                                                        ?>
+                                                                                        <span id="req_<?php echo $FieldName; ?>" style="display:<?php echo $display; ?>" class="">
+                                                                                            <img src="<?php echo $controllerObj->_websiteRootHostUrl; ?>img/required_field.gif">
+                                                                                        </span>
+                                                                                    </lable>
+                                                                                    <div class="control">
+                                                                                        <div class="controls" id="value_<?php echo $FieldName; ?>">    
+                                                                                            <?php
+                                                                                            try {
+                                                                                                $controllerObj->loadAttribute($FieldName);
+                                                                                            } catch (Exception $ex) {
+
+                                                                                            }
+                                                                                            ?>											
+                                                                                        </div>
+                                                                                        <span class="error_message" id="error_<?php echo $FieldName; ?>"></span>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <?php
+                                                                            }
+                                                                        }
+                                                                    ?>
+                                                                </div>
+                                                            </div>
+                                                          </div>                                                      
+                                                        <?php
+                                                        }
+                                                        else 
+                                                        {
+                                                            
+                                                            $blockclass=$accordionData['@attributes']['class'];
+                                                            $template=$accordionData['@attributes']['template'];
+                                                            $block=new $blockclass();   
+                                                            $block->setBlockName($acdname);
+                                                            $block->setTemplate($template);
+                                                            $block->setControllerObject($this->_controllerObj);                                                            
+                                                            $block->execute();
+
+                                                        }
+                                                    }
+                                                ?>
+                                                </div>
+                                                <?php
+                                            }
+                                            ?>
+                                            </div>
+                                            <?php
+                                                if(count($this->_tabList)>0)
+                                                {
+                                                    foreach($this->_tabList as $tabData)
+                                                    {
+
+                                                        $tabname=$tabData['@attributes']['name'];
+                                                        $tabtitle=$tabData['@attributes']['title'];
+                                                        $tabdefaultfields=isset($tabData['@attributes']['defaultfields'])?$tabData['@attributes']['defaultfields']:0;
+                                                        ?>
+                                                        <div id="<?php echo $tabname; ?>" class="tab-pane fade in ">
+                                                        <?php
+                                                        if($tabdefaultfields==1)
+                                                        {
+                                                            $tabFields=$this->_tabFields[$tabname];
+                                                            if (count($tabFields) > 0) {
+                                                                foreach ($tabFields as $FieldName) {
+                                                                    ?>
+                                                                    <div class="control-group" id="row_<?php echo $FieldName; ?>">
+                                                                        <lable class="control-label">
+                                                                            <span id="label_<?php echo $FieldName; ?>"><?php echo $controllerObj->getLabel($FieldName); ?></span>
+                                                                            <?php
+                                                                            $display = "none";
+                                                                            if (in_array($FieldName, $mandotoryAttributes)) {
+                                                                                $display = "display";
+                                                                            }
+                                                                            ?>
+                                                                            <span id="req_<?php echo $FieldName; ?>" style="display:<?php echo $display; ?>" class="">
+                                                                                <img src="<?php echo $controllerObj->_websiteRootHostUrl; ?>img/required_field.gif">
+                                                                            </span>
+                                                                        </lable>
+                                                                        <div class="control">
+                                                                            <div class="controls" id="value_<?php echo $FieldName; ?>">    
+                                                                                <?php
+                                                                                try {
+                                                                                    $controllerObj->loadAttribute($FieldName);
+                                                                                } catch (Exception $ex) {
+
+                                                                                }
+                                                                                ?>											
+                                                                            </div>
+                                                                            <span class="error_message" id="error_<?php echo $FieldName; ?>"></span>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <?php
+                                                                }
+                                                            }                                      
+                                                           
+                                                        }
+                                                        else
+                                                        {
+                                                            $blockclass=$tabData['@attributes']['class'];
+                                                            $template=$tabData['@attributes']['template'];
+                                                            $block=new $blockclass();   
+                                                            $block->setBlockName($acdname);
+                                                            $block->setTemplate($template);
+                                                            $block->execute();
+                                                        }                                                        
+                                                        ?>
+                                                        </div>                      
+                                                        <?php
+                                                    }
+                                                }
+                                            ?>
+                                            
+                                            <div class="form-actions">
+
+                                                <input type="hidden" id="parentformNode" name="parentformNode" value="<?php echo $controllerObj->_parentNode; ?>" >
+                                                <input type="hidden" id="parentformkey" name="parentformkey" value="<?php echo $controllerObj->_parentColName; ?>" >
+                                                <input type="hidden" id="parentformvalue" name="parentformvalue" value="<?php echo $controllerObj->_parentSelector; ?>" >
+                                                <input type="hidden" id="parentformAction" name="parentformAction" value="<?php echo $controllerObj->_parentAction; ?>" >
+                                                <input type="hidden" id="noderesult" name="noderesult" value='<?php echo json_encode($controllerObj->_jsonrecord); ?>'>
+                                                <input type="hidden" id="noderelations" name="noderelations" value='<?php echo json_encode($controllerObj->_nodeMTORelations); ?>'>
+                                                                                             <input type="hidden" id="actionflag" name="actionflag" value=''/>
+                                                <?php
+                                                if ($controllerObj->_currentAction != "view") {
+                                                    ?>
+
+                                                    <button type="button" id="saveandcontinue" name="saveandclose" class="btn btn-small btn-success formsubmit " onclick="return getformsubmit('continue');">Save</button>
+                                                    <?php
+                                                            if ($controllerObj->_currentAction == "add")
+                                                            {?>
+                                                    <button type="button" id="saveandnext" name="saveandclose" class="btn btn-small btn-success formsubmit " onclick="return getformsubmit('next');">Save and Next </button>
+                                                    <?php } ?>
+                                                    <button type="button" id="saveandclose" name="saveandclose" class="btn btn-small btn-success formsubmit " onclick="return getformsubmit('close');">Save and Close</button>
+                                                    <?php
+                                                }
+                                                ?>
+                                                <button type="button" id="refreshsaveandclose" name="refreshsaveandclose" class="btn btn-small btn-inverse" style="display:none;" onclick="removedisable()" ;=""> <i class="icon-refresh icon-white"></i> Refresh Save and Close</button>
+                                                <a href="<?php echo $backUrl; ?> ">
+                                                    <button style="margin-left:4px;" type="button" class="btn btn-primary">  <i class="icon-arrow-left"></i> BACK</button>
+                                                </a>	
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <?php
+                                foreach ($nodeOTMRelations as $childNode => $linkColName) {
+
+                                    $active = "";
+                                    if ($controllerObj->_childNode == $childNode) {
+                                        $active = ' active ';
+                                    }
+                                    ?>                                       
+                                    <div class="tab-pane <?php echo $active; ?>" id="tab_<?php echo $childNode; ?>">
+                                        <div id="total_<?php echo $childNode; ?>" name="total_<?php echo $childNode; ?>" >
+                                            <form id="result_<?php echo $childNode; ?>" name="result_<?php echo $childNode; ?>" >
+                                                <input type="hidden" id="<?php echo $childNode; ?>_action_id" name="<?php echo $childNode; ?>_action_id" value="admin">			
+                                                <input type="hidden" id="<?php echo $childNode; ?>_multiedit" name="<?php echo $childNode; ?>_multiedit" value="0">
+                                                <input type="hidden" id="<?php echo $childNode; ?>_parentaction" name="<?php echo $childNode; ?>_parentaction" value="<?php echo $controllerObj->_currentAction; ?>">
+                                                <input type="hidden" id="<?php echo $childNode; ?>_parentnode" name="<?php echo $childNode; ?>_parentnode" value="<?php echo $controllerObj->_nodeName; ?>">
+                                                <input type="hidden" id="<?php echo $childNode; ?>_parentidvalue" name="<?php echo $childNode; ?>_parentidvalue" value="<?php echo $controllerObj->_currentSelector; ?>">
+                                            </form>
+                                        </div>
+                                    </div>                                            
+                                    <?php
+                                    if ($controllerObj->_childNode == $childNode) {
+                                        ?>
+                                        <input type="hidden" id="childdatadisplay" name="childdatadisplay" value="<?php echo $childNode; ?>">
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>    
+                        
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

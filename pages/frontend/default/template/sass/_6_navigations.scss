@@ -1,0 +1,893 @@
+/* 6 Navigations
+----------------------------------------------------------------------------- */
+/* first level menu */
+.navbar.navbar-default {
+  border-radius: 0;
+  margin: 12px 0 5px;
+  background-color: $ghost-white;
+  border-color: #f1f1f1;
+}
+.header-small .navbar.navbar-default {
+  margin: 6px 0 5px;
+}
+
+/* first level menu items */
+.navbar-default .navbar-nav > li > a {
+  color: $gray;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 20px 12px 19px;
+  z-index: 102;
+  border: 1px solid transparent;
+  bottom: -1px;
+  @include transition(none);
+}
+.navbar-default .navbar-nav > li > a:hover {
+  @include transition(all 0.2s ease-out);
+}
+
+/* first level active menu items on hover/focus */
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #e84c3d;
+  background-color: transparent;
+}
+.navbar-default .navbar-nav > .active > a:hover {
+  background-color: transparent;
+}
+
+/* first level active menu items when opened */
+.main-navigation .navbar-nav > .open > a,
+.main-navigation .navbar-nav > .open > a:hover,
+.main-navigation .navbar-nav > .open > a:focus {
+  color: $gray;
+  background-color: $ghost-white;
+  border: 1px solid #f1f1f1;
+  border-bottom: 1px solid transparent;
+  @include box-shadow(-1px -1px 0px rgba($black, 0.03));
+}
+
+/* first level active menu items when clicked */
+.main-navigation .navbar-nav > .open > a:active,
+.main-navigation .navbar-nav > .open.active > a:active {
+  background-color: $white;
+  @include box-shadow(none);
+  border-color: transparent;
+  @include transition(all 0.1s ease-in-out);
+}
+.main-navigation .navbar-nav > .open > a:active + ul,
+.main-navigation .navbar-nav > .open.active > a:active + ul {
+  display: none;
+}
+
+/* second level menu */
+.dropdown-menu {
+  min-width: 240px;
+  @include border-radius(0px);
+  padding: 0;
+  margin: 0;
+  background-color: $ghost-white;
+  @include box-shadow(0px 1px 2px rgba($black, 0.08));
+  border: 1px solid #f1f1f1;
+  z-index: 101;
+}
+
+/* second level menu items */
+.dropdown-menu > li > a {
+  padding: 12px 20px;
+  font-size: 15px;
+  color: $gray;
+  border-bottom: 1px solid #f1f1f1;
+  @include transition(none);
+}
+
+.main-navigation .dropdown-menu > li > a {
+  position: relative;
+}
+
+/* second level menu items on focus/hover and when opened */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu .menu > .active > a,
+.dropdown-menu .menu > .active > a:hover,
+.dropdown-menu .menu > .active > a:focus {
+  background-color: $white;
+  color: #e84c3d;
+  border-color: #f1f1f1;
+}
+
+/* third level menu */
+.dropdown-menu .dropdown-menu {
+  top: -1px;
+  left: 100% !important;
+  padding-top: 0;
+  @include box-shadow(1px 1px 2px rgba($black, 0.08));
+  border-top: 1px solid #f1f1f1;
+}
+.dropdown-menu .dropdown-menu.to-left {
+  right: 100%!important;
+  left: auto!important;
+}
+
+/*transparent header*/
+.header.transparent:not(.dark) .navbar-nav > .open > a,
+.header.transparent:not(.dark) .navbar-nav > .open > a:hover,
+.header.transparent:not(.dark) .navbar-nav > .open > a:focus,
+.header.transparent:not(.dark) .dropdown-menu {
+  @include box-shadow(none !important);
+  border-color: rgb(250, 250, 250)!important;
+}
+@media (min-width: 768px) {
+  .header.transparent:not(.dark) .navbar-nav > li:not(.active) > a {
+    color: #333333;
+  }
+}
+
+/* mega menu */
+.mega-menu.dropdown {
+  position: static;
+}
+.mega-menu .dropdown-menu {
+  left: 0;
+  top: 96%;
+  width: 100%;
+  padding: 20px 30px;
+}
+
+/* mega menu menu items */
+.mega-menu .menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mega-menu h4.title {
+  margin: 10px 0 5px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.mega-menu .menu > li > a {
+  padding: 5px 0;
+  font-size: 15px;
+  color: $gray;
+  border-bottom: 1px solid #f1f1f1;
+  display: block;
+  @include transition(none);
+  position: relative;
+}
+.mega-menu .menu > li > a i,
+.dropdown-menu > li > a i {
+  padding-right: 5px;
+  @include transition(all 0.2s ease-in-out);
+}
+.mega-menu .menu > li:last-child > a {
+  border-bottom: none!important;
+}
+.mega-menu .menu > li > a:hover i,
+.dropdown-menu > li > a:hover i {
+  padding-left: 5px;
+}
+
+/* mega menu menu items on focus/hover and when opened */
+.mega-menu .menu > li > a:hover,
+.mega-menu .menu > li > a:focus {
+  background-color: $white;
+  color: #e84c3d;
+  border-color: #f1f1f1;
+  text-decoration: none;
+}
+
+/* arrows for parent menu items */
+.dropdown>a:before {
+  font-family: 'FontAwesome';
+  content: "\f107";
+  position: absolute;
+  left: auto;
+  top: 15px;
+  right: 6px;
+  line-height: 1;
+  color: #d1d1d1;
+}
+.transparent.header:not(.dark) .dropdown>a:before {
+  color: $gray;
+}
+.navbar-default .navbar-nav > .active.dropdown > a:before {
+  color: #e84c3d;
+}
+.navbar-default .navbar-nav > .dropdown.open > a:before {
+  color: #e5e5e5;
+}
+.dropdown .dropdown>a:before {
+  content: "\f105";
+  right: 10px;
+  top: 15px;
+  margin-left: 0;
+  visibility: visible;
+  color: $gray;
+}
+.dropdown .dropdown.open>a:before,
+.transparent.header:not(.dark) .dropdown .dropdown.open>a:before {
+  color: #e84c3d;
+}
+
+/* mobile menu toggle button */
+.navbar-default .navbar-toggle {
+  border-color: #ccc;
+}
+
+/* mobile menu toggle button on hover/focus */
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: $ghost-white;
+  border-color: #e84c3d;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: $gray-light;
+}
+.navbar-default .navbar-toggle:hover .icon-bar,
+.navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: #e84c3d;
+}
+
+/*Dark Navigation*/
+.dark.header .navbar.navbar-default {
+  background-color: #27272A;
+  border-color: #1f1f1f;
+}
+
+/* Dark navigation first level menu items */
+.dark.header .navbar-default .navbar-nav > li > a {
+  color: #e1e1e1;
+}
+
+/* Dark navigation first level active menu items on hover/focus */
+.dark.header .navbar-default .navbar-nav > .active > a,
+.dark.header .navbar-default .navbar-nav > .active > a:focus {
+  color: $white;
+}
+
+/* Dark navigation first level active menu items when opened */
+.dark.header .main-navigation .navbar-nav > .open > a,
+.dark.header .main-navigation .navbar-nav > .open > a:hover,
+.dark.header .main-navigation .navbar-nav > .open > a:focus {
+  background-color: #27272a;
+  border-color: #484848;
+  border-bottom-color: #27272a;
+  color: $white;
+}
+
+/*Dark navigation second level menu items*/
+.dark.header .dropdown-menu {
+  background-color: #27272a;
+  border: 1px solid #484848;
+}
+.dark.header-top .dropdown-menu {
+  background-color: #36373c;
+  border: 1px solid #3d3d3d;
+  border-top-color: #36373c;
+}
+.dark.header-top .dropdown-menu .divider {
+  background-color: #454545;
+}
+.dark.header .dropdown-menu > li > a {
+  color: $gray-lighter;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+/*Dark navigation second level menu items on focus/hover and when opened */
+.dark.header .dropdown-menu > li > a:hover,
+.dark.header .dropdown-menu > li > a:focus,
+.dark.header .nav .open > a,
+.dark.header .nav .open > a:hover,
+.dark.header .nav .open > a:focus,
+.dark.header .dropdown-menu > .active > a,
+.dark.header .dropdown-menu > .active > a:hover,
+.dark.header .dropdown-menu > .active > a:focus,
+.dark.header .dropdown-menu .menu > .active > a,
+.dark.header .dropdown-menu .menu > .active > a:hover,
+.dark.header .dropdown-menu .menu > .active > a:focus {
+  background-color: #36373C;
+  color: $white;
+}
+
+/*Dark navigation mega-menu items*/
+.dark.header h1,
+.dark.header h2,
+.dark.header h3,
+.dark.header h4,
+.dark.header h5,
+.dark.header h6,
+.dark.header p {
+  color: $gray-lighter;
+}
+.dark.header .divider {
+  background-color: #3d3d3d;
+}
+.dark.header .mega-menu .menu > li > a {
+  color: $gray-lighter;
+  border-bottom: 1px solid #3d3d3d;
+}
+
+/*Dark navigation mega menu menu items on focus/hover and when opened */
+.dark.header .mega-menu .menu > li > a:hover,
+.dark.header .mega-menu .menu > li > a:focus {
+  background-color: #36373c;
+  color: $white;
+}
+
+/* Dark navigation arrows for parent menu items */
+.dark.header .dropdown>a:before {
+  color: #e1e1e1;
+}
+.dark.header .navbar-default .navbar-nav > .active.dropdown > a:before {
+  color: $white;
+}
+.dark.header .navbar-default .navbar-nav > .dropdown.open > a:before {
+  color: $gray;
+}
+.dark.header .dropdown .dropdown>a:before {
+  color: #e1e1e1;
+}
+
+/* Dark navigation mobile menu toggle button */
+.dark.header .navbar-default .navbar-toggle {
+  border-color: $gray;
+}
+
+/* Dark navigation mobile menu toggle button on hover/focus */
+.dark.header .navbar-default .navbar-toggle:hover,
+.dark.header .navbar-default .navbar-toggle:focus {
+  background-color: #36373c;
+  border-color: $gray-light;
+}
+.dark.header .navbar-default .navbar-toggle .icon-bar {
+  background-color: $gray;
+}
+.dark.header .navbar-default .navbar-toggle:hover .icon-bar,
+.dark.header .navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: $gray-light;
+}
+
+/* dropdown animations */
+.animated.main-navigation .open .dropdown-menu,
+#offcanvas.animated .open .dropdown-menu,
+.open .dropdown-animation {
+  @include animation-duration(0.2s);
+  @include animation-fill-mode(both);
+  @include animation-name(fadeInDownSmall);
+}
+.open .dropdown-animation {
+  @include animation-duration(0.3s);
+}
+.animated.main-navigation .dropdown-menu .open .dropdown-menu,
+#offcanvas.animated .dropdown-menu .open .dropdown-menu {
+  @include animation-name(fadeInLeftSmall);
+}
+.animated.main-navigation .dropdown-menu .open .dropdown-menu.to-left,
+#offcanvas.animated.offcanvas-right .dropdown-menu .open .dropdown-menu {
+  @include animation-name(fadeInRightSmall);
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width:768px) {
+  .main-navigation .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+  }
+
+  /* first level menu */
+  .navbar.navbar-default,
+  .dark.header .navbar.navbar-default {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  /* layout fixes */
+  .main-navigation .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .navbar-collapse {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .main-navigation .navbar-right .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+  .main-navigation .navbar-right > li:last-child > .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+}
+
+/* Medium desktop devices and tablets */
+@media (min-width:768px) and (max-width:1199px) {
+  .main-navigation .container-fluid {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+}
+
+/* Medium devices (tablets landscape to portrait) */
+@media (min-width:768px) and (max-width:991px) {
+  .main-navigation .navbar-nav {
+    float: left !important;
+  }
+}
+
+/* Medium devices (desktops, tablets, 992px and up) */
+@media (min-width:992px) {
+  .col-md-3 + .col-md-9 .mega-menu .dropdown-menu {
+    left: -243px;
+    width: 940px;
+  }
+}
+
+/* Medium desktop devices */
+@media (min-width:992px) and (max-width:1199px) {
+  .navbar-default .navbar-nav > li > a {
+    padding-right: 19px;
+  }
+}
+
+/* Large devices (Large desktops 1200px and up) */
+@media (min-width:1200px) {
+
+  /* first level menu item */
+  .main-navigation .navbar-nav > li {
+    margin: 0 0 0 15px;
+  }
+  .main-navigation .navbar-nav > li:first-child {
+    margin: 0;
+  }
+  .col-md-3 + .col-md-9 .mega-menu .dropdown-menu {
+    left: -293px;
+    width: 1140px;
+  }
+}
+
+/* Small devices (tablets, phones less than 767px) */
+@media (max-width:767px) {
+
+  /* Mobile menu
+  ------------------------------ */
+  /* active items */
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #e84c3d;
+    background-color: transparent;
+  }
+
+  /* first level items */
+  .navbar-default .navbar-nav > li > a {
+    border-bottom: 1px solid #f1f1f1;
+  }
+  .subfooter .navbar-default .navbar-nav > li > a {
+    border-bottom: 1px solid #141414;
+  }
+  .light .subfooter .navbar-default .navbar-nav > li > a {
+    border-bottom: 1px solid #ddd;
+  }
+  .navbar-default .navbar-nav > li:last-child > a {
+    border-bottom: 1px solid transparent;
+  }
+
+  /* first level items when opened */
+  .main-navigation .navbar-nav > .open > a,
+  .main-navigation .navbar-nav > .open > a:hover,
+  .main-navigation .navbar-nav > .open > a:focus {
+    border-color: transparent!important;
+    @include box-shadow(none);
+  }
+
+  /* first level items hover and focus states */
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: #e84c3d;
+    background-color: $white;
+  }
+
+  /* second level menu */
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: $white;
+  }
+
+  /* second level items */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-default .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 12px 15px 12px 40px;
+    color: $gray;
+    border-color: $ghost-white;
+  }
+
+  /* second level items on hover/focus */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #e84c3d;
+  }
+
+  /* third level items */
+  .navbar-nav .open .dropdown-menu .dropdown-menu > li > a {
+    padding-left: 60px;
+  }
+
+  /* four level items */
+  .navbar-nav .open .dropdown-menu .dropdown-menu .dropdown-menu > li > a {
+    padding-left: 80px;
+  }
+
+  /* Arrows for parent menu items */
+  .dropdown>a:before {
+    right: 32px;
+  }
+  .dropdown .dropdown>a:before {
+    right: 36px;
+  }
+
+  /*Dark mobile menu
+  ------------------------------ */
+  .dark.header .navbar-default .navbar-collapse,
+  .dark.header .navbar-default .navbar-form {
+    border-color: #1f1f1f;
+  }
+
+  /* active items */
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    background-color: #36373c;
+  }
+
+  /* first level items */
+  .dark.header .navbar-default .navbar-nav > li > a {
+    border-bottom: 1px solid #3c3c3e;
+  }
+
+  /* first level active items */
+  .dark.header .navbar-default .navbar-nav > .active > a,
+  .dark.header .navbar-default .navbar-nav > .active > a:focus {
+    color: $white;
+    background-color: #36373C;
+  }
+
+  /* first level items hover and focus states */
+  .dark.header .navbar-default .navbar-nav > li > a:hover,
+  .dark.header .navbar-default .navbar-nav > li > a:focus,
+  .dark.header .navbar-default .navbar-nav > .active > a:hover,
+  .dark.header .navbar-default .navbar-nav > .active > a:focus {
+    color: $white;
+    background-color: #36373c;
+  }
+
+  /* first level items when opened */
+  .dark.header .main-navigation .navbar-nav > .open > a,
+  .dark.header .main-navigation .navbar-nav > .open > a:hover,
+  .dark.header .main-navigation .navbar-nav > .open > a:focus	{
+    color: $white;
+    background-color: #36373c;
+  }
+
+  /* second level menu */
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #27272a;
+    border: none;
+  }
+
+  /* second level items */
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu > li > a,
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu .dropdown-header {
+    color: $gray-lighter;
+    border-color: #3c3c3e;
+  }
+
+  /* second level items on hover/focus */
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .dark.header .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: $white;
+    background-color: #36373c;
+  }
+  .dark.header .navbar-default .navbar-nav > .dropdown.open > a:before {
+    color: $white;
+  }
+}
+
+/* Header top navigation
+---------------------------------- */
+.header-top .navbar.navbar-default {
+  margin: 0;
+  min-height: 30px;
+}
+.header-top .navbar-default .navbar-nav > li > a {
+  color: $gray-light;
+  padding: 4px 20px;
+}
+.header-top .navbar-default .navbar-nav > li {
+  border-right: 1px solid $gray-light;
+}
+.header-top .navbar-default .navbar-nav > li:last-child {
+  border-right: none;
+}
+
+/* Offcanvas navigation
+---------------------------------- */
+.offcanvas {
+  background-color: $ghost-white;
+  border-color: #f1f1f1;
+}
+.offcanvas-toggle-left {
+  display: block;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  left: 0px;
+  z-index: 1031;
+  text-align: center;
+}
+.offcanvas-toggle-left:after {
+  font-family: "FontAwesome";
+  content: "\f0c9";
+  font-size: 22px;
+  line-height: 35px;
+  text-align: center;
+  color: #333333;
+}
+#offcanvas.in + .offcanvas-toggle-left:after {
+  content: "\f00d";
+  color: $gray-light;
+}
+.offcanvas-toggle-right {
+  display: block;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  right: 0px;
+  z-index: 1031;
+  text-align: center;
+}
+.offcanvas-toggle-right:after {
+  font-family: "FontAwesome";
+  content: "\f0c9";
+  font-size: 22px;
+  line-height: 35px;
+  text-align: center;
+  color: #333333;
+}
+#offcanvas.in + .offcanvas-toggle-right:after {
+  content: "\f00d";
+  color: $gray-light;
+}
+
+/*First level menu items*/
+#offcanvas .navbar-nav > li,
+#offcanvas .navbar-nav {
+  float: none;
+  margin: 0;
+}
+#offcanvas .navbar-nav > li > a {
+  color: #333333;
+  border-bottom: 1px solid #f5f5f5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#offcanvas .navbar-nav > li:last-child > a {
+  border-bottom-color: transparent!important;
+}
+#offcanvas .nav .open > a,
+#offcanvas .nav .open > a:hover,
+#offcanvas .nav .open > a:focus,
+#offcanvas .nav > li > a:hover,
+#offcanvas .nav > li > a:focus,
+#offcanvas .navbar-nav > li.active > a {
+  color: #e84c3d;
+  background-color: $white;
+}
+
+/*Second level menu items*/
+#offcanvas .dropdown-menu {
+  position: static;
+  width: 100%;
+  float: none;
+  box-shadow: none;
+  border: none;
+  background-color: $white;
+  margin: 0;
+}
+#offcanvas.offcanvas-right .dropdown-menu {
+  overflow: hidden;
+}
+#offcanvas .dropdown-menu > li > a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  border-color: #f7f7f7;
+}
+#offcanvas.offcanvas-right .dropdown-menu > li > a {
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+/*Third level menu items*/
+#offcanvas .dropdown-menu .dropdown-menu > li > a {
+  padding-left: 30px;
+}
+#offcanvas.offcanvas-right .dropdown-menu .dropdown-menu > li > a {
+  padding-left: 10px;
+  padding-right: 30px;
+}
+
+/*Fourth level menu items*/
+#offcanvas .dropdown-menu .dropdown-menu .dropdown-menu > li > a {
+  padding-left: 45px;
+}
+#offcanvas.offcanvas-right .dropdown-menu .dropdown-menu .dropdown-menu > li > a {
+  padding-left: 10px;
+  padding-right: 45px;
+}
+
+/*Fifth level menu items*/
+#offcanvas .dropdown-menu .dropdown-menu .dropdown-menu .dropdown-menu > li > a {
+  padding-left: 60px;
+}
+#offcanvas.offcanvas-right .dropdown-menu .dropdown-menu .dropdown-menu .dropdown-menu > li > a {
+  padding-left: 10px;
+  padding-right: 60px;
+}
+
+/*Nav arrows*/
+#offcanvas .dropdown>a:before {
+  right: 15px;
+  top: 13px;
+}
+#offcanvas.offcanvas-right .dropdown>a:before {
+  right: auto;
+  left: 15px;
+  top: 13px;
+}
+#offcanvas.offcanvas-right .dropdown .dropdown>a:before {
+  content: "\f104";
+}
+
+/*Dark offcanvas nav*/
+.dark.offcanvas-container .offcanvas {
+  background-color: #27272a;
+  border-color: #484848;
+}
+.dark.offcanvas-container #offcanvas.in + .offcanvas-toggle-left:after,
+.dark.offcanvas-container #offcanvas.in + .offcanvas-toggle-right:after {
+  color: #e1e1e1;
+}
+
+/*First level menu items*/
+.dark.offcanvas-container #offcanvas .navbar-nav > li > a {
+  color: #e1e1e1;
+  border-bottom: 1px solid #3d3d3d;
+}
+.dark.offcanvas-container #offcanvas .navbar-nav > li.open > a {
+  border-bottom: 1px solid #515151!important;
+}
+.dark.offcanvas-container #offcanvas .nav .open > a,
+.dark.offcanvas-container #offcanvas .nav .open > a:hover,
+.dark.offcanvas-container #offcanvas .nav .open > a:focus,
+.dark.offcanvas-container #offcanvas .nav > li > a:hover,
+.dark.offcanvas-container #offcanvas .nav > li > a:focus,
+.dark.offcanvas-container #offcanvas .navbar-nav > li.active > a {
+  color: $white;
+  background-color: #36373c;
+}
+
+/*Second level menu items*/
+.dark.offcanvas-container #offcanvas .dropdown-menu {
+  background-color: #36373c;
+}
+.dark.offcanvas-container #offcanvas .dropdown-menu > li > a {
+  border-color: #515151;
+  color: #e1e1e1;
+}
+.dark.offcanvas-container #offcanvas .dropdown-menu > li > a:hover,
+.dark.offcanvas-container #offcanvas .dropdown-menu > li > a:focus {
+  color: $white;
+  background-color: #36373c;
+}
+
+/*Nav arrows*/
+.dark.offcanvas-container .dropdown .dropdown.open>a:before {
+  color: $white;
+}
+
+/* Subfooter navigation
+---------------------------------- */
+.subfooter .navbar {
+  margin: 0;
+  min-height: 0;
+  background: transparent;
+  border-color: transparent;
+}
+.subfooter .navbar-default .nav > li > a {
+  padding: 10px 10px;
+  text-transform: none;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 400;
+}
+.subfooter .navbar-default .nav li:last-child a,
+.light .subfooter .navbar-default .nav > li:last-child > a {
+  border: none;
+}
+.subfooter .navbar-default .nav > li > a:hover,
+.subfooter .navbar-default .nav > .active > a:hover,
+.subfooter .navbar-default .nav > .active > a:focus {
+  background-color: transparent;
+  text-decoration: underline;
+  color: #e84c3d;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width:768px) {
+  .subfooter .navbar-nav {
+    float: none;
+    margin: 15px 0;
+    text-align: center;
+  }
+  .subfooter .navbar-nav > li {
+    float: none;
+    padding: 5px 0;
+  }
+  .subfooter .navbar-default .nav > li > a {
+    padding: 0px 10px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width:992px) {
+  .subfooter {
+    text-align: left;
+  }
+  .subfooter .navbar-nav {
+    float: right;
+    margin: 0;
+    text-align: left;
+  }
+  .subfooter .navbar-nav > li {
+    float: left;
+    padding: 0;
+    margin-top: 4px;
+  }
+  .subfooter .navbar-default .nav > li > a {
+    border-right: 1px solid #333333;
+  }
+  .light .subfooter .navbar-default .nav > li > a {
+    border-right: 1px solid $gray-light;
+  }
+}
+
+/* Small devices (tablets, phones less than 767px) */
+@media (max-width:767px) {
+  /* subfooter nav */
+  .subfooter .navbar-default .navbar-toggle:hover,
+  .subfooter .navbar-default .navbar-toggle:focus {
+    background-color: transparent;
+    border-color: #888;
+  }
+  .light .subfooter .navbar-default .navbar-collapse {
+    border-color: #ddd;
+  }
+  .subfooter .navbar-default .navbar-collapse {
+    border-color: $black;
+  }
+}

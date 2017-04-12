@@ -1,0 +1,43 @@
+<?php
+if(count($this->_showAttributes)>0)
+{
+    foreach ($this->_showAttributes as $FieldName) 
+    {
+       $header.='"'.$this->getLabel($FieldName).'"'.",";
+    }                 
+}
+$output="";
+         
+if(count($this->_reportResult)>0)
+{
+    foreach ($this->_reportResult as $rowData)
+    {
+        $output.="\n";
+        if(count($this->_showAttributes)>0)
+        {
+            foreach ($this->_showAttributes as $FieldName) 
+            {
+                $value=$rowData[$FieldName];
+                if(in_array($FieldName,$this->_reportNode->_boolAttributes))
+                {
+                    if($value==1)
+                    {
+                        $value="Yes";
+                    }
+                    else
+                    {
+                        $value="No";
+                    }
+                }
+                $output.=$value.",";
+            }                 
+        }          
+    }
+}
+ob_clean();
+header('Content-Encoding: UTF-8');
+header('Content-type: text/csv; charset=UTF-8');
+header("Content-Disposition: attachment; filename=".$this->_reportDisplayName.".csv");
+header("Pragma: no-cache");
+header("Expires: 0");    
+echo $header.$output;

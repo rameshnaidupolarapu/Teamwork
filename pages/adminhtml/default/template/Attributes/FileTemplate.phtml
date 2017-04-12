@@ -1,0 +1,54 @@
+<?php
+if($this->_action=='admin' || $this->_readonly==1)
+{
+    if($this->_Value)
+    {
+        $fileName=Core::getUploadPath();
+        if($this->_filePath)
+        {
+            $fileName.=$this->_filePath."/";
+        }
+        $fileName.=$this->_Value;
+        echo "<a href='".$fileName."' target='_blank' >view</a>";
+    }
+    else
+    {
+        echo $this->_Value;
+    }
+}
+else
+{
+    $fileName="";
+    if($this->_Value)
+    {
+        $fileName=Core::getUploadPath();
+        if($this->_filePath)
+        {
+            $fileName.=$this->_filePath."/";
+        }
+        $fileName.=$this->_Value;
+        echo "<a href='".$fileName."' target='_blank' >view</a>";
+    }
+    ?>
+<script src="<?php echo $this->_siteProperties->websiteUrl?>js/project/jquery.Jcrop.js"></script>
+<link rel="stylesheet" href="<?php echo $this->_siteProperties->websiteUrl?>css/project/jquery.Jcrop.css" type="text/css" />
+    <div class="" id="value_<?php echo $this->_idName;?>">        
+        <?php  if($this->_Value){ ?><div class="checker" id="uniform-check_<?php echo $this->_idName;?>">
+            <span><input type="checkbox"  name="check_<?php echo $this->_idName;?>" id="check_<?php echo $this->_idName;?>" value="1" >Remove File</span>
+        </div> <?php } ?> <input type="file" class="fileupload"  name="<?php echo $this->_idName;?><?php echo $this->_multiValues==1?"[]":"";?>" id="<?php echo $this->_idName;?>" value="<?php echo $this->_Value; ?>" <?php echo $this->_multiValues==1?"multiple":"";?>  />
+        
+    </div>   
+<div id="image_preview_<?php echo $this->_idName;?>"></div>
+        <div>
+            <div class="inline-labels">
+                <input type="hidden" size="4" class="jcropcoords" id="<?php echo $this->_idName;?>_x1" name="<?php echo $this->_idName;?>[x1]" />
+                <input type="hidden" size="4" class="jcropcoords" id="<?php echo $this->_idName;?>_y1" name="<?php echo $this->_idName;?>[y1]" />
+                <input type="hidden" size="4" class="jcropcoords" id="<?php echo $this->_idName;?>_x2" name="<?php echo $this->_idName;?>[x2]" />
+                <input type="hidden" size="4" class="jcropcoords" id="<?php echo $this->_idName;?>_y2" name="<?php echo $this->_idName;?>[y2]" />
+                <input type="hidden" size="4" class="jcropcoords" id="<?php echo $this->_idName;?>_w" name="<?php echo $this->_idName;?>[w]" />
+                <input type="hidden" size="4" class="jcropcoords" id="<?php echo $this->_idName;?>_h" name="<?php echo $this->_idName;?>[h]" />
+            </div>
+        </div>
+<?php
+}
+?>

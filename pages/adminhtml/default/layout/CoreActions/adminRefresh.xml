@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page>
+    <body>
+            <block parent="maingrid" name="grid" class="\Core\Block\Block" template="grid" />
+    </body>
+</page>

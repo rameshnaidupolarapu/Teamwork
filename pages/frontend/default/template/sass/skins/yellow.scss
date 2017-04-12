@@ -1,0 +1,609 @@
+/*
+Theme Name: iDea - Clean & Powerful Bootstrap Theme
+Author: HtmlCoder
+Author URI: http://www.htmlcoder.me
+Author e-mail: htmlcoder.me@gmail.com
+Version: 1.5
+Created: September 2014
+License URI: http://support.wrapbootstrap.com/
+File Description: Orange Skin
+*/
+@import "../mixins";
+
+//== Colors
+//
+//## Gray and brand colors for use across iDea Template.
+$gray:                  #666666;
+$ghost-white:           #fafafa;
+$white:                 #ffffff;
+$black:                 #000000;
+
+//** Base Colors of Blue Skin.
+$base-color:            #d3b61c;
+$base-color-hover:      #b59a17;
+
+/* 1 Typography
+----------------------------------------------------------------------------- */
+a, .text-default {
+  color: $base-color;
+}
+
+a:hover,
+a:focus {
+  color: $base-color-hover;
+}
+
+mark,
+.mark {
+  background-color: $base-color;
+  color: $white;
+}
+
+.table > thead > tr > th {
+  border-bottom: 1px solid $base-color;
+  background-color: $base-color;
+  color: #fff;
+}
+
+.table-bordered {
+  border-color: $base-color;
+}
+
+/* 2 Layout
+----------------------------------------------------------------------------- */
+.default-bg {
+  background-color: $base-color;
+  color: $white;
+}
+
+/* Backgrounds
+---------------------------------- */
+.default-translucent-bg:after {
+  background-color: rgba($base-color,0.7);
+}
+
+/* 3 Pages
+----------------------------------------------------------------------------- */
+.blogpost .post-info {
+  background-color: $base-color;
+  color: #fff;
+}
+
+.blogpost .side .social-links li a {
+  background-color: transparent;
+  border-color: transparent;
+  color: $base-color;
+}
+
+.blogpost ul.links li a:hover {
+  color: $base-color;
+}
+
+/* timeline layout */
+.timeline-date-label {
+  color: $base-color;
+}
+
+@media (min-width:768px) {
+  .timeline .timeline-item:before {
+    background-color: #fff;
+    border: 1px solid $base-color;
+  }
+}
+
+/* 4 Template Components
+----------------------------------------------------------------------------- */
+/* Buttons
+---------------------------------- */
+/* Gray Buttons */
+.btn-gray:hover,
+.btn-gray:focus,
+.btn-gray:active,
+.btn-gray.active,
+.open .dropdown-toggle.btn-gray {
+  color: $white;
+  background-color: $base-color;
+  border-color: $base-color;
+}
+
+/* Light Gray Buttons */
+.btn-light-gray:hover,
+.btn-light-gray:focus,
+.btn-light-gray:active,
+.btn-light-gray.active,
+.open .dropdown-toggle.btn-light-gray {
+  color: $white;
+  background-color: $base-color;
+  border-color: $base-color;
+}
+
+/* Default Buttons */
+.btn-default {
+  background-color: $base-color;
+  color: #fff !important;
+  border-color: $base-color-hover;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #fff !important;
+  background-color: $base-color-hover;
+  border-color: $base-color-hover;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default {
+  background-color: $base-color-hover;
+  border-color: $base-color-hover;
+}
+
+/* Button with transparent bg
+---------------------------------- */
+.btn-white {
+  background-color: transparent;
+  color: $base-color-hover;
+  border: 1px solid $base-color;
+}
+
+.btn-white:hover,
+.btn-white:focus,
+.btn-white:active,
+.btn-white.active,
+.open .dropdown-toggle.btn-white {
+  color: #fff;
+  background-color: $base-color-hover;
+  border-color: $base-color-hover;
+}
+
+/* Button background transitions
+---------------------------------- */
+.hvr-sweep-to-right:before,
+.hvr-sweep-to-left:before,
+.hvr-sweep-to-bottom:before,
+.hvr-sweep-to-top:before,
+.hvr-bounce-to-right:before,
+.hvr-bounce-to-left:before,
+.hvr-bounce-to-bottom:before,
+.hvr-bounce-to-top:before,
+.hvr-radial-out:before,
+.hvr-rectangle-out:before,
+.hvr-shutter-out-horizontal:before,
+.hvr-shutter-out-vertical:before {
+  background: $base-color-hover;
+}
+
+/* Forms
+---------------------------------- */
+.default-bg .form-control {
+  border-color: $base-color;
+  background-color: rgba($black, 0.2);
+  -webkit-box-shadow: inset 0 2px 3px rgba($black, .35);
+  box-shadow: inset 0 2px 3px rgba($black, .35);
+  color: $white;
+}
+
+.default-bg .form-control:focus {
+  border-color: $base-color;
+  background-color: rgba($black, 0.25);
+}
+
+.default-bg .input-group-addon {
+  background-color: $base-color-hover;
+  border-color: $base-color;
+  color: #fff;
+}
+
+.dropdown .active>a>.badge,
+.dropdown a:hover .badge,
+.dropdown .open > a > .badge {
+  border-color: $base-color;
+}
+
+/* Pager
+---------------------------------- */
+ul.pagination li > a:hover {
+  background-color: transparent;
+  color: $white;
+  background-color: $base-color;
+  border-color: $base-color;
+}
+
+ul.pagination li.active a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus {
+  color: $white;
+  background-color: $base-color;
+  border-color: $base-color;
+}
+
+/* Tabs
+---------------------------------- */
+.nav-tabs > li.active > a:after {
+  background-color: $base-color;
+}
+
+.tab-content:after {
+  background-color: $base-color;
+}
+
+@media (max-width:480px) {
+  .nav-tabs > li > a:hover:after {
+    background-color: $base-color;
+  }
+}
+
+/* Horizontal tabs version 2 */
+.tabs-style-2 .nav-tabs {
+  border-bottom: 1px solid $base-color;
+}
+
+.tabs-style-2 .nav-tabs > li.active > a,
+.tabs-style-2 .nav-tabs > li.active > a:hover,
+.tabs-style-2 .nav-tabs > li.active > a:focus,
+.tabs-style-2 .nav-tabs > li > a:hover {
+  border: 1px solid $base-color;
+  background-color: $base-color;
+  color: #fff;
+}
+
+/* vertical tabs */
+.vertical .nav-tabs > li > a:hover:after {
+  background-color: $base-color;
+}
+
+/* Nav pills
+---------------------------------- */
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus,
+.nav-pills > li > a:hover,
+.nav-pills > li > a:focus {
+  border: 1px solid #f3f3f3;
+  color: $base-color;
+  background-color: $ghost-white;
+}
+
+.nav-pills > li.active > a:after {
+  color: $base-color;
+}
+
+.nav-pills > li.active > a:hover:after,
+.nav-pills > li.active > a:focus:after,
+.nav-pills > li > a:hover:after,
+.nav-pills > li > a:focus:after {
+  color: $base-color;
+}
+
+.light .footer-content .nav-pills > li.active > a:hover,
+.light .footer-content .nav-pills > li > a:hover {
+  color: $base-color-hover;
+}
+
+.nav-pills > .active > a > .badge {
+  color: $base-color;
+  background-color: #fff;
+  border-color: $base-color;
+}
+
+/* Collapse
+---------------------------------- */
+.panel-heading a {
+  background-color: $base-color;
+  color: $white;
+}
+
+.panel-heading a:hover,
+.panel-transparent .panel-heading a:hover {
+  background-color: $base-color;
+  color: $white;
+}
+
+/* Progress bars
+---------------------------------- */
+.progress-bar-default {
+  background-color: $base-color;
+}
+
+/* Modals
+---------------------------------- */
+.modal-content .modal-header {
+  background-color: $base-color;
+}
+
+/* Images and Images overlay
+---------------------------------- */
+.overlay a {
+  color: $base-color;
+  background-color: $white;
+}
+
+.overlay-links a + a {
+  color: $white;
+  background-color: $base-color;
+}
+
+a.overlay i {
+  color: $base-color;
+}
+
+/* 5 Navigations
+----------------------------------------------------------------------------- */
+/* first level active menu items on hover/focus */
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: $base-color;
+  background-color: transparent;
+}
+
+.main-navigation .navbar-nav > .open > a, 
+.main-navigation .navbar-nav > .open > a:hover, 
+.main-navigation .navbar-nav > .open > a:focus {
+  color: $gray;
+  background-color: $ghost-white;
+}
+
+/* second level menu items on focus/hover and when opened */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus,
+.dropdown-menu .menu > .active > a,
+.dropdown-menu .menu > .active > a:hover,
+.dropdown-menu .menu > .active > a:focus {
+  background-color: $white;
+  color: $base-color;
+  border-color: #f1f1f1;
+}
+
+#offcanvas .nav .open > a,
+#offcanvas .nav .open > a:hover,
+#offcanvas .nav .open > a:focus,
+#offcanvas .nav > li > a:hover, 
+#offcanvas .nav > li > a:focus,
+#offcanvas .navbar-nav > li.active > a {
+  color: $base-color;
+  background-color: $white;
+}
+
+/* mega menu menu items on focus/hover and when opened */
+.mega-menu .menu > li > a:hover,
+.mega-menu .menu > li > a:focus {
+  background-color: $white;
+  color: $base-color;
+  border-color: #f1f1f1;
+}
+
+/* arrows for parent menu items */
+.navbar-default .navbar-nav > .active.dropdown > a:before {
+  color: $base-color;
+}
+
+.navbar-default .navbar-nav > .dropdown.open > a:before {
+  color: #e5e5e5;
+}
+
+.dropdown .dropdown.open>a:before,
+.transparent.header:not(.dark) .dropdown .dropdown.open>a:before {
+  color: $base-color;
+}
+
+/* mobile menu toggle button on hover/focus */
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: $ghost-white;
+  border-color: $base-color;
+}
+
+.navbar-default .navbar-toggle:hover .icon-bar,
+.navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: $base-color;
+}
+
+@media (max-width:767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, 
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, 
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: $base-color;
+    background-color: transparent;
+  }
+
+  /* first level items hover and focus states */
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: $base-color;
+    background-color: #fff;
+  }
+
+  /* second level items on hover/focus */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: $base-color;
+  }
+}
+
+/* Subfooter navigation
+---------------------------------- */
+.subfooter .navbar-default .nav > li > a:hover,
+.subfooter .navbar-default .nav > .active > a:hover,
+.subfooter .navbar-default .nav > .active > a:focus {
+  background-color: transparent;
+  color: $base-color;
+}
+
+/* 6 Blocks/Widgets
+----------------------------------------------------------------------------- */
+/* Boxes
+---------------------------------- */
+.box.gray-bg:hover {
+  color: $base-color;
+}
+
+.box.default-bg:hover {
+  background-color: #fff;
+  border: 1px solid $base-color;
+}
+
+.box.default-bg:hover * {
+  color: $base-color;
+}
+
+.box-style-1:not(.team-member):hover i {
+  color: $base-color;
+}
+
+.box-style-1.default-bg:hover i, 
+.box-style-1.dark-bg:hover i {
+  color: inherit;
+}
+
+.box-style-2:hover .default-bg {
+  background-color: #fff;
+  border: 1px solid $base-color;
+}
+
+.box-style-2:hover .default-bg * {
+  color: $base-color;
+}
+
+.box-style-2:hover .white-bg * {
+  color: $base-color;
+}
+
+.box-style-3:hover .default-bg {
+  background-color: #fff;
+  border: 1px solid $base-color;
+}
+
+.box-style-3:hover .default-bg * {
+  color: $base-color;
+}
+
+.box-style-3:hover .white-bg * {
+  color: $base-color;
+}
+
+/* Tags cloud block
+---------------------------------- */
+.tag a:hover {
+  color: $white;
+  background-color: $base-color;
+  border-color: $base-color;
+}
+
+/* Social icons block
+---------------------------------- */
+.social-links li a {
+  background: $base-color;
+  border: 1px solid $base-color;
+  color: #fff;
+}
+
+.social-links li a:hover {
+  background-color: transparent;
+  border-color: $base-color-hover;
+  color: $base-color-hover;
+}
+
+.social-links .dropdown.open>button>i:before {
+  content: "\f00d";
+  color: $base-color;
+}
+
+.header-top .social-links li a:hover {
+  color: $base-color-hover;
+}
+
+/* search and login
+---------------------------------- */
+.header-top-dropdown .dropdown.open>button,
+.header-top-dropdown .dropdown>button:hover {
+  color: $base-color;
+}
+
+/* Pricing tables
+---------------------------------- */
+.plan .popover-title {
+  background-color: $base-color;
+  color: $white;
+}
+
+.gray .plan .header h3 {
+  color: $base-color;
+}
+
+.white .plan .header {
+  color: #fff;
+  background: $base-color;
+}
+
+.stripped .header {
+  background: $base-color;
+  -webkit-box-shadow: 0px 0px 60px $base-color-hover inset;
+  -moz-box-shadow: 0px 0px 60px $base-color-hover inset;
+  box-shadow: 0px 0px 60px $base-color-hover inset;
+  color: #fff;
+}
+
+/* 7 Main Slideshow
+----------------------------------------------------------------------------- */
+/* Slider Revolution captions */
+.default_bg {
+  background-color: $base-color;
+  color: #fff;
+}
+
+/* Revolution Nav Controls */
+.tparrows.round:hover {
+  color: $white;
+  background-color: $base-color;
+}
+
+.tp-bullets.simplebullets.round .bullet:hover,
+.tp-bullets.simplebullets.round .bullet.selected {
+  background-color: $base-color;
+}
+
+.tp-bannertimer {
+  background-color: rgba($base-color,0.7);
+}
+
+/* 8 Owl carousel
+----------------------------------------------------------------------------- */
+.owl-prev {
+  background-color: $base-color;
+  color: #f1f1f1;
+}
+
+.owl-next {
+  background-color: #f1f1f1;
+  color: $base-color;
+}
+
+.content-slider-with-controls .owl-buttons div,
+.content-slider-with-controls-autoplay .owl-buttons div {
+  background-color: $base-color;
+  color: #f1f1f1;
+}
+
+.content-slider-with-controls .owl-prev:hover,
+.content-slider-with-controls .owl-next:hover,
+.content-slider-with-controls-autoplay .owl-prev:hover,
+.content-slider-with-controls-autoplay .owl-next:hover {
+  background-color: #f1f1f1;
+  color: $base-color;
+}
+
+.owl-controls .owl-page.active span,
+.owl-controls.clickable .owl-page:hover span {
+  background: $base-color;
+}

@@ -1,0 +1,13 @@
+<?php    
+    $output="Name\n";
+    $output.="ramesh\n";
+    $output.="rajesh\n";
+    $output.="mani\n";
+    ob_clean();
+    header('Content-Encoding: UTF-8');
+    header('Content-type: text/csv; charset=UTF-8');
+    header("Content-Disposition: attachment; filename=ramesh.csv");
+    header("Pragma: no-cache");
+    header("Expires: 0");    
+    echo $output;
+?>

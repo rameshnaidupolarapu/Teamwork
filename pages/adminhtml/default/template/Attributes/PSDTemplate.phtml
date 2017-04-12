@@ -1,0 +1,24 @@
+<?php
+    if($this->_action=='admin')
+    {
+        echo '<span class="text_display">********</span>';
+    }
+    else
+    {      
+        if($this->_readonly)
+        {
+            echo '<span class="text_display">********</span>';
+        }
+        else
+        {
+            ?>
+            <div class="input-prepend input-append">
+                <input class="input-large" type="password" id="<?php echo $this->_idName; ?>" name="<?php echo $this->_idName; ?>" value="" <?php echo $this->_required; ?> placeholder="<?php echo $this->getLabel($this->_idName); ?>" onchange="return formvalidations(this.value,'<?php echo $this->_idName; ?>','PSD')">
+                <span class="add-on"><i class="icon-key"></i>
+                    <span id="status_password"></span></span>
+            </div>           
+            
+            <?php
+        }
+    }
+?>

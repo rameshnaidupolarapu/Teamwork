@@ -1,0 +1,39 @@
+<?php
+global $currentNode;
+global $currentAction;
+if ($currentNode == 'core_users' && $currentAction == 'login') {
+    
+} else {
+    ?>
+    </section>
+    </div>
+    </div>
+
+    </div>
+    <?php
+    $wp = $this->_websiteSettings;
+    ?>
+    </div>
+    <footer id="footer" class="main-footer">	
+        <div class="hidden-xs">
+            <b>Version</b> 1.0
+        </div>
+        <strong>Copyright © 2015-2016 <a href="http://weblozix.com">Weblozix</a>.</strong> All rights reserved.
+    </footer>   
+    <div class="span pull-right ">
+        <span class="go-top scrollToTop "></span>
+    </div>
+    
+    <script>
+    require(['config'], function () {
+        require(['jquery', 'sidemenu'], function ($) {
+            $.sidebarMenu($('.sidebar-menu'));
+        });
+    });
+</script>
+    </body>
+    <!-- END BODY -->
+    </html>
+    <?php
+}
+?>

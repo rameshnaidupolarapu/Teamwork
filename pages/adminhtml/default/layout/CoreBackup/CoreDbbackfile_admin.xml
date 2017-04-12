@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<page>
+    <body>
+            <block name="header" class="\Core\Block\Header" template="header" />   
+            <block name="navigator" class="\Core\Block\Navigation" template="navigation" />  
+            <block name="maingrid" class="\Core\Block\Block" template="maingrid" >
+                <block parent="maingrid" name="grid" class="\Core\Block\Block" template="dbbackup" />
+            </block>   		
+            <block name="header" class="\Core\Block\Footer" template="footer" />
+    </body>
+</page>

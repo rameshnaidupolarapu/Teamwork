@@ -1,0 +1,249 @@
+<?php
+$cc= new \CoreClass();
+$session=$cc->getObject("\Core\Session");
+$sessionData=$session->getSessionData();  
+$lb=$cc->getObject("\Core\Model\Language"); 
+global $rootObj;
+$wp=$rootObj;
+$cssRootPath=$wp->websiteUrl."css/".$wp->themeName."/";
+$jsRootPath=$wp->websiteUrl."js/".$wp->themeName."/";
+$jspath=$wp->websiteUrl."Var/".$wp->identity."/design/adminhtml/".$wp->themeName."/js/";
+global $currentNode;
+global $currentAction;
+$csspath = $wp->websiteUrl . "Var/" . $wp->identity . "/design/adminhtml/".$wp->themeName."/css/";
+$jspath = $wp->websiteUrl . "Var/" . $wp->identity . "/design/adminhtml/".$wp->themeName."/js/";
+if($currentNode=='core_users' && $currentAction=='login')
+{  
+}
+else
+{
+    ob_clean();
+?>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<meta charset="utf-8">
+<title><?php echo $currentNode?$lb->getLabel("header_project_name")."/".$lb->getLabel($currentNode):$lb->getLabel("header_project_name"); ?></title>
+<?php             
+            $this->addDefaultCss();
+            $this->addContent("");
+            $this->addDefaultJs();
+            $this->renderLayout();
+        ?>
+<link href="<?php echo $wp->websiteUrl; ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<?php echo $wp->websiteUrl; ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/css/AdminLTE.min.css">
+<!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/css/skins/_all-skins.min.css">
+<!-- iCheck -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/plugins/iCheck/flat/blue.css">
+<!-- Morris chart -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/plugins/morris/morris.css">
+<!-- jvectormap -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<!-- Date Picker -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/plugins/datepicker/datepicker3.css">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/plugins/daterangepicker/daterangepicker-bs3.css">
+<!-- bootstrap wysihtml5 - text editor -->
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/css/styles.css">
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/theam1/css/sidemenu.css">
+<link rel="stylesheet" href="<?php echo $wp->websiteUrl; ?>css/project/project.css">
+<link rel="stylesheet" href="<?php echo $cssRootPath; ?>styles.css">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $wp->websiteUrl; ?>assets/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- END JAVASCRIPTS -->   
+    <script data-main="<?php echo $jspath; ?>requirejs/config" src="<?php echo $jspath; ?>requirejs/require.js" ></script>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<style>
+input[type="checkbox"] {
+    width: 17px;
+	height:17px;
+}
+</style>
+<body class="fixed-top hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div style="
+    min-height: 104%;
+    background: rgb(194, 228, 236);
+    color: darkslateblue;
+    font-family: monospace;
+    font-size: larger;
+    font-style: inherit;
+    font-weight: bolder;
+    
+">
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
+<!-- BEGIN HEADER -->
+<input type="hidden" name="doc_root" id="doc_root" value="<?php echo $this->_websiteSettings->websiteUrl;  ?>">
+<header id="header" class="main-header nav navbar-fixed-top"> <a class="logo" href="<?php echo $wp->websiteAdminUrl; ?>" style=" color: rgb(10, 14, 114); font-size: 16px; "> 
+  <input type="hidden" name="sitehost" id="sitehost" value="<?php echo $wp->websiteUrl; ?>" />
+  <input type="hidden" name="sitehostadmin" id="sitehostadmin" value="<?php echo $wp->websiteAdminUrl; ?>" />
+  <!-- mini logo for sidebar mini 50x50 pixels --> 
+  <span class="logo-mini"><b>N</b>core</span> 
+  <!-- logo for regular state and mobile devices --> 
+  <span class="logo-lg"><b>New Core</b></span> </a> 
+  
+  <!-- Header Navbar: style can be found in header.less -->
+  <nav class="navbar navbar-static-top" role="navigation"> 
+    <!-- Sidebar toggle button--> 
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only"></span> </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu"> 
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+                <?php if($sessionData['user_id']>0)
+                {
+                    
+                    ?>
+                    <img src="<?php echo $this->_websiteSettings->projectRootUploadUrl.$sessionData['image'];?>" alt="">
+                    <?php
+                }
+                else
+                {?>
+                    <img src="<?php echo $wp->websiteUrl."img/avatar_small.jpg";?>" alt="">
+                   <?php
+                }
+                ?>
+                <span class="hidden-xs"><?php echo Core::getValueFromArray($sessionData,'name'); ?></span> 
+            </a>
+          <ul class="dropdown-menu">
+            <!-- User image -->
+            <li class="user-header"> 
+                <?php if($sessionData['user_id']>0)
+                {
+                    
+                    ?>
+                    <img src="<?php echo $this->_websiteSettings->projectRootUploadUrl.$sessionData['image'];?>" alt="">
+                    <?php
+                }
+                else
+                {?>
+                    <img src="<?php echo $wp->websiteUrl."img/avatar_small.jpg";?>" alt="">
+                   <?php
+                }
+                ?>
+              <p> <?php echo Core::getValueFromArray($sessionData,'name'); ?> </p>
+            </li>           
+            <!-- Menu Footer-->
+            <li class="user-footer">
+                <?php
+                if($sessionData['user_id']>0)
+                {
+                ?>
+              <div class="pull-left"> <a href="<?php echo $wp->websiteAdminUrl."core_users/changepassword"; ?>" class="btn btn-default btn-flat">Change Password</a> </div>
+                <?php } ?>
+              <div class="pull-right"> <a href="<?php echo $wp->websiteAdminUrl."core_users/logout"; ?>" class="btn btn-default btn-flat"><i class="icon-key"></i> Log Out</a> </div>
+            </li>
+          </ul>
+        </li>
+        <!-- Control Sidebar Toggle Button -->
+        
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <ul class="sidebar-menu">
+      
+      <?php
+       $menuObject=$cc->getObject("\Core\Attributes\BuildMenu");
+       $menuObject->buildMenu();
+    ?>
+      
+      <?php
+        $output="";			
+        if(count($menuObject->_rootModules)>0)
+        {
+           foreach($menuObject->_rootModules as $rootmoduledata)
+             {
+               if(key_exists($rootmoduledata['nodename'],$menuObject->_moduleList))
+                 {
+					$root=$rootmoduledata['nodename'];
+					$rootdata=$menuObject->_menuItems[$root];
+					$child=0;
+                                        $style='';
+                                        global $currentRootModule;
+                                        if($currentRootModule==$root)
+                                        {
+                                            $style='style="display:block;"';
+                                        }
+					$output1='
+					<li class="treeview">'; 
+                     $output1.='<a href="javascript:;"><i class="'.$rootmoduledata['icon'].'"></i>'.'<span>'.$menuObject->_nodeDisplay[$root].'</span></a>';
+                     $output1.=' <ul class="sidebar-submenu" '.$style.' >';
+                         foreach($rootdata as $moduledisplay=>$moduledata)
+                         {                 
+                             $style='';
+                             $openclass="";
+                                        global $currentModuleDisplay;
+                                        if($currentModuleDisplay==$moduledisplay)
+                                        {
+                                            $openclass=" open active";
+                                            $style='style="display:block;"';
+                                        }
+                            $output1.='<li class="dropdown '.$openclass.'"   name="link_'.$root.'" id="link_'.$root."-".$moduledisplay.'" ><a href="javascript:;" ><div><span class="icon-box">
+                            </span>'.Core::getValueFromArray($menuObject->_nodeDisplay, $moduledisplay).'</div></a>';
+                            
+                            $output1.='<ul class=" sidebar-submenu" '.$style.' name="menu_'.$root.'" id="menu_'.$root.'-'.$moduledisplay.'">';
+                                 foreach($moduledata as $module=>$nodedata)
+                                  {
+                                    foreach($nodedata as $node=>$action)
+                                     {
+                                        if($node!=$moduledisplay) {
+                                          $output1.='<li><a  href="'.$menuObject->_nodeLink[$node].'"><i class="'.$rootmoduledata['icon'].'"></i>'.$menuObject->_nodeDisplay[$node].'</a></li>';
+                                           $child=1;
+                                         }
+                                     }
+                                   }
+                               $output1.='</ul>';
+                       }
+					   $output1.='</li></ul>';							
+                       $output1.="</li>";
+                         if($child==1)
+                           {
+                              $output.=$output1;
+                              $output1="";
+                           }
+                        }
+                }
+        }
+        echo $output;
+    ?>
+    </ul>
+  </section>
+</aside>
+<span id="div_loading" class="loader1" style="display:none"> Data will be under processing </span> 
+<!-- END HEADER -->
+<div id="container" class="row-fluid">
+<div class="row">
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Main content -->
+<section class="content" id="main-content">
+<!-- Content Header (Page header) --> 
+<?php
+}
+?>

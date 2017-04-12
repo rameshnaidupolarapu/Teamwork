@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>   
+    <tabs>
+        <tab name="search_settings" title="Search Information"  class="\Core\Block\Block" template="extrainformation" defaultfields="1" sort_value="0" ></tab>
+        
+    </tabs> 
+    <accordions>
+        
+        <accordion name="mandatory_settings" title="Mandatory Settings" defaultfields="1" sort_value="1">            
+        </accordion>
+        <accordion name="readonly_settings" title="Readonly Settings" defaultfields="1" sort_value="2">            
+        </accordion>
+        <accordion name="hide_settings" title="Hide Settings" sort_value="3" defaultfields="1" template=""></accordion>
+        <accordion name="inputtype_settings" title="Input Type Settings" sort_value="4" defaultfields="1" template=""></accordion>
+    </accordions>
+</config>

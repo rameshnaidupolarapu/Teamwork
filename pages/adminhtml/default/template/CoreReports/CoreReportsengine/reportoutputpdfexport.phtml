@@ -1,0 +1,56 @@
+<?php
+$htmlOutput='<table border="1">';
+if(count($this->_showAttributes)>0)
+{
+    $htmlOutput.="<tr>";
+    foreach ($this->_showAttributes as $FieldName) 
+    {
+       $header.='"'.$this->getLabel($FieldName).'"'.",";
+       $htmlOutput.="<th>".$this->getLabel($FieldName)."</th>";
+    }                 
+    $htmlOutput.="</tr>";
+}
+$output="";
+         
+if(count($this->_reportResult)>0)
+{
+    foreach ($this->_reportResult as $rowData)
+    {
+        $htmlOutput.="<tr>";
+        $output.="\n";
+        if(count($this->_showAttributes)>0)
+        {
+            foreach ($this->_showAttributes as $FieldName) 
+            {
+                $value=$rowData[$FieldName];
+                if(in_array($FieldName,$this->_reportNode->_boolAttributes))
+                {
+                    if($value==1)
+                    {
+                        $value="Yes";
+                    }
+                    else
+                    {
+                        $value="No";
+                    }
+                }
+                $output.=$value.",";
+                $htmlOutput.="<td>".$value."</td>";
+            }                 
+        }          
+        $htmlOutput.="</tr>";
+    }
+}
+$htmlOutput.="</table>";
+
+$pdf=new Lib_Pdf_Pdfhtml();
+
+
+$pdf->AliasNbPages();
+$pdf->SetAutoPageBreak(true, 15);
+
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',14);
+        $pdf->WriteHTML3("$htmlOutput");
+
+$pdf->Output(); 

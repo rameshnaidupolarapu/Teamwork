@@ -1,0 +1,43 @@
+<?php
+    if($this->_action=='admin')
+    {
+        echo $this->_Value;
+    }
+    else
+    {
+        if($this->_readonly)
+        {
+            $type="hidden";
+        }
+        else
+        {
+            $type="type";
+        }
+    ?>
+    <?php
+        if($this->_readonly)
+        {
+            ?>
+            <input class="input-large" type="<?php echo $type; ?>" id="<?php echo $this->_idName; ?>" name="<?php echo $this->_idName; ?>" value="<?php echo $this->_Value;?>" placeholder="<?php echo $this->getLabel($this->_idName); ?>" onchange="<?php echo $this->_onchange; ?>" <?php echo $this->_required; ?> />
+    
+            <?php
+            echo '<span class="text_display">'.$this->_Value."</span>";
+        }
+        else
+        {
+           echo '<div class="input-append date date-picker" data-date="'.$this->_Value.'" data-date-format="yyyy-mm-dd" data-date-viewmode="days">
+                        <input  size="16" type="text" readonly placeholder="'.$this->getLabel($this->_idName).'"  id="'.$this->_idName.'" name="'.$this->_idName.'"	value="'.$this->_Value.'"  >
+                        <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>';
+           ?>
+            <script type="text/javascript">
+                jQuery("document").ready(function(){
+                    jQuery(".date-picker input").datepicker({format:'yyyy-mm-dd'});
+                });
+                
+                </script>
+            <?php
+            
+        }
+    }
+?>

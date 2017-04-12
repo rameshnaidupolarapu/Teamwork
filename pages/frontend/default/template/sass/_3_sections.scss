@@ -1,0 +1,48 @@
+/* 3 Sections
+----------------------------------------------------------------------------- */
+/* Footer
+---------------------------------- */
+.footer {
+  font-size: 14px;
+  color: $gray-light;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $gray-light;
+  }
+  h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+}
+.light {
+  .footer,
+  .footer h1,
+  .footer h2,
+  .footer h3,
+  .footer h4,
+  .footer h5,
+  .footer h6 {
+    color: $gray;
+  }
+}
+
+/* Subfooter
+---------------------------------- */
+.subfooter {
+  font-size: 14px;
+  p {
+    margin: 0;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width:768px) {
+  /* subfooter */
+  .subfooter {
+    text-align: center;
+  }
+}

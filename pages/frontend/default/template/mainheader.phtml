@@ -1,0 +1,81 @@
+
+			<header class="header fixed clearfix">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+
+							<!-- header-left start -->
+							<!-- ================ -->
+							<div class="header-left clearfix">
+
+								<!-- logo -->
+								<div class="logo">
+									<a href="index.php"><img id="logo" src="<?php echo $this->_websiteSettings->websiteUrl;?>pages/frontend/default/images/logo.png" alt="iDea"></a>
+								</div>
+
+								<!-- name-and-slogan -->
+								<div class="site-slogan">
+									Enhance Knowledge
+								</div>
+
+							</div>
+							<!-- header-left end -->
+
+						</div>
+						<div class="col-md-9">
+
+							<!-- header-right start -->
+							<!-- ================ -->
+							<div class="header-right clearfix">
+
+								<!-- main-navigation start -->
+								<!-- ================ -->
+								<div class="main-navigation animated">
+
+									<!-- navbar start -->
+									<!-- ================ -->
+									<nav class="navbar navbar-default" role="navigation">
+										<div class="container-fluid">
+
+											<!-- Toggle get grouped for better mobile display -->
+											<div class="navbar-header">
+												<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+													<span class="sr-only">Toggle navigation</span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+												</button>
+											</div>
+<?php $menus=$this->getMenuDetails();?>
+											<!-- Collect the nav links, forms, and other content for toggling -->
+											<div class="collapse navbar-collapse" id="navbar-collapse-1">
+												<ul class="nav navbar-nav navbar-right">
+													<?php if(Core::countArray($menus)>0){
+     foreach ($menus as $menuData)
+     {
+       ?>
+                                                                                                    <li><a target="_blank" href="#"><?php echo $menuData;?></a></li>
+                                                                                                         <?php 
+     }
+     ?>
+                                                                                                            
+                                                                                                        <?php }?>
+													
+													
+												</ul>
+											</div>
+
+										</div>
+									</nav>
+									<!-- navbar end -->
+
+								</div>
+								<!-- main-navigation end -->
+
+							</div>
+							<!-- header-right end -->
+
+						</div>
+					</div>
+				</div>
+			</header>

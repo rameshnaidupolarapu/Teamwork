@@ -1,0 +1,45 @@
+<?php
+$controllerObj=$this->_controllerObj;
+?>
+<div class="box box-primary">
+    
+             <div class="box-header with-border">
+                <h3 class="box-title">Save</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="icon-chevron-down"></i></button>
+                </div>
+             </div>
+                <div class="box-body chart-responsive widget-body">
+                    <form id="<?php echo $controllerObj->_nodeName;?>" name="<?php echo $controllerObj->_nodeName;?>" class="form-horizontal">
+                        <input type="hidden" id="node" name="node" value="<?php echo $controllerObj->_nodeName;?>">
+                        <input type="hidden" id="action" name="action" value="savedbtosever">
+                        <input type="hidden" id="action_id" name="action_id" value="savedbtosever">
+                        <div id="error_div" name="error_div" style="color: red;font-weight: bold;"></div>
+                        <div class="control-group">
+                            <label class="control-label">Table</label>
+                            <div class="controls">
+                                <select id="db_table" name="db_table" >
+                                    <option value=""> ALL </option>
+                                    <?php
+                                        if(count($controllerObj->_tableList)>0)
+                                        {
+                                            foreach ($controllerObj->_tableList as $tableName)
+                                            {
+                                                ?>
+                                                    <option value="<?php echo $tableName;?>"><?php echo $tableName;?></option>
+                                                <?php
+                                            }
+                                        }
+                                    ?>
+                                </select>                                
+                            </div>
+                        </div>                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-success formsubmit " id="datasubmit" name="datasubmit" onclick="return getformsubmit();"><i class="icon-save"></i> Save to Server</button>
+
+                        </div>
+                    </form>
+                </div>
+            
+       
+</div>

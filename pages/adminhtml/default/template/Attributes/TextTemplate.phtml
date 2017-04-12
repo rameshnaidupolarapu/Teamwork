@@ -1,0 +1,24 @@
+<?php
+    if($this->_action=='admin')
+    {
+        echo $this->_Value;
+    }
+    else
+    {
+        if($this->_readonly)
+        {
+            $type="hidden";
+        }
+        else
+        {
+            $type="type";
+        }
+    ?>
+    <input class="input-large" type="<?php echo $type; ?>" id="<?php echo $this->_idName; ?>" name="<?php echo $this->_idName; ?>" value="<?php echo $this->_Value;?>" placeholder="<?php echo $this->getLabel($this->_idName); ?>" onchange="<?php echo $this->_onchange; ?>" <?php echo $this->_required; ?> />
+    <?php
+        if($this->_readonly)
+        {
+            echo '<span class="text_display">'.$this->_Value."</span>";
+        }
+    }
+?>

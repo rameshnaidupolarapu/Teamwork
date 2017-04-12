@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<body>
+        <block name="header" class="\Core\Block\Block" template="header" />
+        <block name="pagecontainer" class="\Core\Block\Block" template="pagecontainer" >
+               <block name="headertop" class="\Core\Block\Block" parent="pagecontainer" template="headertop"/>
+               <block name="mainheader" class="\Modules\Ramesh\Block\Navigation"  parent="pagecontainer" template="mainheader"/>
+               <block name="content" class="\Core\Block\Block" parent="pagecontainer"  template="content" />
+               <block name="pagefooter" class="\Core\Block\Block" parent="pagecontainer"  template="pagefooter" />
+        </block>
+        <block name="footer" class="\Core\Block\Block" template="footer" />		
+</body>

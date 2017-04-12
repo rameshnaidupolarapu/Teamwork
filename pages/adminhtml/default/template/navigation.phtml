@@ -1,0 +1,43 @@
+<?php
+global $currentNode;
+global $currentAction;
+if($currentNode=='core_users' && $currentAction=='login')
+{
+
+}
+else
+{
+    ?>
+<?php
+        global $rootObj;
+    $wp=$rootObj;
+    global $currentNode;
+?>
+
+<section class="content-header">
+  <h1> <?php echo $this->getLabel($currentNode); ?> </h1>
+  <ol class="breadcrumb">
+    <li> <a href="<?php echo $wp->websiteAdminUrl; ?>"> <span class="divider" style="">Home</span> </a> <span class="divider">&nbsp;</span> </li>
+        <?php                   
+                    $navigationArray=$this->getNavigationPath();                
+                    if(count($navigationArray)>0)
+                    {                        
+                        foreach($navigationArray as $menuData)
+                        {
+                            ?>
+                            <li>
+                                <a href="<?php echo $menuData['url']; ?>">
+                                    <span class="divider" ><?php echo $menuData['label'];?></span>
+                                </a>
+                                <span class="divider">&nbsp;</span>
+                            </li>
+                            <?php
+                        }
+                    }
+
+            ?>
+  </ol>
+</section>
+<?php
+}
+?>

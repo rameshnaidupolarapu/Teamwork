@@ -1,0 +1,58 @@
+<?php    
+    if($this->_action=='admin')
+    {
+        if($this->_Value==1)
+        {
+            echo 'Yes';
+        }
+        else 
+        {
+            echo 'No';
+        }
+    }
+    else 
+    {
+
+        if($this->_action=='add' && $this->_idName=='active_status')
+        {
+            $this->_readonly=1;
+            $this->_Value=1;
+        }
+        $type="checkbox";
+        $class="";
+        if($this->_readonly==1)
+        {
+            $type="hidden";
+            $class.=" ".$type;
+        } 
+        $checked=" ";
+        $value=1;
+        if($this->_Value==1)
+        {
+            $checked=" checked ";
+        } 
+        if($this->_readonly==1)
+        {
+            $value=$this->_readonly;            
+        } 
+?>
+        <div class="checker <?php echo $class; ?>" id="uniform-<?php echo $this->_idName; ?>">
+
+                <input class="input-large" type="<?php echo $type;?>" id="<?php echo $this->_idName; ?>" name="<?php echo $this->_idName; ?>" value="<?php echo $value; ?>"  <?php echo $checked; ?> />        
+
+        </div>
+<?php
+        if($this->_readonly==1)
+        {
+            if($this->_Value==1)
+            {
+                echo "Yes";
+            }
+            else
+            {
+                echo "No";
+            }
+
+        }
+    }
+?>

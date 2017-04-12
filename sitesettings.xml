@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hostsettings>
+		<Host>
+                    <websitehost>http://localhost/newframework/</websitehost>
+                    <documentroot>E:/xampp56/htdocs/newframework/</documentroot>
+                    <identity>newframework</identity>
+                    <admincode>admin</admincode>
+                    <rpp>17</rpp>
+                    <theme>default</theme>
+                    <projectnode></projectnode>
+		</Host>
+		<Database>
+	        <default>
+                        <Host>localhost</Host>
+                        <User>newframework</User>
+                        <PWD>newframework</PWD>
+		        <Name>newframework</Name>
+        	</default>
+		</Database>
+</hostsettings>
